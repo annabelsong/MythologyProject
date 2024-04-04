@@ -26,15 +26,15 @@ CREATE TABLE Tale (
 );
 
 CREATE TABLE StoryEvent (
-TaleName VARCHAR(32),
-EventName VARCHAR(32),
-    	EventDescription VARCHAR(512),
-    	LocationName VARCHAR(32),
-TimePeriod VARCHAR(32) DEFAULT 'anytime',
-    	PRIMARY KEY (TaleName, EventName),
-    	FOREIGN KEY (TaleName) REFERENCES Tale(TaleName) ON DELETE CASCADE,
-    	FOREIGN KEY (LocationName, TimePeriod) REFERENCES Location(LocationName, 
-TimePeriod) ON DELETE CASCADE
+	TaleName VARCHAR(32),
+	EventName VARCHAR(32),
+    EventDescription VARCHAR(512),
+    LocationName VARCHAR(32),
+	TimePeriod VARCHAR(32) DEFAULT 'anytime',
+    PRIMARY KEY (TaleName, EventName),
+    FOREIGN KEY (TaleName) REFERENCES Tale(TaleName) ON DELETE CASCADE,
+    FOREIGN KEY (LocationName, TimePeriod) REFERENCES Location(LocationName, 
+	TimePeriod) ON DELETE CASCADE
 );
 
 CREATE TABLE Pantheon(
@@ -46,7 +46,7 @@ CREATE TABLE Pantheon(
 CREATE TABLE Artifact(
 	ArtifactName VARCHAR(32),
 	Origin VARCHAR(512),
-PRIMARY KEY(ArtifactName)
+	PRIMARY KEY(ArtifactName)
 );
 
 CREATE TABLE BelongsTo (
