@@ -135,7 +135,8 @@ INSERT INTO Location VALUES
 ('Crete', 'A city of ancient Greece, home to King Minos and the Labyrinth', 'classic antiquity'),
 ('Celtic Lands', 'The collection of Celtic territories, encompassing Ireland, Scotland, Wales and England', 'pre-medieval'),
 ('Mesopotamia', 'An ancient region located in the eastern Mediterranian, known as the land between the rivers', '6000 years ago'),
-('North America', 'A continent comprising of various indigenous cultures and tribes. These lands have since been stolen', 'modern');
+('North America', 'A continent comprising of various indigenous cultures and tribes. These lands have since been stolen', 'modern'),
+('Island of Sarpedon', 'An isolated island where Medusa was said to live.', 'classical antiquity');
 
 INSERT INTO Ritual VALUES
 ('Dionysian Mysteries', 'TRUE',  'Dionysus', 'anywhere', 'anytime'),
@@ -145,7 +146,8 @@ INSERT INTO Ritual VALUES
 ('Maha Shivaratri', 'TRUE', 'Shiva', 'Nepal', 'modern'),
 ('Feast of Samhain', 'TRUE', 'Dagda', 'anywhere', 'anytime'),
 ('Enuma Elish', 'TRUE', 'Enlil', 'anywhere', 'anytime'),
-('Coyote"s Dance of Chaos', 'TRUE', 'Trickster Coyote', 'anywhere', 'anytime');
+('Coyote"s Dance of Chaos', 'TRUE', 'Trickster Coyote', 'anywhere', 'anytime'),
+('Gorgon Protection Rite', 'FALSE', 'Medusa', 'Island of Sarpedon', 'classical antiquity');
 
 INSERT INTO Tale VALUES
 ('Tale of Arachne', 'Do not get carried away in your own hubris', 'Greek'),
@@ -161,7 +163,8 @@ INSERT INTO Tale VALUES
 ('The Sword in the Stone', 'You just have to believe in yourself and help others along the way', 'Welsh'),
 ('Tale of Dagda and the Cauldron', 'Do not underestimate the consequences of greed and betrayal', 'Celtic'),
 ('Tale of Enlil and the Tablets of Destiny', 'Power and destiny should not be taken for granted', 'Mesopotamian'),
-('Tale of Trickster Coyote', 'Wisdom can be found in unexpected place', 'Native American');
+('Tale of Trickster Coyote', 'Wisdom can be found in unexpected place', 'Native American'),
+('The Gorgon Medusa', 'Even the most dreadful form can house a gentle soul, and the most beautiful can house deceit.', 'Greek');
  
 INSERT INTO StoryEvent VALUES
 ('Story of Achilles', 'Achilles becomes invulnerable', 'As a baby Achilles is dipped into the river Styx by his mother who holds him by his heel, rendering him invulnerable', 'River Styx', 'classical antiquity'),
@@ -172,7 +175,9 @@ INSERT INTO StoryEvent VALUES
 ('The Myth of Daedalus and Icarus', 'Icarus loses his wings', 'After flying too close to the sun, the wax on Icarus"s wings melts, leaving him featherless and unable to fly', 'Crete', 'classical antiquity'),
 ('Tale of Dagda and the Cauldron', 'Dagda retrieves her Cauldron', 'After the Cauldron of Dagna is stolen by Fomorians, Dagda sets out on a quest to retrieve her cauldron.', 'Mt. Olympus', 'classical antiquity'),
 ('Tale of Enlil and the Tablets of Destiny', 'The Tablets of Destiny are stolen', 'Anzu, a monstrous bird, steals the tablet from Enlil, who is entrusted with it because he is the chief of the gods. Enlil embarks on a journey to retrieve the powerful tablets', 'Mesopotamia', 'classical antiquity'),
-('Trickster Coyote and the Dreamcatcher', 'Creation of the Dreamcatcher', 'Coyote creates the Dreamcatcher to protect people from bad dreams by filtering them through his web, allowing only good dreams to pass through', 'North America', 'classical antiquity') ;
+('Trickster Coyote and the Dreamcatcher', 'Creation of the Dreamcatcher', 'Coyote creates the Dreamcatcher to protect people from bad dreams by filtering them through his web, allowing only good dreams to pass through', 'North America', 'classical antiquity'),
+('The Gorgon Medusa', 'Perseus encounters Medusa', 'Perseus, aided by the gods, beheads Medusa while she sleeps.', 'Island of Sarpedon', 'classical antiquity'),
+('The Gorgon Medusa', 'Birth of Pegasus', 'From the blood of Medusa springs forth Pegasus, the winged horse.', 'Island of Sarpedon', 'classical antiquity') ;
 
 INSERT INTO Pantheon VALUES
 ('Norse', 'Asgardian Gods'),
@@ -251,8 +256,6 @@ INSERT INTO Deity VALUES
 ('Enki', 'Mesopotamian god of water, knowledge, mischief, crafts, and creation.', 'Water and Wisdom', 'Water manipulation, wisdom', 'Mesopotamian'),
 ('Coyote', 'Trickster figure in Native American mythology, known for his cunning and playful nature.', 'Trickery and Chaos', 'Shape-shifting, trickery', 'Native American');
 
-
-
 INSERT INTO Creature VALUES
 ('Jormungandr', 'Midgard Serpent (also World Serpent) in Norse mythology who encircles the realm of Midgard. He is the son of the god Loki and the giantess Angrboða and brother of the great wolf Fenrir and Hel, Queen of the Dead. At Ragnarök, the Twilight of the Gods, he slays and is slain by the god Thor.',  'Virtual invulnerability', 'World Serpent', 'Norse'),
 ('Medusa', 'A woman with living snakes in place of hair; her appearance was so hideous that anyone who looked upon her was turned to stone', 'Stonification', 'Gorgon', 'Greek')
@@ -271,7 +274,8 @@ INSERT INTO Symbol VALUES
 ('Man with wings', 'Shows man"s overreaching ambition'),
 ('Golden Headband', 'A painfully tightening fillet given to the hero in case of any unsavoury behaviour'),
 ('Golden Dragon', 'A family coat borne by King Arthur"s father, Uther Pendragon'),
-('Ouroboros', 'The symbol of a serpent or dragon eating its own tail, often associated with eternity or cyclicality. Represents the cyclical nature of the world, much like Jormungandr encircling Midgard.');
+('Ouroboros', 'The symbol of a serpent or dragon eating its own tail, often associated with eternity or cyclicality. Represents the cyclical nature of the world, much like Jormungandr encircling Midgard.'),
+('Gorgoneion', 'A symbol of protection, often used on shields and armor, featuring the head of Medusa.');
 
 INSERT INTO Represents VALUES
 ('Hammer of Thor', 'Thor'),
@@ -282,11 +286,13 @@ INSERT INTO Represents VALUES
 ('Atef crown', 'Osiris'),
 ('Golden Headband', 'Sun Wukong'),
 ('Golden Dragon', 'Arthur'),
-('Ouroboros', 'Jormungandr');
+('Ouroboros', 'Jormungandr'),
+('Gorgoneion', 'Medusa');
 
 INSERT INTO PartOf VALUES
 ('Achilles', 'Story of Achilles'),
 ('Osiris', 'The Death and Resurrection of Osiris'),
 ('Sun Wukong', 'Sun Wukong"s Quest for Immortality')
 ('Icarus', 'The Myth of Daedalus and Icarus')
-('Apollo', 'Story of Achilles');
+('Apollo', 'Story of Achilles'),
+('Medusa', 'The Gorgon Medusa');
