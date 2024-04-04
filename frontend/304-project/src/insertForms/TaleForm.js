@@ -44,7 +44,7 @@ function TaleForm() {
             id="taleName"
             value={taleName}
             onChange={handleTaleNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -52,7 +52,7 @@ function TaleForm() {
             id="moralLesson"
             value={moralLesson}
             onChange={handleMoralLessonChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -60,7 +60,7 @@ function TaleForm() {
             id="culture"
             value={culture}
             onChange={handleCultureChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
         </div>
       </div>

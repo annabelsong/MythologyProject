@@ -62,7 +62,7 @@ function StoryEventForm() {
             id="taleName"
             value={taleName}
             onChange={handleTaleNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -70,7 +70,7 @@ function StoryEventForm() {
             id="eventName"
             value={eventName}
             onChange={handleEventNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -78,7 +78,7 @@ function StoryEventForm() {
             id="eventDescription"
             value={eventDescription}
             onChange={handleEventDescriptionChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -86,7 +86,7 @@ function StoryEventForm() {
             id="locationName"
             value={locationName}
             onChange={handleLocationNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -94,7 +94,7 @@ function StoryEventForm() {
             id="timePeriod"
             value={timePeriod}
             onChange={handleTimePeriodChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
         </div>
       </div>

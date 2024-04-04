@@ -45,7 +45,7 @@ function LocationForm() {
                 id="locationName"
                 value={locationName}
                 onChange={handleLocationNameChange}
-                className="mb-5 border-grey border-2"
+                className="mb-5 border-gray-400 border-2"
                 />
                 <br />
                 <input
@@ -53,7 +53,7 @@ function LocationForm() {
                 id="areaDescription"
                 value={areaDescription}
                 onChange={handleAreaDescriptionChange}
-                className="mb-5 border-grey border-2"
+                className="mb-5 border-gray-400 border-2"
                 />
                 <br />
                 <input
@@ -61,7 +61,7 @@ function LocationForm() {
                 id="timePeriod"
                 value={timePeriod}
                 onChange={handleTimePeriodChange}
-                className="mb-5 border-grey border-2"
+                className="mb-5 border-gray-400 border-2"
                 />
             </div>
         </div>

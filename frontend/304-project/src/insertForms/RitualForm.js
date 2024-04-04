@@ -62,7 +62,7 @@ function RitualForm() {
             id="ritualName"
             value={ritualName}
             onChange={handleRitualNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -78,7 +78,7 @@ function RitualForm() {
             id="characterName"
             value={characterName}
             onChange={handleCharacterNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -86,7 +86,7 @@ function RitualForm() {
             id="locationName"
             value={locationName}
             onChange={handleLocationNameChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
           <br />
           <input
@@ -94,7 +94,7 @@ function RitualForm() {
             id="timePeriod"
             value={timePeriod}
             onChange={handleTimePeriodChange}
-            className="mb-5 border-gray border-2"
+            className="mb-5 border-gray-400 border-2"
           />
         </div>
       </div>
