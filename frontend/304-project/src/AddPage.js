@@ -3,11 +3,21 @@ import LocationForm from './insertForms/LocationForm'
 import RitualForm from './insertForms/RitualForm'
 import TaleForm from './insertForms/TaleForm'
 import StoryEventForm from './insertForms/StoryEventForm'
+import PantheonForm from './insertForms/PantheonForm';
+import ArtifactForm from './insertForms/ArtifactForm';
+import BelongsToForm from './insertForms/BelongsToForm';
+import AppearsInForm from './insertForms/AppearsInForm';
+import SymbolForm from './insertForms/SymbolForm';
+import DeityForm from './insertForms/DeityForm';
+import MortalForm from './insertForms/MortalForm';
+import CreatureForm from './insertForms/CreatureForm';
+import RepresentsForm from './insertForms/RepresentsForm';
+import PartOfForm from './insertForms/PartOfForm';
 
 const tables = ["table1","table2"];
 
 function AddPage() {
-  const [selectedVal, setSelectedVal] = useState('storyevent');
+  const [selectedVal, setSelectedVal] = useState('partof');
 
   const handleTableChange = (event) => {
     setSelectedVal(event.target.value);
@@ -24,45 +34,25 @@ function AddPage() {
       case 'storyevent':
         return <StoryEventForm/>;
       case 'pantheon':
-        return <div>
-
-        </div>;
+        return <PantheonForm/>;
       case 'artifact':
-        return <div>
-
-        </div>;
+        return <ArtifactForm/>;
       case 'belongsto':
-        return <div>
-
-        </div>;
+        return <BelongsToForm/>;
       case 'appearsin':
-        return <div>
-
-        </div>;
+        return <AppearsInForm/>;
       case 'symbol':
-        return <div>
-
-        </div>;
+        return <SymbolForm/>;
       case 'deity':
-        return <div>
-
-        </div>;
+        return <DeityForm/>;
       case 'mortal':
-        return <div>
-
-        </div>;
+        return <MortalForm/>;
       case 'creature':
-        return <div>
-
-        </div>;
+        return <CreatureForm/>;
       case 'represents':
-        return <div>
-
-        </div>;
+        return <RepresentsForm/>;
       case 'partof':
-        return <div>
-          
-        </div>;
+        return <PartOfForm/>;
       
       default: return <div>Select A Table First!</div>;
     }
