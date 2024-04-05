@@ -76,7 +76,7 @@ app.post('/api/insert/BelongsTo', (req, res) => {
 app.post('/api/insert/Creature', (req, res) => {
     console.log('Insert Creature called');
     const { characterName, characterDescription, supernaturalAbility, species } = req.body;
-    const query = `INSERT INTO Creature (characterName, characterDescription, supernaturalAbility, species) VALUES (?, ?, ?, ?, ?)`;
+    const query = `INSERT INTO Creature (characterName, characterDescription, supernaturalAbility, species) VALUES (?, ?, ?, ?)`;
     db.query(query, [characterName, characterDescription, supernaturalAbility, species], (err, result) => {
       if (err) {
         console.error('Error inserting data:', err);
@@ -87,7 +87,22 @@ app.post('/api/insert/Creature', (req, res) => {
     });
   });
 
+app.post('/api/insert/Deity', (req, res) => {
+  console.log('Insert Deity called');
+  const { deityName, characterDescription, domain, supernaturalAbility, culture } = req.body;
+  const query = `INSERT INTO Deity (deityName, characterDescription, domain, supernaturalAbility) VALUES (?, ?, ?, ?)`;
+  db.query(query, [deityName, characterDescription, domain, supernaturalAbility], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into Deity table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into Deity table' });
+  });
+});
+
 app.post('/api/insert/Location', (req, res) => {
+    console.log('Insert Location called');
     const { locationName, areaDescription, timePeriod } = req.body;
     const query = `INSERT INTO Location (locationName, areaDescription, timePeriod) VALUES (?, ?, ?)`;
     db.query(query, [locationName, areaDescription, timePeriod], (err, result) => {
@@ -99,6 +114,20 @@ app.post('/api/insert/Location', (req, res) => {
       console.log('AppearsIn data inserted successfully');
       res.send('Location data inserted successfully');
     });
+});
+
+app.post('/api/insert/Mortal', (req, res) => {
+  console.log('Insert Mortal called');
+  const { characterName, characterDescription, title, profession } = req.body;
+  const query = `INSERT INTO Mortal (characterName, characterDescription, title, profession) VALUES (?, ?, ?, ?)`;
+  db.query(query, [characterName, characterDescription, title, profession], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into Mortal table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into Mortal table' });
+  });
 });
 
 // Start the server

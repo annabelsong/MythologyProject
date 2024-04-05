@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function DeityForm() {
   const [deityName, setDeityName] = useState('');
@@ -27,19 +28,29 @@ function DeityForm() {
     setCulture(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Deity Name:', deityName);
-    console.log('Character Description:', characterDescription);
-    console.log('Domain:', domain);
-    console.log('Supernatural Ability:', supernaturalAbility);
-    console.log('Culture:', culture);
-    // Reset the form after submission if needed
-    setDeityName('');
-    setCharacterDescription('');
-    setDomain('');
-    setSupernaturalAbility('');
-    setCulture('');
+
+    const query = {
+      deityName,
+      characterDescription,
+      domain,
+      supernaturalAbility
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Deity', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setDeityName('');
+      setCharacterDescription('');
+      setDomain('');
+      setSupernaturalAbility('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

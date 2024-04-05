@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function MortalForm() {
   const [characterName, setCharacterName] = useState('');
   const [characterDescription, setCharacterDescription] = useState('');
   const [title, setTitle] = useState('');
   const [profession, setProfession] = useState('');
-  const [childName, setChildName] = useState(null);
-  const [culture, setCulture] = useState('');
-
+  
   const handleCharacterNameChange = (event) => {
     setCharacterName(event.target.value);
   };
@@ -24,29 +23,29 @@ function MortalForm() {
     setProfession(event.target.value);
   };
 
-  const handleChildNameChange = (event) => {
-    setChildName(event.target.value);
-  };
-
-  const handleCultureChange = (event) => {
-    setCulture(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Character Name:', characterName);
-    console.log('Character Description:', characterDescription);
-    console.log('Title:', title);
-    console.log('Profession:', profession);
-    console.log('Child Name:', childName);
-    console.log('Culture:', culture);
-    // Reset the form after submission if needed
-    setCharacterName('');
-    setCharacterDescription('');
-    setTitle('');
-    setProfession('');
-    setChildName(null);
-    setCulture('');
+
+    const query = {
+      characterName,
+      characterDescription,
+      title,
+      profession
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Mortal', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setCharacterName('');
+      setCharacterDescription('');
+      setTitle('');
+      setProfession('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (
@@ -60,10 +59,6 @@ function MortalForm() {
           <label htmlFor="title" className="text-left block">Title:</label>
           <br />
           <label htmlFor="profession" className="text-left block">Profession:</label>
-          <br />
-          <label htmlFor="childName" className="text-left block">Child Name:</label>
-          <br />
-          <label htmlFor="culture" className="text-left block">Culture:</label>
         </div>
         <div>
           <input
@@ -95,22 +90,6 @@ function MortalForm() {
             id="profession"
             value={profession}
             onChange={handleProfessionChange}
-            className="mb-5 border-gray-400 border-2"
-          />
-          <br />
-          <input
-            type="text"
-            id="childName"
-            value={childName}
-            onChange={handleChildNameChange}
-            className="mb-5 border-gray-400 border-2"
-          />
-          <br />
-          <input
-            type="text"
-            id="culture"
-            value={culture}
-            onChange={handleCultureChange}
             className="mb-5 border-gray-400 border-2"
           />
         </div>
