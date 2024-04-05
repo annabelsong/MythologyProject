@@ -44,7 +44,7 @@ function SortPage() {
       <p><strong>First choose a table then specify what keyword you want to filter for in this table!</strong></p>
       <br />
     
-      <select value={selectedTable} onChange={handleTableChange}>
+      <select value={selectedTable} onChange={handleTableChange} className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">
         <option value="">Select a table</option>
         {tables.map(([label, value]) => (
           <option key={value} value={value}>{label}</option>
