@@ -118,7 +118,7 @@ CREATE TABLE PartOf(
 
 
 INSERT INTO Location VALUES
-('Mt. Olympus', 'Mount Olympus is the mythological home of the gods. It is snowy-peaked and scattered with the palaces of the gods',  'anytime'),
+('Mount Olympus', 'Mount Olympus is the mythological home of the gods. It is snowy-peaked and scattered with the palaces of the gods',  'anytime'),
 ('Labyrinth of Crete', 'A prison constructed under Crete built to hide the Minotaur from the world', 'bronze age'),
 ('Ithaca', 'The island birthplace of Odysseus',  'classical antiquity'),
 ('Troy', 'The city of Troy, site of the Trojan war',  'classical antiquity'),
@@ -145,18 +145,36 @@ INSERT INTO Location VALUES
 ('Ulster', 'A province in the north of Ireland, the setting for many of Cú Chulainn"s heroic exploits.', 'Iron Age'),
 ('Uruk', 'An ancient city-state in Sumer, present-day Iraq, ruled by Gilgamesh and the setting for many of his adventures.', 'early dynastic period'),
 ('Cedar Forest', 'A mythical forest guarded by the demon Humbaba, slain by Gilgamesh and Enkidu on their quest.', 'early dynastic period'),
-('Mashu', 'The twin-peaked mountain with the gate leading to the Cedar Forest, through which Gilgamesh passes on his quest for immortality.', 'early dynastic period');
+('Mashu', 'The twin-peaked mountain with the gate leading to the Cedar Forest, through which Gilgamesh passes on his quest for immortality.', 'early dynastic period'),
+('Mount Kailash', 'Considered the abode of Lord Shiva, Mount Kailash is revered as a sacred mountain and a pilgrimage destination in Hinduism, Buddhism, Jainism, and Bon.', 'timeless'),
+('Himalayas', 'A mountain range in South Asia, which is home to the world''s highest peaks, including Mount Everest and K2', 'timeless'),
+('Varanasi', 'One of the oldest living cities in the world, located along the banks of the Ganges River in India. Varanasi is considered a holy city in Hinduism, dedicated to Lord Shiva.', 'anytime'),
+('Caucasus Mountains', 'A mountain system in Eurasia between the Black Sea and the Caspian Sea, where Prometheus was punished by Zeus.', 'classical antiquity'),
+('Brauron', 'An ancient Greek sanctuary on the eastern coast of Attica dedicated to Artemis Brauronia, a place of worship and rites for young girls.', 'classical antiquity'),
+('Ortygia', 'A small island near Delos, legendary birthplace of Artemis and Apollo, sacred to both.', 'classical antiquity'),
+('Abydos', 'An ancient city and significant cult center of Osiris, believed to be the gateway to the afterlife.', 'anytime'),
+('Duat', 'The mythical realm of the dead in Egyptian mythology, overseen by Osiris as the judge of souls.', 'timeless'),
+('Memphis', 'An ancient capital of Egypt, Memphis was a major religious and cultural center, home to important temples dedicated to Osiris.', 'ancient'),
+('Eridu', 'One of the earliest cities in ancient Mesopotamia, Eridu is considered the city of the god Enki, associated with creation, water, and wisdom.', 'ancient times');
 
 
 INSERT INTO Ritual VALUES
-('Dionysian Mysteries', 'TRUE',  'Dionysus', 'anywhere', 'anytime'),
-('Kharisteria', 'TRUE', 'Artemis', 'Athens', 'classical antiquity'),
-('Olympic Ritual', 'TRUE', 'Zeus', 'Olympia', 'classical antiquity'),
-('Delphi Rituals', 'TRUE', 'Apollo', 'Delphi', 'classical antiquity'),
-('Maha Shivaratri', 'TRUE', 'Shiva', 'Nepal', 'modern'),
-('Feast of Samhain', 'TRUE', 'Dagda', 'anywhere', 'anytime'),
-('Enuma Elish', 'TRUE', 'Enlil', 'anywhere', 'anytime'),
-('Coyote"s Dance of Chaos', 'TRUE', 'Trickster Coyote', 'anywhere', 'anytime');
+('Dionysian Mysteries', TRUE,  'Dionysus', 'anywhere', 'anytime'),
+('Kharisteria', TRUE, 'Artemis', 'Athens', 'classical antiquity'),
+('Olympic Games', TRUE, 'Zeus', 'Olympia', 'classical antiquity'),
+('Delphi Rituals', TRUE, 'Apollo', 'Delphi', 'classical antiquity'),
+('Maha Shivaratri', TRUE, 'Shiva', 'Nepal', 'modern'),
+('Feast of Samhain', TRUE, 'Dagda', 'anywhere', 'anytime'),
+('Enuma Elish', TRUE, 'Enlil', 'anywhere', 'anytime'),
+('Coyote"s Dance of Chaos', TRUE, 'Trickster Coyote', 'anywhere', 'anytime'),
+('Festival of the Apsu', TRUE, 'Enki', 'Eridu', 'ancient times'),
+('Beltane Celebrations', TRUE, 'Cernunnos', 'Celtic Lands', 'Iron Age'),
+('Pythian Games', TRUE, 'Apollo', 'Delphi', 'classical antiquity'),
+('Feast of Apollo', TRUE, 'Apollo', 'Delphi', 'anytime'),
+('Brauronia', TRUE, 'Artemis', 'Brauron', 'classical antiquity'),
+('Dionysia', TRUE, 'Dionysus', 'Athens', 'classical antiquity'),
+('Osiris Mysteries', TRUE, 'Osiris', 'Abydos', 'anytime');
+
 
 INSERT INTO Tale VALUES
 ('Tale of Arachne', 'Do not get carried away in your own hubris', 'Greek'),
@@ -166,9 +184,8 @@ INSERT INTO Tale VALUES
 ('The Myth of Daedalus and Icarus', 'Do not get carried away in your own hubris', 'Greek'),
 ('Story of Orpheus and Eurydice', 'Be patient and keep one"s faith', 'Greek'),
 ('Myth of Niobe', 'Do not get carried away in your own hubris', 'Greek'),
-('The Legendary Adventures of Thor', 'The source of our ability to overcome the challenges in life doesn"t come from our possessions - it resides within us', 'Norse'),
 ('The Death and Resurrection of Osiris', 'Pride and vanity are dangerous', 'Egyptian'),
-('Sun Wukong"s Quest for Immortality', 'Boldness and talent can only carry one so far. To achieve goals, it takes hubris, persistence and a lot of teammates', Chinese),
+('Sun Wukong"s Quest for Immortality', 'Boldness and talent can only carry one so far. To achieve goals, it takes hubris, persistence and a lot of teammates', 'Chinese'),
 ('The Legend of King Arthur', 'Leadership and valor in the pursuit of justice and peace define true kingship.', 'Welsh'),
 ('Tale of Dagda and the Cauldron', 'Do not underestimate the consequences of greed and betrayal', 'Celtic'),
 ('Tale of Enlil and the Tablets of Destiny', 'Power and destiny should not be taken for granted', 'Mesopotamian'),
@@ -184,7 +201,30 @@ INSERT INTO Tale VALUES
 ('The Thunderbird and the Whale', 'Balance and respect for nature are essential for harmony.', 'Native American'),
 ('The Fate of Patroclus', 'The bonds of friendship can drive one to the heights of heroism or the depths of tragedy.', 'Greek'),
 ('The Cattle Raid of Cooley', 'True heroism is shown through courage and loyalty to one"s community', 'Celtic'),
-('The Epic of Gilgamesh', 'Understanding and accepting one"s mortality enriches the human experience.', 'Mesopotamian');
+('The Epic of Gilgamesh', 'Understanding and accepting one"s mortality enriches the human experience.', 'Mesopotamian'),
+('Enki and the World Order', 'The importance of wisdom and order in creation', 'Mesopotamian'),
+('Enki Saves Humanity', 'Compassion and cunning can avert disaster', 'Mesopotamian'),
+('Cernunnos and the Cycle of Life', 'Life, death, and rebirth are interconnected and essential for the balance of the world', 'Celtic'),
+('The Birth of Apollo', 'Even gods are bound by fate', 'Greek'),
+('Apollo and Daphne', 'Unrequited love can lead to transformation and new beginnings', 'Greek'),
+('Apollo and the Python', 'Bravery and duty can overcome darkness and chaos', 'Greek'),
+('Shiva and the Cosmic Dance', 'The universe is a cycle of creation, preservation, and dissolution', 'Hindu'),
+('The Marriage of Shiva and Parvati', 'Devotion and perseverance lead to fulfillment of desires', 'Hindu'),
+('Shiva and the Ganges', 'The power of devotion can tame even the most potent forces', 'Hindu'),
+('The Birth of Zeus', 'The destined rise of new order over chaos', 'Greek'),
+('Zeus and the Titans', 'The triumph of the Olympian gods over the old powers', 'Greek'),
+('Zeus and Prometheus', 'The consequences of defying divine authority', 'Greek'),
+('Artemis and Actaeon', 'Respect the privacy and sanctity of the divine', 'Greek'),
+('The Birth of Artemis', 'The divine can manifest with strength and autonomy from the moment of birth', 'Greek'),
+('Artemis and Orion', 'Even the divine can feel the pangs of love and loss', 'Greek'),
+('The Birth of Dionysus', 'Even in adversity, divinity finds a way to thrive', 'Greek'),
+('Dionysus and the Pirates', 'Disrespecting the divine leads to punishment and transformation', 'Greek'),
+('The Return of Dionysus', 'Acceptance and recognition of all aspects of life, including the irrational, are essential', 'Greek'),
+('Osiris and the Contest of the Throne', 'Legitimacy and righteousness will ultimately triumph over deceit and malice', 'Egyptian'),
+('Thor"s Battle with Jörmungandr', 'Courage in the face of the inevitable is the highest form of valor', 'Norse'),
+('The Theft of Mjölnir', 'Cleverness and strength can overcome deceit and treachery', 'Norse'),
+('Thor and the Skrymir', 'Appearances can be deceiving, and humility is a virtue', 'Norse'),
+('Sun Wukong"s Rebellion against Heaven', 'Even the most powerful beings must face the consequences of their actions', 'Chinese');
 
 
 INSERT INTO StoryEvent VALUES
@@ -194,7 +234,7 @@ INSERT INTO StoryEvent VALUES
 ('Story of Achilles', 'Death of Hector', 'After a one-on-one fight, Achilles avenges his friend Patroclus by killing Hector', 'Troy', 'classical antiquity'),
 ('Story of Achilles', 'Achilles gets shot', 'Guided by Apollo, Paris shoots Achilles in his single vulnerable spot, his heel', 'Troy', 'classical antiquity'),
 ('The Myth of Daedalus and Icarus', 'Icarus loses his wings', 'After flying too close to the sun, the wax on Icarus"s wings melts, leaving him featherless and unable to fly', 'Crete', 'classical antiquity'),
-('Tale of Dagda and the Cauldron', 'Dagda retrieves her Cauldron', 'After the Cauldron of Dagna is stolen by Fomorians, Dagda sets out on a quest to retrieve her cauldron.', 'Mt. Olympus', 'classical antiquity'),
+('Tale of Dagda and the Cauldron', 'Dagda retrieves her Cauldron', 'After the Cauldron of Dagna is stolen by Fomorians, Dagda sets out on a quest to retrieve her cauldron.', 'Mount Olympus', 'classical antiquity'),
 ('Tale of Enlil and the Tablets of Destiny', 'The Tablets of Destiny are stolen', 'Anzu, a monstrous bird, steals the tablet from Enlil, who is entrusted with it because he is the chief of the gods. Enlil embarks on a journey to retrieve the powerful tablets', 'Mesopotamia', 'classical antiquity'),
 ('Trickster Coyote and the Dreamcatcher', 'Creation of the Dreamcatcher', 'Coyote creates the Dreamcatcher to protect people from bad dreams by filtering them through his web, allowing only good dreams to pass through', 'North America', 'classical antiquity'),
 ('The Gorgon Medusa', 'Perseus encounters Medusa', 'Perseus, aided by the gods, beheads Medusa while she sleeps.', 'Island of Sarpedon', 'classical antiquity'),
@@ -216,13 +256,43 @@ INSERT INTO StoryEvent VALUES
 ('The Legend of King Arthur', 'The Quest for the Holy Grail', 'Arthur and his knights embark on the quest for the Holy Grail, the symbol of divine grace and the ultimate quest of Arthurian legend.', 'Camelot', 'medieval'),
 ('The Legend of King Arthur', 'The Battle of Camlann', 'The final battle where Arthur is mortally wounded, leading to his departure to Avalon.', 'Avalon', 'medieval'),
 ('The Fate of Patroclus', 'The Decision of Patroclus', 'Wearing Achilles" armor, Patroclus enters the battlefield in his stead, driven by a desire to turn the tide for the Greeks.', 'Troy', 'bronze age'),
-('The Fate of Patroclus', 'The Death of Patroclus', 'Patroclus is slain by Hector, with the gods" interference sealing his fate, sparking Achilles’ return to combat.', 'Troy', 'bronze age'),
+('The Fate of Patroclus', 'The Death of Patroclus', 'Patroclus is slain by Hector, with the gods" interference sealing his fate, sparking Achilles" return to combat.', 'Troy', 'bronze age'),
 ('The Cattle Raid of Cooley (Táin Bó Cúailnge)', 'Cú Chulainn"s Stand at the Ford', 'Cú Chulainn fights off the invading forces at a strategic river crossing, showcasing his prowess and the supernatural abilities granted by his ríastrad (battle frenzy).', 'Ulster', 'Iron Age'),
 ('The Epic of Gilgamesh', 'Gilgamesh and Enkidu Slay Humbaba', 'Gilgamesh and Enkidu journey to the Cedar Forest to confront and slay Humbaba, defying the gods to secure their fame.', 'Cedar Forest', 'early dynastic period'),
 ('The Epic of Gilgamesh', 'The Death of Enkidu', 'Enkidu dies as punishment from the gods for slaying Humbaba and the Bull of Heaven, prompting Gilgamesh"s quest for immortality.', 'Uruk', 'early dynastic period'),
 ('The Epic of Gilgamesh', 'The Quest for Immortality', 'Gilgamesh embarks on a journey to find Utnapishtim and learn the secret of eternal life.', 'Mashu', 'early dynastic period'),
-('The Epic of Gilgamesh', 'The Return to Uruk', 'Having learned the lesson of human mortality, Gilgamesh returns to Uruk, where he rules wisely until his death.', 'Uruk', 'early dynastic period');
-
+('The Epic of Gilgamesh', 'The Return to Uruk', 'Having learned the lesson of human mortality, Gilgamesh returns to Uruk, where he rules wisely until his death.', 'Uruk', 'early dynastic period'),
+('Enki and the World Order', 'Creation of the Rivers', 'Enki orders the world, creating the Tigris and Euphrates to bring fertility to Mesopotamia.', 'Mesopotamia', 'ancient times'),
+('Enki Saves Humanity', 'The Dream Warning', 'Enki warns Atrahasis of the gods’ plan to send a great flood, advising him to build an ark.', 'Mesopotamia', 'ancient times'),
+('Enki Saves Humanity', 'The Flood Subsides', 'The flood waters recede, and Atrahasis offers sacrifices to the gods, who regret their actions.', 'Mesopotamia', 'ancient times'),
+('Cernunnos and the Cycle of Life', 'The Awakening of the Forest', 'Cernunnos walks the earth at the onset of spring, awakening the forest from its winter slumber.', 'Celtic Lands', 'Iron Age'),
+('Cernunnos and the Cycle of Life', 'Guidance to the Lost Child', 'Cernunnos guides a lost child back to their village, teaching them the sacredness of all life forms along the way.', 'Celtic Lands', 'Iron Age'),
+('Cernunnos and the Cycle of Life', 'The Sacred Hunt', 'Cernunnos leads a ritual hunt that honors the animals and ensures the forest remains plentiful and balanced.', 'Celtic Lands', 'Iron Age'),
+('The Birth of Apollo', 'Escape to Delos', 'Leto, pregnant with Zeus''s children, finds refuge on Delos to give birth to Apollo and Artemis, despite Hera''s jealousy.', 'Delos', 'classical antiquity'),
+('Apollo and Daphne', 'The Chase', 'Apollo, struck by Eros''s arrow, falls hopelessly in love with Daphne, who flees from him, desiring to remain untouched and free.', 'anywhere', 'anytime'),
+('Apollo and Daphne', 'Transformation of Daphne', 'Daphne, desperate to escape Apollo''s advances, prays to her father, the river god Peneus, who transforms her into a laurel tree.', 'anywhere', 'anytime'),
+('Apollo and the Python', 'Slaying the Python', 'Apollo slays Python, a monstrous earth-dragon that guarded the oracle at Delphi, establishing his own shrine there.', 'Delphi', 'classical antiquity'),
+('Shiva and the Cosmic Dance', 'Nataraja"s Dance', 'Shiva performs the Ananda Tandava, the dance of bliss, symbolizing the cosmic cycles of creation and destruction.', 'Mount Kailash', 'timeless'),
+('The Marriage of Shiva and Parvati', 'Parvati"s Penance', 'Parvati undergoes severe penance to win Shiva"s affection, demonstrating her unwavering devotion.', 'Himalayas', 'timeless'),
+('The Marriage of Shiva and Parvati', 'The Divine Marriage', 'Shiva marries Parvati in a grand ceremony attended by gods, goddesses, and sages, symbolizing the union of the divine masculine and feminine.', 'Mount Kailash', 'timeless'),
+('Shiva and the Ganges', 'Descent of the Ganges', 'Shiva releases the river Ganges from his hair, allowing her to descend to earth and bring life-giving water to humanity.', 'Mount Kailash', 'timeless'),
+('The Birth of Zeus', 'Zeus is Hidden in Crete', 'To save Zeus from being swallowed by Cronus, Rhea hides him in a cave on the island of Crete, where he is raised in secret.', 'Crete', 'classical antiquity'),
+('Zeus and the Titans', 'The Battle of the Titans', 'Zeus leads the Olympian gods in a ten-year-long battle against the Titans, culminating in their defeat and imprisonment in Tartarus.', 'Mount Olympus', 'classical antiquity'),
+('Zeus and Prometheus', 'The Punishment of Prometheus', 'For defying Zeus and giving fire to humanity, Prometheus is chained to a rock where an eagle feasts on his liver daily, only to have it regenerate to be eaten again.', 'Caucasus Mountains', 'classical antiquity'),
+('Artemis and Actaeon', 'Actaeon"s Transgression', 'Actaeon stumbles upon Artemis bathing, and for this violation of her privacy, she transforms him into a stag to be torn apart by his own hounds.', 'anywhere', 'classical antiquity'),
+('The Birth of Artemis', 'Artemis is Born', 'Artemis is born on the island of Ortygia, immediately assisting with the birth of her twin brother, Apollo, showcasing her independence and maternal protectiveness.', 'Ortygia', 'classical antiquity'),
+('Artemis and Orion', 'The Death of Orion', 'Orion, a close companion of Artemis, is killed under mysterious circumstances often attributed to Artemis herself or to Apollo"s trickery.', 'anywhere', 'classical antiquity'),
+('The Birth of Dionysus', 'Zeus"s Lightning', 'Dionysus is born from Zeus"s thigh, symbolizing his immortality and dual heritage.', 'Mount Olympus', 'classical antiquity'),
+('Dionysus and the Pirates', 'Transformation at Sea', 'Pirates who capture Dionysus are turned into dolphins as punishment for their ignorance and hubris.', 'anywhere', 'classical antiquity'),
+('The Return of Dionysus', 'Dionysus"s Triumph', 'Dionysus returns to Greece, spreading his cult and teachings across the land, signifying the acceptance of his divinity.', 'Greece', 'classical antiquity'),
+('The Death and Resurrection of Osiris', 'Osiris is Betrayed', 'Osiris is tricked and killed by his brother Set, who then scatters his body pieces across Egypt.', 'anywhere', 'ancient'),
+('The Death and Resurrection of Osiris', 'The Search of Isis', 'Isis searches for and reassembles Osiris''s body, using her magic to resurrect him.', 'anywhere', 'ancient'),
+('The Death and Resurrection of Osiris', 'Osiris, Lord of the Afterlife', 'Resurrected, Osiris becomes the lord of the afterlife, judging the souls of the dead.', 'Duat', 'timeless'),
+('Thor"s Battle with Jörmungandr', 'The Ultimate Encounter', 'Thor engages in a final battle with the world serpent, Jörmungandr, during Ragnarök, leading to their mutual destruction.', 'Midgard', 'End of the world'),
+('The Theft of Mjölnir', 'Mjölnir is Stolen', 'Thor wakes to find his precious hammer Mjölnir stolen by giants, sparking a quest to retrieve it.', 'Jotunheim', 'Viking Age'),
+('The Theft of Mjölnir', 'The Wedding Ruse', 'Thor disguises himself as the goddess Freyja to trick the giants and recover Mjölnir.', 'Jotunheim', 'Viking Age'),
+('Thor and the Skrymir', 'A Night with the Giant', 'Thor and his companions spend a night in what they later learn is the giant Skrymir’s glove, teaching them a lesson on humility.', 'Jotunheim', 'Viking Age'),
+('Sun Wukong"s Rebellion against Heaven', 'Battle at the Heavenly Gates', 'Sun Wukong fights the armies of heaven to demand recognition and equality for himself and his monkey subjects.', 'Heaven', 'ancient times');
 
 INSERT INTO Pantheon VALUES
 ('Norse', 'Asgardian Gods'),
@@ -255,7 +325,13 @@ INSERT INTO Artifact VALUES
 ('The Anchor of the Kraken', 'A mythical anchor believed to be the only artifact capable of holding the Kraken at bay, lost in the Northern Seas.', 'Norse'),
 ('Lamassu Sculpture', 'A massive stone sculpture depicting the Lamassu, believed to protect cities from invaders and evil spirits.', 'Mesopotamian'),
 ('Armor of Achilles', 'The armor worn by Patroclus in his attempt to inspire the Greeks and intimidate the Trojans, leading to his tragic death.', 'Greek'),
-('Gáe Bolga', 'Cú Chulainn"s legendary spear, given to him by his teacher Scáthach, known for its deadly ability to inflict mortal wounds from which no enemy could recover.', 'Celtic');
+('Gáe Bolga', 'Cú Chulainn"s legendary spear, given to him by his teacher Scáthach, known for its deadly ability to inflict mortal wounds from which no enemy could recover.', 'Celtic'),
+('Goat-drawn Chariot', 'The chariot pulled by the goats Tanngrisnir and Tanngnjóstr that allows Thor to travel across the skies.'),
+('Belt of Strength', 'A magical belt worn by Thor that doubles his strength when buckled on.'),
+('Golden Chain Mail', 'Magical armor worn by Sun Wukong, offering him protection.'),
+('Phoenix Feather Cap', 'A cap worn by Sun Wukong that helps him in his transformations.'),
+('Thyrsus', 'A staff bound with ivy and topped with a pinecone, carried by Dionysus and his followers, symbolizing fertility and pleasure.'),
+('Spear of Achilles', 'A spear wielded by Achilles, known for its unmatched sharpness and strength, a gift from the god Hephaestus to Achilles');
 
 
 INSERT INTO BelongsTo VALUES 
@@ -273,12 +349,16 @@ INSERT INTO BelongsTo VALUES
 ('Dreamcatcher', 'Trickster Coyote'),
 ('Demon Bull King"s Cudgel', 'Demon Bull King'),
 ('Armor of Achilles', 'Patroclus'),
-('Gáe Bolga', 'Cú Chulainn');
-
-
+('Gáe Bolga', 'Cú Chulainn'),
+('Goat-drawn Chariot', 'Thor'),
+('Belt of Strength', 'Thor'),
+('Golden Chain Mail', 'Sun Wukong'),
+('Phoenix Feather Cap', 'Sun Wukong'),
+('Thyrsus', 'Dionysus'),
+('Jormungandr"s Scales', 'Jormungandr'),
+('Thor"s Fishing Hook', 'Thor');
 
 INSERT INTO AppearsIn VALUES 
-('Mjollnir', 'The Legendary Adventures of Thor'),
 ('Arachne"s Tapestry', 'Tale of Arachne'),
 ('Shield of Achilles', 'Story of Achilles'),
 ('Wings of Icarus', 'The Myth of Daedalus and Icarus'),
@@ -289,7 +369,21 @@ INSERT INTO AppearsIn VALUES
 ('Cauldron of Dagda', 'Tale of Dagda and the Cauldron' ),
 ('Tablets of Destiny', 'Tale of Enlil and the Tablets of Destiny'),
 ('Dreamcatcher', 'Trickster Coyote and the Dreamcatcher'),
-('Demon Bull King"s Cudgel', 'The Rebellion of the Demon Bull King');
+('Demon Bull King"s Cudgel', 'The Rebellion of the Demon Bull King'),
+('Mjollnir', 'Thor"s Battle with Jormungandr'),
+('Mjollnir', 'The Theft of Mjölnir'),
+('Goat-drawn Chariot', 'Thor and the Skrymir'),
+('Belt of Strength', 'Thor"s Battle with Jormungandr'),
+('Thyrsus', 'The Birth of Dionysus'),
+('Thyrsus', 'Dionysus and the Pirates'),
+('Thyrsus', 'The Return of Dionysus'),
+('Golden Chain Mail', 'Sun Wukong"s Quest for Immortality'),
+('Phoenix Feather Cap', 'Sun Wukong"s Quest for Immortality'),
+('Palm-Leaf Fan', 'The Rebellion of the Demon Bull King'),
+('Jormungandr"s Scales', 'Thor"s Battle with Jörmungandr'),
+('Jormungandr"s Scales', 'The Twilight of the Gods'),
+('Ariadne"s Thread', 'The Myth of the Minotaur'),
+('The Anchor of the Kraken', 'The Wrath of the Kraken');
 
 
 INSERT INTO Mortal VALUES
@@ -334,7 +428,14 @@ INSERT INTO Symbol VALUES
 ('Atef crown', 'Osiris had worn it as the ruler of the underworld'),
 ('Man with wings', 'Shows man"s overreaching ambition'),
 ('Golden Headband', 'A painfully tightening fillet given to the hero in case of any unsavoury behaviour'),
-('Golden Dragon', 'A family coat borne by King Arthur"s father, Uther Pendragon');
+('Golden Dragon', 'A family coat borne by King Arthur"s father, Uther Pendragon'),
+('Grapevine', 'Represents wine, festivity, and the agricultural aspect of Dionysus’s domain.'),
+('Leopard', 'An animal sacred to Dionysus, often depicted with him, symbolizing the god’s wild and untamed nature.'),
+('Ivy', 'Evergreen ivy is associated with Dionysus, symbolizing eternal life and revelry.'),
+('Theater Masks', 'Symbolize the connection of Dionysus to the arts, especially the theater, reflecting the dual nature of comedy and tragedy in human experience.'),
+('Crook and Flail', 'Symbols of the pharaonic authority, representing Osiris as the shepherd of the dead.'),
+('Djed Pillar', 'Symbolizing stability, it is closely associated with Osiris and often represented in his iconography.'),
+('Green Skin', 'Depicting fertility and rebirth, Osiris is often portrayed with green skin, symbolizing life through death.');
 
 INSERT INTO Represents VALUES
 ('Hammer of Thor', 'Thor'),
@@ -346,7 +447,15 @@ INSERT INTO Represents VALUES
 ('Golden Headband', 'Sun Wukong'),
 ('Golden Dragon', 'Arthur'),
 ('Ouroboros', 'Jormungandr'),
-('Gorgoneion', 'Medusa');
+('Gorgoneion', 'Medusa'),
+('Thyrsus', 'Dionysus'),
+('Grapevine', 'Dionysus'),
+('Leopard', 'Dionysus'),
+('Ivy', 'Dionysus'),
+('Theater Masks', 'Dionysus'),
+('Crook and Flail', 'Osiris'),
+('Djed Pillar', 'Osiris'),
+('Green Skin', 'Osiris');
 
 INSERT INTO PartOf VALUES
 ('Achilles', 'Story of Achilles'),
@@ -358,4 +467,29 @@ INSERT INTO PartOf VALUES
 ('Jormungandr', 'The Twilight of the Gods'),
 ('Jormungandr', 'The Binding of Jormungandr'),
 ('Demon Bull King', 'The Rebellion of the Demon Bull King'),
-('Minotaur', 'The Myth of the Minotaur');
+('Minotaur', 'The Myth of the Minotaur'),
+('Trickster Coyote', 'Tale of Trickster Coyote'),
+('Enki', 'Enki and the World Order'),
+('Enki', 'Enki Saves Humanity'),
+('Cernunnos', 'Cernunnos and the Cycle of Life'),
+('Apollo', 'The Birth of Apollo'),
+('Apollo', 'Apollo and Daphne'),
+('Apollo', 'Apollo and the Python'),
+('Shiva', 'Shiva and the Cosmic Dance'),
+('Shiva', 'The Marriage of Shiva and Parvati'),
+('Shiva', 'Shiva and the Ganges'),
+('Zeus', 'The Birth of Zeus'),
+('Zeus', 'Zeus and the Titans'),
+('Zeus', 'Zeus and Prometheus'),
+('Artemis', 'Artemis and Actaeon'),
+('Artemis', 'The Birth of Artemis'),
+('Artemis', 'Artemis and Orion'),
+('Dionysus', 'The Birth of Dionysus'),
+('Dionysus', 'Dionysus and the Pirates'),
+('Dionysus', 'The Return of Dionysus'),
+('Thor', 'Thor"s Battle with Jörmungandr'),
+('Jormungandr', 'Thor"s Battle with Jörmungandr'),
+('Thor', 'The Theft of Mjölnir'),
+('Thor', 'Thor and the Skrymir'),
+('Sun Wukong', 'Sun Wukong’s Rebellion against Heaven');
+
