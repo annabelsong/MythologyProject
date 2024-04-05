@@ -12,6 +12,7 @@ import RitualView from './viewComponents/RitualView';
 import PartOfView from './viewComponents/PartOfView';
 import BelongsToView from './viewComponents/BelongsToView';
 import AppearsInView from './viewComponents/AppearsInView';
+import RepresentsView from './viewComponents/RepresentsView';
 
 const tables = [
   ["Location","location"],
@@ -72,6 +73,7 @@ function ViewPage() {
       {selectedTable === 'partof' && <PartOfView />}
       {selectedTable === 'belongsto' && <BelongsToView />}
       {selectedTable === 'appearsin' && <AppearsInView />}
+      {selectedTable === 'represents' && <RepresentsView />}
       {selectedTable === '' && <div>Select A Table First!</div>}
     </div>
   );
