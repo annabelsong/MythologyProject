@@ -13,8 +13,15 @@ function AppearsInForm() {
     setTaleName(event.target.value);
   };
 
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!isValidInput(artifactName) || !isValidInput(taleName)) {
+      alert("Invalid input.");
+      return;
+    }
 
     const query = {
       artifactName,

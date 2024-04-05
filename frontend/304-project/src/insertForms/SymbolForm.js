@@ -13,13 +13,31 @@ function SymbolForm() {
     setOrigin(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Symbol Name:', symbolName);
-    console.log('Origin:', origin);
-    // Reset the form after submission if needed
-    setSymbolName('');
-    setOrigin('');
+    if (!isValidInput(symbolName) || !isValidInput(origin)) {
+      alert("Invalid input.");
+      return;
+    }
+
+    const query = {
+      symbolName,
+      origin
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/BelongsTo', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setSymbolName('');
+      setOrigin('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

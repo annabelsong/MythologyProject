@@ -13,13 +13,32 @@ function PartOfForm() {
     setTaleName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Character Name:', characterName);
-    console.log('Tale Name:', taleName);
-    // Reset the form after submission if needed
-    setCharacterName('');
-    setTaleName('');
+
+    if (!isValidInput(characterName) || !isValidInput(taleName)) {
+      alert("Invalid input.");
+      return;
+    }
+    
+    const query = {
+      characterName,
+      taleName
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Mortal', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setCharacterName('');
+      setTaleName('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

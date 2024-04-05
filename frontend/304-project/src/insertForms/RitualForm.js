@@ -28,19 +28,38 @@ function RitualForm() {
     setTimePeriod(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit =  async (event) => {
     event.preventDefault();
-    console.log('Ritual Name:', ritualName);
-    console.log('Recurring:', recurring);
-    console.log('Character Name:', characterName);
-    console.log('Location Name:', locationName);
-    console.log('Time Period:', timePeriod);
-    // Reset the form after submission if needed
-    setRitualName('');
-    setRecurring(false);
-    setCharacterName('');
-    setLocationName('anywhere');
-    setTimePeriod('anytime');
+    if (!isValidInput(ritualName) || !isValidInput(recurring) 
+    || !isValidInput(characterName) || !isValidInput(timePeriod) || !isValidInput(locationName)) {
+      alert("Invalid input.");
+      return;
+    }
+
+    const query = {
+      ritualName,
+      recurring,
+      characterName,
+      locationName,
+      timePeriod
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Deity', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setRitualName('');
+      setRecurring('');
+      setCharacterName('');
+      setLocationName('');
+      setTimePeriod('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

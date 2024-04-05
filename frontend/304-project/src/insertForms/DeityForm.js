@@ -28,8 +28,17 @@ function DeityForm() {
     setCulture(event.target.value);
   };
 
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+
+    if (!isValidInput(deityName) || !isValidInput(characterDescription) 
+    || !isValidInput(supernaturalAbility) || !isValidInput(domain) || !isValidInput(culture)) {
+      alert("Invalid input.");
+      return;
+    }
 
     const query = {
       deityName,

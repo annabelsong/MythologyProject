@@ -18,8 +18,15 @@ function LocationForm() {
     setTimePeriod(event.target.value);
   };
 
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!isValidInput(locationName) || !isValidInput(areaDescription) || !isValidInput(timePeriod))  {
+      alert("Invalid input.");
+      return;
+    }
 
     const query = {
       locationName,
@@ -27,13 +34,18 @@ function LocationForm() {
       timePeriod
     };
 
-    // Send insert request to backend
-    await axios.post('http://localhost:3307/api/insert/Location', query);
-
-    // Reset the form after successful submission
-    setLocationName('');
-    setAreaDescription('');
-    setTimePeriod('anytime');
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/BelongsTo', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setLocationName('');
+      setAreaDescription('');
+      setTimePeriod('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

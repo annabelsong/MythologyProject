@@ -13,13 +13,34 @@ function PantheonForm() {
     setPantheonName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit = async (event) => {
+
+
     event.preventDefault();
-    console.log('Culture:', culture);
-    console.log('Pantheon Name:', pantheonName);
-    // Reset the form after submission if needed
-    setCulture('');
-    setPantheonName('');
+
+    if (!isValidInput(culture) || !isValidInput(pantheonName)) {
+      alert("Invalid input.");
+      return;
+    }
+    
+    const query = {
+      culture,
+      pantheonName
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Mortal', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setCulture('');
+      setPantheonName('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

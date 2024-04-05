@@ -13,13 +13,32 @@ function RepresentsForm() {
     setCharacterName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Symbol Name:', symbolName);
-    console.log('Character Name:', characterName);
-    // Reset the form after submission if needed
-    setSymbolName('');
-    setCharacterName('');
+
+    if (!isValidInput(symbolName) || !isValidInput(characterName)) {
+      alert("Invalid input.");
+      return;
+    }
+    
+    const query = {
+      symbolName,
+      characterName
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Mortal', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setSymbolName('');
+      setCharacterName('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

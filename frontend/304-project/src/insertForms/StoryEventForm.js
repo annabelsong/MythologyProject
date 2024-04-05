@@ -28,19 +28,38 @@ function StoryEventForm() {
     setTimePeriod(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Tale Name:', taleName);
-    console.log('Event Name:', eventName);
-    console.log('Event Description:', eventDescription);
-    console.log('Location Name:', locationName);
-    console.log('Time Period:', timePeriod);
-    // Reset the form after submission if needed
-    setTaleName('');
-    setEventName('');
-    setEventDescription('');
-    setLocationName('');
-    setTimePeriod('anytime');
+    if (!isValidInput(taleName) || !isValidInput(eventName) 
+    || !isValidInput(eventDescription) || !isValidInput(timePeriod) || !isValidInput(locationName)) {
+      alert("Invalid input.");
+      return;
+    }
+
+    const query = {
+      taleName,
+      eventName,
+      eventDescription,
+      locationName,
+      timePeriod
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Deity', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setTaleName('');
+      setEventName('');
+      setEventDescription('');
+      setLocationName('');
+      setTimePeriod('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

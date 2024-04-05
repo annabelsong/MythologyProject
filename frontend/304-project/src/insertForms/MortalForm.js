@@ -23,9 +23,17 @@ function MortalForm() {
     setProfession(event.target.value);
   };
 
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (!isValidInput(characterName) || !isValidInput(characterDescription) 
+    || !isValidInput(title) || !isValidInput(profession)) {
+      alert("Invalid input.");
+      return;
+    }
+    
     const query = {
       characterName,
       characterDescription,

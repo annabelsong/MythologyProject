@@ -18,15 +18,33 @@ function TaleForm() {
     setCulture(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Tale Name:', taleName);
-    console.log('Moral Lesson:', moralLesson);
-    console.log('Culture:', culture);
-    // Reset the form after submission if needed
-    setTaleName('');
-    setMoralLesson('inconclusive');
-    setCulture('');
+    if (!isValidInput(taleName) || !isValidInput(moralLesson) || !isValidInput(culture))  {
+      alert("Invalid input.");
+      return;
+    }
+
+    const query = {
+      taleName,
+      moralLesson,
+      culture
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/BelongsTo', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setTaleName('');
+      setMoralLesson('');
+      setCulture('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (

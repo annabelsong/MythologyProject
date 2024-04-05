@@ -13,20 +13,32 @@ function ArtifactForm() {
     setOrigin(event.target.value);
   };
 
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (!isValidInput(artifactName) || !isValidInput(origin)) {
+      alert("Invalid input.");
+      return;
+    }
 
     const query = {
       artifactName,
       origin
     };
 
-    // Send insert request to backend
-    await axios.post('http://localhost:3307/api/insert/Artifact', query);
-
-    // Reset the form after successful submission
-    setArtifactName('');
-    setOrigin('');
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/BelongsTo', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setArtifactName('');
+      setOrigin('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (
