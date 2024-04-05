@@ -130,37 +130,6 @@ app.post('/api/insert/Mortal', (req, res) => {
   });
 });
 
-// Fetch data in MySQL
-app.get('/api/fetch/Pantheon', (req, res) => {
-  console.log('Fetch Pantheon called');
-  const query = "SELECT * FROM Pantheon;"
-  db.query(query, (err,results) => {
-    if (err) {
-      console.error('Error fetching Pantheon data:', err);
-      res.status(500).send('Error fetching Pantheon data');
-    } else {
-      console.log('Pantheon data fetched successfully');
-      res.json(results);
-    }
-  });
-});
-
-// Update data in MySQL
-app.put('/api/update/Pantheon', (req,res) => {
-  console.log('Update Pantheon called');
-  const { originalCulture, newCulture, pantheonName } = req.body;
-  const query = 'UPDATE Pantheon SET culture = ?, pantheonName = ? WHERE culture = ?';
-  db.query(query, [newCulture, pantheonName, originalCulture], (err, result) => {
-    if (err) {
-      console.error("Error updating Pantheon data: ", err);
-      res.status(500).send('Error updating Pantheon data');
-      return;
-    }
-    console.log("Pantheon data updated successfully");
-    res.send('Pantheon data updated successfully');
-  });
-});
-
 app.post('/api/insert/Pantheon', (req, res) => {
     console.log('Insert Pantheon called');
     const { culture, pantheonName } = req.body;
@@ -262,4 +231,35 @@ app.post('/api/insert/tale', (req, res) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+// Fetch data in MySQL
+app.get('/api/fetch/Pantheon', (req, res) => {
+  console.log('Fetch Pantheon called');
+  const query = "SELECT * FROM Pantheon;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Pantheon data:', err);
+      res.status(500).send('Error fetching Pantheon data');
+    } else {
+      console.log('Pantheon data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+// Update data in MySQL
+app.put('/api/update/Pantheon', (req,res) => {
+  console.log('Update Pantheon called');
+  const { originalCulture, newCulture, pantheonName } = req.body;
+  const query = 'UPDATE Pantheon SET culture = ?, pantheonName = ? WHERE culture = ?';
+  db.query(query, [newCulture, pantheonName, originalCulture], (err, result) => {
+    if (err) {
+      console.error("Error updating Pantheon data: ", err);
+      res.status(500).send('Error updating Pantheon data');
+      return;
+    }
+    console.log("Pantheon data updated successfully");
+    res.send('Pantheon data updated successfully');
+  });
 });
