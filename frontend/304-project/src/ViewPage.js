@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import LocationView from './viewComponents/LocationView';
+import CreatureView from './viewComponents/CreatureView';
 
 
 const tables = [
@@ -45,6 +46,7 @@ function ViewPage() {
 
       {/* view component */}
       {selectedTable === 'location' && <LocationView />}
+      {selectedTable === 'creature' && <CreatureView />}
       {selectedTable === '' && <div>Select A Table First!</div>}
     </div>
   );
