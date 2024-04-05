@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import axios from 'axios'; 
 import './TableStyles.css'; 
 
 const mockData = [
@@ -15,8 +16,22 @@ const mockData = [
 
   function PantheonView() {
     const [data, setData] = useState(mockData);
+    // const [data, setData] = useState([]);
     const [editRowIndex, setEditRowIndex] = useState(null);
     const [draftData, setDraftData] = useState({});
+
+    // backend fetching for view functionality
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:3307/api/fetch/Pantheon');
+          setData(response.data);
+        } catch(error) {
+            console.error("Error fetching data:", error);
+        }
+      };
+      fetchData();
+    }, []);
   
     const handleRowDoubleClick = (index) => {
       setEditRowIndex(index);
@@ -26,17 +41,29 @@ const mockData = [
     const handleDraftChange = (e, fieldName) => {
       setDraftData({ ...draftData, [fieldName]: e.target.value });
     };
+
   
-    const handleSave = (index) => {
-      const newData = [...data];
-      newData[index] = draftData;
-      setData(newData);
-      setEditRowIndex(null);
-      // backend logic
+    // backend saving for editing functionality
+    const handleSave = async (index) => {      
+      const query = {...draftData};
+      const url = 'http://localhost:3307/api/update/Pantheon'
+      try{ //this is the update request
+        const response = await axios.put(url, query);
+        console.log(response.data);
+        const newData = [...data];
+        newData[index] = query;
+        setData(newData);
+        setEditRowIndex(null);
+      } catch (error) {
+        console.error("Error updating data:", error);
+      }
     };
   
+    //pressing enter to start handlesave
     const handleKeyPress = (e, index) => {
+      console.log('Key pressed:', e.key); //just for debugging why is this enter key not saving
       if (e.key === 'Enter') {
+        e.preventDefault();
         handleSave(index);
       }
     };
@@ -56,11 +83,12 @@ const mockData = [
               <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                 <td>
                   {editRowIndex === index ? (
-                    <input className="full-width-input"
+                    <input 
+                      className="full-width-input"
                       type="text"
                       value={draftData.Culture}
                       onChange={(e) => handleDraftChange(e, 'Culture')}
-                      onKeyPress={(e) => handleKeyPress(e, index)}
+                      onKeyDown={(e) => handleKeyPress(e, index)}
                     />
                   ) : (
                     pantheon.Culture
@@ -68,11 +96,12 @@ const mockData = [
                 </td>
                 <td>
                   {editRowIndex === index ? (
-                    <input className="full-width-input"
+                    <input 
+                      className="full-width-input"
                       type="text"
                       value={draftData.PantheonName}
                       onChange={(e) => handleDraftChange(e, 'PantheonName')}
-                      onKeyPress={(e) => handleKeyPress(e, index)}
+                      onKeyDown={(e) => handleKeyPress(e, index)}
                     />
                   ) : (
                     pantheon.PantheonName
