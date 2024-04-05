@@ -1,6 +1,7 @@
 .table-view {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 100px;
 }
   
 .table-view th, .table-view td {
