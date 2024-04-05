@@ -32,7 +32,7 @@ function PantheonForm() {
 
     try {
       // Send insert request to backend
-      const response = await axios.post('http://localhost:3307/api/insert/Mortal', query);
+      const response = await axios.post('http://localhost:3307/api/insert/Pantheon', query);
       console.log(response.data);
       // Reset the form after successful submission
       setCulture('');

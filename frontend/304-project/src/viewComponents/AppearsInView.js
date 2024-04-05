@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './TableStyles.css';
 
+// can delete just here to show table functionality without backend yet
 const mockData = [
     { ArtifactName: 'Arachne"s Tapestry', TaleName: 'Tale of Arachne' },
     { ArtifactName: 'Shield of Achilles', TaleName: 'Story of Achilles' },

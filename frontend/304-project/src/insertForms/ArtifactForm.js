@@ -30,7 +30,7 @@ function ArtifactForm() {
 
     try {
       // Send insert request to backend
-      const response = await axios.post('http://localhost:3307/api/insert/BelongsTo', query);
+      const response = await axios.post('http://localhost:3307/api/insert/Artifact', query);
       console.log(response.data);
       // Reset the form after successful submission
       setArtifactName('');

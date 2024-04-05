@@ -48,7 +48,7 @@ function StoryEventForm() {
 
     try {
       // Send insert request to backend
-      const response = await axios.post('http://localhost:3307/api/insert/Deity', query);
+      const response = await axios.post('http://localhost:3307/api/insert/StoryEvent', query);
       console.log(response.data);
       // Reset the form after successful submission
       setTaleName('');
