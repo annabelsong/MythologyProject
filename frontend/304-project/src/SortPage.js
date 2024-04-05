@@ -34,7 +34,7 @@ function SortPage() {
 
   const handleSubmit = async () => {
     setHasSearched(true);
-    const response = await fetch(`https://your-api.com/${selectedTable}?keyword=${keyword}`);
+    const response = await fetch(`/api/tables/${selectedTable}?keyword=${keyword}`);
     const data = await response.json();
     setData(data);
   };
