@@ -52,7 +52,7 @@ function RitualForm() {
       console.log(response.data);
       // Reset the form after successful submission
       setRitualName('');
-      setRecurring('');
+      setRecurring(false);
       setCharacterName('');
       setLocationName('');
       setTimePeriod('');

@@ -161,6 +161,104 @@ app.put('/api/update/Pantheon', (req,res) => {
   });
 });
 
+app.post('/api/insert/Pantheon', (req, res) => {
+    console.log('Insert Pantheon called');
+    const { culture, pantheonName } = req.body;
+    const query = `INSERT INTO Pantheon (culture, pantheonName) VALUES (?, ?)`;
+    db.query(query, [culture, pantheonName], (err, result) => {
+      if (err) {
+        console.error('Error inserting data:', err);
+        res.status(500).json({ error: 'Error inserting data into Pantheon table' });
+        return;
+      }
+      res.status(200).json({ message: 'Data inserted successfully into Pantheon table' });
+    });
+});
+
+app.post('/api/insert/PartOf', (req, res) => {
+  console.log('Insert PartOf called');
+  const { characterName, taleName } = req.body;
+  const query = `INSERT INTO PartOf (characterName, taleName) VALUES (?, ?)`;
+  db.query(query, [characterName, taleName], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into PartOf table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into PartOf table' });
+  });
+});
+
+app.post('/api/insert/Represents', (req, res) => {
+  console.log('Insert Represents called');
+  const { symbolName, characterName } = req.body;
+  const query = `INSERT INTO Represents (symbolName, characterName) VALUES (?, ?)`;
+  db.query(query, [symbolName, characterName], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into Represents table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into Represents table' });
+  });
+});
+
+app.post('/api/insert/Ritual', (req, res) => {
+    console.log('Insert Ritual called');
+    const { ritualName, recurring, characterName, locationName, timePeriod } = req.body;
+    const query = `INSERT INTO Ritual (ritualName, recurring, characterName, locationName, timePeriod) VALUES (?, ?, ?, ?, ?)`;
+    db.query(query, [ritualName, recurring, characterName, locationName, timePeriod], (err, result) => {
+      if (err) {
+        console.error('Error inserting data:', err);
+        res.status(500).json({ error: 'Error inserting data into Ritual table' });
+        return;
+      }
+      res.status(200).json({ message: 'Data inserted successfully into Ritual table' });
+    });
+  });
+
+app.post('/api/insert/StoryEvent', (req, res) => {
+  console.log('Insert StoryEvent called');
+  const { taleName, eventName, eventDescription, locationName, timePeriod } = req.body;
+  const query = `INSERT INTO StoryEvent (taleName, eventName, eventDescription, locationName, timePeriod) VALUES (?, ?, ?, ?, ?)`;
+  db.query(query, [taleName, eventName, eventDescription, locationName, timePeriod], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into StoryEvent table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into StoryEvent table' });
+  });
+});
+
+app.post('/api/insert/Symbol', (req, res) => {
+  console.log('Insert Symbol called');
+  const { symbolName, origin } = req.body;
+  const query = `INSERT INTO Symbol (symbolName, origin) VALUES (?, ?)`;
+  db.query(query, [symbolName, origin], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into Symbol table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into Symbol table' });
+  });
+});
+
+app.post('/api/insert/tale', (req, res) => {
+  console.log('Insert Tale called');
+  const { taleName, moralLesson, culture } = req.body;
+  const query = `INSERT INTO Tale (taleName, moralLesson, culture) VALUES (?, ?, ?)`;
+  db.query(query, [taleName, moralLesson, culture], (err, result) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      res.status(500).json({ error: 'Error inserting data into Tale table' });
+      return;
+    }
+    res.status(200).json({ message: 'Data inserted successfully into Tale table' });
+  });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
