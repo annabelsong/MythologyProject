@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
-
+import React, {useState} from 'react'
 import LocationView from './viewComponents/LocationView';
 import CreatureView from './viewComponents/CreatureView';
-
+import MortalView from './viewComponents/MortalView';
+import DeityView from './viewComponents/DeityView';
+import PantheonView from './viewComponents/PantheonView';
+import TaleView from './viewComponents/TaleView';
+import StoryEventView from './viewComponents/StoryEventView';
+import SymbolView from './viewComponents/SymbolView';
+import ArtifactView from './viewComponents/ArtifactView';
+import RitualView from './viewComponents/RitualView';
 
 const tables = [
   ["Location","location"],
@@ -32,6 +38,11 @@ function ViewPage() {
   return (
     <div className="flex flex-col items-start ml-4 mt-4">
       <h2>Welcome to the View Page, select a table from the drop-down to view its data</h2>
+    
+      <div className='h-8'/>{/*spacer*/}
+
+      <h2>To edit entries, double click a row, and then click on the cell you want to edit within that row</h2>
+      <h2>Make sure to press "Enter" to save a change!</h2>
 
       <div className='h-4'/>{/*spacer*/}
 
@@ -47,9 +58,18 @@ function ViewPage() {
       {/* view component */}
       {selectedTable === 'location' && <LocationView />}
       {selectedTable === 'creature' && <CreatureView />}
+      {selectedTable === 'mortal' && <MortalView />}
+      {selectedTable === 'deity' && <DeityView />}
+      {selectedTable === 'ritual' && <RitualView />}
+      {selectedTable === 'tale' && <TaleView />}
+      {selectedTable === 'storyevent' && <StoryEventView />}
+      {selectedTable === 'pantheon' && <PantheonView />}
+      {selectedTable === 'symbol' && <SymbolView />}
+      {selectedTable === 'artifact' && <ArtifactView />}
       {selectedTable === '' && <div>Select A Table First!</div>}
     </div>
   );
+
 }
 
 export default ViewPage;
