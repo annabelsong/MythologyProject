@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; 
 
 function ArtifactForm() {
   const [artifactName, setArtifactName] = useState('');
@@ -12,11 +13,18 @@ function ArtifactForm() {
     setOrigin(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Artifact Name:', artifactName);
-    console.log('Origin:', origin);
-    // Reset the form after submission if needed
+
+    const query = {
+      artifactName,
+      origin
+    };
+
+    // Send insert request to backend
+    await axios.post('http://localhost:3307/api/insert/Artifact', query);
+
+    // Reset the form after successful submission
     setArtifactName('');
     setOrigin('');
   };
@@ -47,7 +55,7 @@ function ArtifactForm() {
           />
         </div>
       </div>
-      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">Submit</button>
+      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={handleSubmit}>Submit</button>
     </form>
   );
 }

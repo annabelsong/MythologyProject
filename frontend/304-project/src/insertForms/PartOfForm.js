@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; 
 
 function PartOfForm() {
   const [characterName, setCharacterName] = useState('');
@@ -47,7 +48,7 @@ function PartOfForm() {
           />
         </div>
       </div>
-      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">Submit</button>
+      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={handleSubmit}>Submit</button>
     </form>
   );
 }

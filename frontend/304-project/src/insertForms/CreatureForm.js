@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function CreatureForm() {
   const [characterName, setCharacterName] = useState('');
   const [characterDescription, setCharacterDescription] = useState('');
   const [supernaturalAbility, setSupernaturalAbility] = useState('');
   const [species, setSpecies] = useState('');
-  const [culture, setCulture] = useState('');
 
   const handleCharacterNameChange = (event) => {
     setCharacterName(event.target.value);
@@ -23,23 +23,29 @@ function CreatureForm() {
     setSpecies(event.target.value);
   };
 
-  const handleCultureChange = (event) => {
-    setCulture(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Character Name:', characterName);
-    console.log('Character Description:', characterDescription);
-    console.log('Supernatural Ability:', supernaturalAbility);
-    console.log('Species:', species);
-    console.log('Culture:', culture);
-    // Reset the form after submission if needed
-    setCharacterName('');
-    setCharacterDescription('');
-    setSupernaturalAbility('');
-    setSpecies('');
-    setCulture('');
+
+    const query = {
+      characterName,
+      characterDescription,
+      supernaturalAbility,
+      species
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/Creature', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setCharacterName('');
+      setCharacterDescription('');
+      setSupernaturalAbility('');
+      setSpecies('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (
@@ -53,8 +59,6 @@ function CreatureForm() {
           <label htmlFor="supernaturalAbility" className="text-left block">Supernatural Ability:</label>
           <br />
           <label htmlFor="species" className="text-left block">Species:</label>
-          <br />
-          <label htmlFor="culture" className="text-left block">Culture:</label>
         </div>
         <div>
           <input
@@ -88,17 +92,9 @@ function CreatureForm() {
             onChange={handleSpeciesChange}
             className="mb-5 border-gray-400 border-2"
           />
-          <br />
-          <input
-            type="text"
-            id="culture"
-            value={culture}
-            onChange={handleCultureChange}
-            className="mb-5 border-gray-400 border-2"
-          />
         </div>
       </div>
-      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">Submit</button>
+      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={handleSubmit}>Submit</button>
     </form>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function AppearsInForm() {
   const [artifactName, setArtifactName] = useState('');
@@ -12,13 +13,25 @@ function AppearsInForm() {
     setTaleName(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Artifact Name:', artifactName);
-    console.log('Tale Name:', taleName);
-    // Reset the form after submission if needed
-    setArtifactName('');
-    setTaleName('');
+
+    const query = {
+      artifactName,
+      taleName
+    };
+
+    try {
+      // Send insert request to backend
+      const response = await axios.post('http://localhost:3307/api/insert/AppearsIn', query);
+      console.log(response.data);
+      // Reset the form after successful submission
+      setArtifactName('');
+      setTaleName('');
+    } catch (error) {
+      console.error('Error inserting data:', error);
+      // Handle error
+    }
   };
 
   return (
@@ -47,7 +60,7 @@ function AppearsInForm() {
           />
         </div>
       </div>
-      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">Submit</button>
+      <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={handleSubmit}>Submit</button>
     </form>
   );
 }

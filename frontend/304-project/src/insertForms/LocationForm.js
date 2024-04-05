@@ -28,7 +28,7 @@ function LocationForm() {
     };
 
     // Send insert request to backend
-    await axios.post('http://localhost:3307/api/insert', query);
+    await axios.post('http://localhost:3307/api/insert/Location', query);
 
     // Reset the form after successful submission
     setLocationName('');
