@@ -43,7 +43,7 @@ function ViewPage() {
 
       <div className='h-4'/>{/*spacer*/}
 
-      {/* Render selected view component */}
+      {/* view component */}
       {selectedTable === 'location' && <LocationView />}
       {selectedTable === '' && <div>Select A Table First!</div>}
     </div>
