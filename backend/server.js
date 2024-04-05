@@ -7,6 +7,9 @@ const mysql = require('mysql2');
 const app = express();
 const port = process.env.PORT || 5000;
 
+var cors = require('cors');
+app.use(cors());
+
 // Parse JSON bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,7 +32,7 @@ db.connect((err) => {
 app.post('/api/insert', (req, res) => {
     console.log('Insert called');
     const { locationName, areaDescription, timePeriod } = req.body;
-    const query = `INSERT INTO locations (locationName, areaDescription, timePeriod) VALUES (?, ?, ?)`;
+    const query = `INSERT INTO Location (locationName, areaDescription, timePeriod) VALUES (?, ?, ?)`;
     db.query(query, [locationName, areaDescription, timePeriod], (err, result) => {
       if (err) throw err;
       res.send('Data inserted successfully');
