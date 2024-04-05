@@ -5,7 +5,6 @@ import SplashPage from './SplashPage';
 import AddPage from './AddPage';
 import ViewPage from './ViewPage';
 import SortPage from './SortPage';
-import SettingsPage from './SettingsPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('SplashPage');
@@ -20,8 +19,6 @@ function App() {
         return <ViewPage />;
       case 'SortPage':
         return <SortPage />;
-      case 'SettingsPage':
-        return <SettingsPage />;
       default:
         return null;
     }
@@ -33,9 +30,8 @@ function App() {
         <div className="container mx-auto">
           <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('SplashPage')}>Main Menu</button>
           <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('AddPage')}>Add Entries</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('ViewPage')}>View Entries</button>
+          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('ViewPage')}>View & Edit Entries</button>
           <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('SortPage')}>Sort Entries</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('SettingsPage')}>Edit Settings</button>
         </div>
       </nav>
       <div className="absolute top-20 left-0 bg-black h-1 w-full"></div>
