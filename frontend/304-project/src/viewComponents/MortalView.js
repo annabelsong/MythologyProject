@@ -59,7 +59,7 @@ function MortalView() {
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
@@ -71,7 +71,7 @@ function MortalView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.CharacterDescription}
                                         onChange={(e) => handleDraftChange(e, 'CharacterDescription')}
@@ -83,7 +83,7 @@ function MortalView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Title}
                                         onChange={(e) => handleDraftChange(e, 'Title')}
@@ -95,7 +95,7 @@ function MortalView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Profession}
                                         onChange={(e) => handleDraftChange(e, 'Profession')}
@@ -107,7 +107,7 @@ function MortalView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.ChildName}
                                         onChange={(e) => handleDraftChange(e, 'ChildName')}
@@ -119,7 +119,7 @@ function MortalView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Culture}
                                         onChange={(e) => handleDraftChange(e, 'Culture')}

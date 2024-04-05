@@ -106,7 +106,7 @@ function CreatureView() {
             <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.CharacterName}
                     onChange={(e) => handleDraftChange(e, 'CharacterName')}
@@ -118,7 +118,7 @@ function CreatureView() {
               </td>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.CharacterDescription}
                     onChange={(e) => handleDraftChange(e, 'CharacterDescription')}
@@ -130,7 +130,7 @@ function CreatureView() {
               </td>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.SupernaturalAbility || ''}
                     onChange={(e) => handleDraftChange(e, 'SupernaturalAbility')}
@@ -142,7 +142,7 @@ function CreatureView() {
               </td>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.Species}
                     onChange={(e) => handleDraftChange(e, 'Species')}
@@ -154,7 +154,7 @@ function CreatureView() {
               </td>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.Culture}
                     onChange={(e) => handleDraftChange(e, 'Culture')}

@@ -59,7 +59,7 @@ function StoryEventView() {
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.TaleName}
                                         onChange={(e) => handleDraftChange(e, 'TaleName')}
@@ -71,7 +71,7 @@ function StoryEventView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.EventName}
                                         onChange={(e) => handleDraftChange(e, 'EventName')}
@@ -83,7 +83,7 @@ function StoryEventView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.EventDescription}
                                         onChange={(e) => handleDraftChange(e, 'EventDescription')}
@@ -95,7 +95,7 @@ function StoryEventView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.LocationName}
                                         onChange={(e) => handleDraftChange(e, 'LocationName')}
@@ -107,7 +107,7 @@ function StoryEventView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.TimePeriod}
                                         onChange={(e) => handleDraftChange(e, 'TimePeriod')}

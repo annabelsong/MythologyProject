@@ -62,7 +62,7 @@ function TaleView() {
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.TaleName}
                                         onChange={(e) => handleDraftChange(e, 'TaleName')}
@@ -74,7 +74,7 @@ function TaleView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.MoralLesson}
                                         onChange={(e) => handleDraftChange(e, 'MoralLesson')}
@@ -86,7 +86,7 @@ function TaleView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Culture}
                                         onChange={(e) => handleDraftChange(e, 'Culture')}

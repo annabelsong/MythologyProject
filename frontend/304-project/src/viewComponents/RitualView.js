@@ -67,7 +67,7 @@ function RitualView() {
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.RitualName}
                                         onChange={(e) => handleDraftChange(e, 'RitualName')}
@@ -93,7 +93,7 @@ function RitualView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
@@ -105,7 +105,7 @@ function RitualView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.LocationName}
                                         onChange={(e) => handleDraftChange(e, 'LocationName')}
@@ -117,7 +117,7 @@ function RitualView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.TimePeriod}
                                         onChange={(e) => handleDraftChange(e, 'TimePeriod')}

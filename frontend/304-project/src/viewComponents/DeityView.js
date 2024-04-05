@@ -86,7 +86,7 @@ function DeityView() {
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
@@ -98,7 +98,7 @@ function DeityView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.CharacterDescription}
                                         onChange={(e) => handleDraftChange(e, 'CharacterDescription')}
@@ -110,7 +110,7 @@ function DeityView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Domain}
                                         onChange={(e) => handleDraftChange(e, 'Domain')}
@@ -122,7 +122,7 @@ function DeityView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.SupernaturalAbility}
                                         onChange={(e) => handleDraftChange(e, 'SupernaturalAbility')}
@@ -134,7 +134,7 @@ function DeityView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Culture}
                                         onChange={(e) => handleDraftChange(e, 'Culture')}

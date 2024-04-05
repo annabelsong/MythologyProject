@@ -60,7 +60,7 @@ function SymbolView() {
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.SymbolName}
                                         onChange={(e) => handleDraftChange(e, 'SymbolName')}
@@ -72,7 +72,7 @@ function SymbolView() {
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Origin}
                                         onChange={(e) => handleDraftChange(e, 'Origin')}

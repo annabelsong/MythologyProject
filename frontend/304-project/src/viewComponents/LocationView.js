@@ -88,7 +88,7 @@ function LocationView() {
             <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.LocationName}
                     onChange={(e) => handleDraftChange(e, 'LocationName')}
@@ -100,7 +100,7 @@ function LocationView() {
               </td>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.AreaDescription}
                     onChange={(e) => handleDraftChange(e, 'AreaDescription')}
@@ -112,7 +112,7 @@ function LocationView() {
               </td>
               <td>
                 {editRowIndex === index ? (
-                  <input
+                  <input className="full-width-input"
                     type="text"
                     value={draftData.TimePeriod}
                     onChange={(e) => handleDraftChange(e, 'TimePeriod')}

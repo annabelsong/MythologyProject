@@ -56,7 +56,7 @@ const mockData = [
               <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                 <td>
                   {editRowIndex === index ? (
-                    <input
+                    <input className="full-width-input"
                       type="text"
                       value={draftData.Culture}
                       onChange={(e) => handleDraftChange(e, 'Culture')}
@@ -68,7 +68,7 @@ const mockData = [
                 </td>
                 <td>
                   {editRowIndex === index ? (
-                    <input
+                    <input className="full-width-input"
                       type="text"
                       value={draftData.PantheonName}
                       onChange={(e) => handleDraftChange(e, 'PantheonName')}

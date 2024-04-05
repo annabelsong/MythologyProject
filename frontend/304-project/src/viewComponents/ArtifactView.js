@@ -68,7 +68,7 @@ function ArtifactView() { // change mockdata to real data later
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.ArtifactName}
                                         onChange={(e) => handleDraftChange(e, 'ArtifactName')}
@@ -80,7 +80,7 @@ function ArtifactView() { // change mockdata to real data later
                             </td>
                             <td>
                                 {editRowIndex === index ? (
-                                    <input
+                                    <input className="full-width-input"
                                         type="text"
                                         value={draftData.Origin}
                                         onChange={(e) => handleDraftChange(e, 'Origin')}
