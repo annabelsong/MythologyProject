@@ -17,7 +17,7 @@ import PartOfForm from './insertForms/PartOfForm';
 const tables = [["Location","location"],["Ritual","ritual"],["Tale","tale"],["Story Events","storyevent"],["Pantheon","pantheon"],["Artifact","artifact"],["Belongs To","belongsto"],["Appears In","appearsin"],["Symbol","symbol"],["Deity","deity"],["Mortal","mortal"],["Creature","creature"],["Represents","represents"],["Part Of","partof"]];
 
 function AddPage() {
-  const [selectedVal, setSelectedVal] = useState('partof');
+  const [selectedVal, setSelectedVal] = useState('');
 
   const handleTableChange = (event) => {
     setSelectedVal(event.target.value);

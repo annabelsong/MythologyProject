@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; 
 
 function LocationForm() {
   const [locationName, setLocationName] = useState('');
@@ -17,13 +18,19 @@ function LocationForm() {
     setTimePeriod(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Use these values for your insert statement
-    console.log('Location Name:', locationName);
-    console.log('Area Description:', areaDescription);
-    console.log('Time Period:', timePeriod);
-    // Reset the form after submission if needed
+
+    const query = {
+      locationName,
+      areaDescription,
+      timePeriod
+    };
+
+    // Send insert request to backend
+    await axios.post('http://localhost:3306/api/insert', query);
+
+    // Reset the form after successful submission
     setLocationName('');
     setAreaDescription('');
     setTimePeriod('anytime');
@@ -66,7 +73,6 @@ function LocationForm() {
             </div>
         </div>
         <button type="submit" className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={handleSubmit}>Submit</button>
-        <text>{locationName} {areaDescription} {timePeriod}</text>
     </form>
   );
 }
