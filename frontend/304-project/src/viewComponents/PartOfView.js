@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import './TableStyles.css'; 
+import React, { useState } from 'react'
+import './TableStyles.css';
 
 const mockData = [
     { CharacterName: 'Achilles', TaleName: 'Story of Achilles' },
@@ -36,30 +36,80 @@ const mockData = [
     { CharacterName: 'Thor', TaleName: 'The Theft of Mjölnir' },
     { CharacterName: 'Thor', TaleName: 'Thor and the Skrymir' },
     { CharacterName: 'Sun Wukong', TaleName: 'Sun Wukong’s Rebellion against Heaven' }
-  ];
-  
+];
+
 function PartOfView() {
-  return (
-    <div>
-      <h1 className="table-title">Part Of</h1>
-      <table className="table-view">
-        <thead>
-          <tr>
-            <th>Character</th>
-            <th>Tale</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mockData.map((partof) => (
-            <tr key={partof.CharacterName}>
-              <td>{partof.CharacterName}</td>
-              <td>{partof.TaleName}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+    const [data, setData] = useState(mockData);
+    const [editRowIndex, setEditRowIndex] = useState(null);
+    const [draftData, setDraftData] = useState({});
+
+    const handleRowDoubleClick = (index) => {
+        setEditRowIndex(index);
+        setDraftData({ ...data[index] });
+    };
+
+    const handleDraftChange = (e, fieldName) => {
+        setDraftData({ ...draftData, [fieldName]: e.target.value });
+    };
+
+    const handleSave = (index) => {
+        const newData = [...data];
+        newData[index] = draftData;
+        setData(newData);
+        setEditRowIndex(null);
+        // backend update thing
+    };
+
+    const handleKeyPress = (e, index) => {
+        if (e.key === 'Enter') {
+            handleSave(index);
+        }
+    };
+
+    return (
+        <div>
+            <h1 className="table-title">Part Of</h1>
+            <table className="table-view">
+                <thead>
+                    <tr>
+                        <th>Character</th>
+                        <th>Tale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((partof, index) => (
+                        <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
+                            <td>
+                                {editRowIndex === index ? (
+                                    <input
+                                        type="text"
+                                        value={draftData.CharacterName}
+                                        onChange={(e) => handleDraftChange(e, 'CharacterName')}
+                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                    />
+                                ) : (
+                                    partof.CharacterName
+                                )}
+                            </td>
+                            <td>
+                                {editRowIndex === index ? (
+                                    <input
+                                        type="text"
+                                        value={draftData.TaleName}
+                                        onChange={(e) => handleDraftChange(e, 'TaleName')}
+                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                    />
+                                ) : (
+                                    partof.TaleName
+                                )}
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
+
 
 export default PartOfView;

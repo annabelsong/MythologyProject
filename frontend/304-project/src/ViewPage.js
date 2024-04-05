@@ -9,6 +9,9 @@ import StoryEventView from './viewComponents/StoryEventView';
 import SymbolView from './viewComponents/SymbolView';
 import ArtifactView from './viewComponents/ArtifactView';
 import RitualView from './viewComponents/RitualView';
+import PartOfView from './viewComponents/PartOfView';
+import BelongsToView from './viewComponents/BelongsToView';
+import AppearsInView from './viewComponents/AppearsInView';
 
 const tables = [
   ["Location","location"],
@@ -66,6 +69,9 @@ function ViewPage() {
       {selectedTable === 'pantheon' && <PantheonView />}
       {selectedTable === 'symbol' && <SymbolView />}
       {selectedTable === 'artifact' && <ArtifactView />}
+      {selectedTable === 'partof' && <PartOfView />}
+      {selectedTable === 'belongsto' && <BelongsToView />}
+      {selectedTable === 'appearsin' && <AppearsInView />}
       {selectedTable === '' && <div>Select A Table First!</div>}
     </div>
   );

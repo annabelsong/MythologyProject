@@ -1,27 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TableStyles.css';
 
 const mockData = [
-    { SymbolName: 'Hammer of Thor', CharacterName: 'Thor' },
-    { SymbolName: 'Weaving Loom', CharacterName: 'Arachne' },
-    { SymbolName: 'Shield', CharacterName: 'Achilles' },
-    { SymbolName: 'Man with Wings', CharacterName: 'Icarus' },
-    { SymbolName: 'Atef Crown', CharacterName: 'Osiris' },
-    { SymbolName: 'Golden Headband', CharacterName: 'Sun Wukong' },
-    { SymbolName: 'Golden Dragon', CharacterName: 'Arthur' },
-    { SymbolName: 'Ouroboros', CharacterName: 'Jormungandr' },
-    { SymbolName: 'Gorgoneion', CharacterName: 'Medusa' },
-    { SymbolName: 'Thyrsus', CharacterName: 'Dionysus' },
-    { SymbolName: 'Grapevine', CharacterName: 'Dionysus' },
-    { SymbolName: 'Leopard', CharacterName: 'Dionysus' },
-    { SymbolName: 'Ivy', CharacterName: 'Dionysus' },
-    { SymbolName: 'Theater Masks', CharacterName: 'Dionysus' },
-    { SymbolName: 'Crook and Flail', CharacterName: 'Osiris' },
-    { SymbolName: 'Djed Pillar', CharacterName: 'Osiris' },
-    { SymbolName: 'Green Skin', CharacterName: 'Osiris' }
+    { ArtifactName: 'Mjollnir', CharacterName: 'Thor' },
+    { ArtifactName: 'Arachne"s Tapestry', CharacterName: 'Arachne' },
+    { ArtifactName: 'Shield of Achilles', CharacterName: 'Achilles' },
+    { ArtifactName: 'Spear of Achilles', CharacterName: 'Achilles' },
+    { ArtifactName: 'Wings of Icarus', CharacterName: 'Icarus' },
+    { ArtifactName: 'Osiris"s Coffin', CharacterName: 'Osiris' },
+    { ArtifactName: 'Sun Wukong"s Golden Headband', CharacterName: 'Sun Wukong' },
+    { ArtifactName: 'Ruyi Jingu Bang', CharacterName: 'Sun Wukong' },
+    { ArtifactName: 'Excalibur', CharacterName: 'Arthur' },
+    { ArtifactName: 'Cauldron of Dagda', CharacterName: 'Dagda' },
+    { ArtifactName: 'Tablets of Destiny', CharacterName: 'Enlil' },
+    { ArtifactName: 'Dreamcatcher', CharacterName: 'Trickster Coyote' },
+    { ArtifactName: 'Demon Bull King"s Cudgel', CharacterName: 'Demon Bull King' },
+    { ArtifactName: 'Armor of Achilles', CharacterName: 'Patroclus' },
+    { ArtifactName: 'Gáe Bolga', CharacterName: 'Cú Chulainn' },
+    { ArtifactName: 'Goat-drawn Chariot', CharacterName: 'Thor' },
+    { ArtifactName: 'Belt of Strength', CharacterName: 'Thor' },
+    { ArtifactName: 'Golden Chain Mail', CharacterName: 'Sun Wukong' },
+    { ArtifactName: 'Phoenix Feather Cap', CharacterName: 'Sun Wukong' },
+    { ArtifactName: 'Thyrsus', CharacterName: 'Dionysus' },
+    { ArtifactName: 'Jormungandr"s Scales', CharacterName: 'Jormungandr' },
+    { ArtifactName: 'Thor"s Fishing Hook', CharacterName: 'Thor' }
 ];
 
-function RepresentsView() {
+
+function BelongsToView() {
     const [data, setData] = useState(mockData);
     const [editRowIndex, setEditRowIndex] = useState(null);
     const [draftData, setDraftData] = useState({});
@@ -40,7 +46,7 @@ function RepresentsView() {
         newData[index] = draftData;
         setData(newData);
         setEditRowIndex(null);
-        // backend part
+        // Integrate with backend here to persist changes
     };
 
     const handleKeyPress = (e, index) => {
@@ -51,27 +57,27 @@ function RepresentsView() {
 
     return (
         <div>
-            <h1 className="table-title">Represents</h1>
+            <h1 className="table-title">Belongs To</h1>
             <table className="table-view">
                 <thead>
                     <tr>
-                        <th>Symbol</th>
-                        <th>Deity</th>
+                        <th>Artifact</th>
+                        <th>Character</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((represents, index) => (
+                    {data.map((belongsTo, index) => (
                         <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
                             <td>
                                 {editRowIndex === index ? (
                                     <input
                                         type="text"
-                                        value={draftData.SymbolName}
-                                        onChange={(e) => handleDraftChange(e, 'SymbolName')}
+                                        value={draftData.ArtifactName}
+                                        onChange={(e) => handleDraftChange(e, 'ArtifactName')}
                                         onKeyPress={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
-                                    represents.SymbolName
+                                    belongsTo.ArtifactName
                                 )}
                             </td>
                             <td>
@@ -83,7 +89,7 @@ function RepresentsView() {
                                         onKeyPress={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
-                                    represents.CharacterName
+                                    belongsTo.CharacterName
                                 )}
                             </td>
                         </tr>
@@ -95,4 +101,4 @@ function RepresentsView() {
 }
 
 
-export default RepresentsView;
+export default BelongsToView;
