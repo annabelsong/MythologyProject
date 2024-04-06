@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './TableStyles.css';
+import axios from 'axios'; 
+
 
 // can delete just here to show table functionality without backend yet
 const mockData = [
@@ -33,8 +35,22 @@ const mockData = [
 
 function AppearsInView() {
     const [data, setData] = useState(mockData);
+    // const [data, setData] = useState([]);
     const [editRowIndex, setEditRowIndex] = useState(null);
     const [draftData, setDraftData] = useState({});
+
+    // backend fetching for view functionality
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.get('http://localhost:3307/api/fetch/AppearsIn');
+          setData(response.data);
+        } catch(error) {
+            console.error("Error fetching data:", error);
+        }
+      };
+      fetchData();
+    }, []);
 
     const handleRowDoubleClick = (index) => {
         setEditRowIndex(index);
@@ -45,12 +61,28 @@ function AppearsInView() {
         setDraftData({ ...draftData, [fieldName]: e.target.value });
     };
 
-    const handleSave = (index) => {
+   // backend saving for editing functionality
+    const handleSave = async (index) => {
+        const originalData = data[index];
+        const updatedData = {...draftData};
+
+        const query = {
+        oldPrimaryKey: originalData.artifactName,
+        newArtifactName: updatedData.artifactName,
+        newTaleName: updatedData.taleName
+        };
+        
+        const url = 'http://localhost:3307/api/update/AppearsIn'
+        try{ //this is the update request
+        const response = await axios.put(url, query);
+        console.log(response.data);
         const newData = [...data];
-        newData[index] = draftData;
+        newData[index] = query;
         setData(newData);
         setEditRowIndex(null);
-        //backend update data part
+        } catch (error) {
+        console.error("Error updating data:", error);
+        }
     };
 
     const handleKeyPress = (e, index) => {
