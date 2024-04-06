@@ -63,7 +63,7 @@ function MortalView() {
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     mortal.CharacterName
@@ -75,7 +75,7 @@ function MortalView() {
                                         type="text"
                                         value={draftData.CharacterDescription}
                                         onChange={(e) => handleDraftChange(e, 'CharacterDescription')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     mortal.CharacterDescription
@@ -87,7 +87,7 @@ function MortalView() {
                                         type="text"
                                         value={draftData.Title}
                                         onChange={(e) => handleDraftChange(e, 'Title')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     mortal.Title
@@ -99,7 +99,7 @@ function MortalView() {
                                         type="text"
                                         value={draftData.Profession}
                                         onChange={(e) => handleDraftChange(e, 'Profession')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     mortal.Profession
@@ -111,7 +111,7 @@ function MortalView() {
                                         type="text"
                                         value={draftData.ChildName}
                                         onChange={(e) => handleDraftChange(e, 'ChildName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     mortal.ChildName
@@ -123,7 +123,7 @@ function MortalView() {
                                         type="text"
                                         value={draftData.Culture}
                                         onChange={(e) => handleDraftChange(e, 'Culture')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     mortal.Culture

@@ -64,7 +64,7 @@ function SymbolView() {
                                         type="text"
                                         value={draftData.SymbolName}
                                         onChange={(e) => handleDraftChange(e, 'SymbolName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     symbol.SymbolName
@@ -76,7 +76,7 @@ function SymbolView() {
                                         type="text"
                                         value={draftData.Origin}
                                         onChange={(e) => handleDraftChange(e, 'Origin')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     symbol.Origin

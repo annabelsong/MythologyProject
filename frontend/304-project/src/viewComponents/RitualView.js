@@ -71,7 +71,7 @@ function RitualView() {
                                         type="text"
                                         value={draftData.RitualName}
                                         onChange={(e) => handleDraftChange(e, 'RitualName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     ritual.RitualName
@@ -82,7 +82,7 @@ function RitualView() {
                                     <select
                                         value={draftData.Recurring ? 'true' : 'false'}
                                         onChange={(e) => handleDraftChange(e, 'Recurring')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     >
                                         <option value="true">True</option>
                                         <option value="false">False</option>
@@ -97,7 +97,7 @@ function RitualView() {
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     ritual.CharacterName
@@ -109,7 +109,7 @@ function RitualView() {
                                         type="text"
                                         value={draftData.LocationName}
                                         onChange={(e) => handleDraftChange(e, 'LocationName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     ritual.LocationName
@@ -121,7 +121,7 @@ function RitualView() {
                                         type="text"
                                         value={draftData.TimePeriod}
                                         onChange={(e) => handleDraftChange(e, 'TimePeriod')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     ritual.TimePeriod

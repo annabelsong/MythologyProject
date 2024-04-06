@@ -63,7 +63,7 @@ function StoryEventView() {
                                         type="text"
                                         value={draftData.TaleName}
                                         onChange={(e) => handleDraftChange(e, 'TaleName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     storyevent.TaleName
@@ -75,7 +75,7 @@ function StoryEventView() {
                                         type="text"
                                         value={draftData.EventName}
                                         onChange={(e) => handleDraftChange(e, 'EventName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     storyevent.EventName
@@ -87,7 +87,7 @@ function StoryEventView() {
                                         type="text"
                                         value={draftData.EventDescription}
                                         onChange={(e) => handleDraftChange(e, 'EventDescription')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     storyevent.EventDescription
@@ -99,7 +99,7 @@ function StoryEventView() {
                                         type="text"
                                         value={draftData.LocationName}
                                         onChange={(e) => handleDraftChange(e, 'LocationName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     storyevent.LocationName
@@ -111,7 +111,7 @@ function StoryEventView() {
                                         type="text"
                                         value={draftData.TimePeriod}
                                         onChange={(e) => handleDraftChange(e, 'TimePeriod')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     storyevent.TimePeriod

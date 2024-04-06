@@ -68,7 +68,7 @@ function RepresentsView() {
                                         type="text"
                                         value={draftData.SymbolName}
                                         onChange={(e) => handleDraftChange(e, 'SymbolName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     represents.SymbolName
@@ -80,7 +80,7 @@ function RepresentsView() {
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     represents.CharacterName

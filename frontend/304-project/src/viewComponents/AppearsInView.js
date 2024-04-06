@@ -123,7 +123,7 @@ function AppearsInView() {
                                         type="text"
                                         value={draftData.TaleName}
                                         onChange={(e) => handleDraftChange(e, 'TaleName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     appearsIn.TaleName

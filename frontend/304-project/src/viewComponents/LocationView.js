@@ -92,7 +92,7 @@ function LocationView() {
                     type="text"
                     value={draftData.LocationName}
                     onChange={(e) => handleDraftChange(e, 'LocationName')}
-                    onKeyPress={(e) => handleKeyPress(e, index)}
+                    onKeyDown={(e) => handleKeyPress(e, index)}
                   />
                 ) : (
                   location.LocationName
@@ -104,7 +104,7 @@ function LocationView() {
                     type="text"
                     value={draftData.AreaDescription}
                     onChange={(e) => handleDraftChange(e, 'AreaDescription')}
-                    onKeyPress={(e) => handleKeyPress(e, index)}
+                    onKeyDown={(e) => handleKeyPress(e, index)}
                   />
                 ) : (
                   location.AreaDescription
@@ -116,7 +116,7 @@ function LocationView() {
                     type="text"
                     value={draftData.TimePeriod}
                     onChange={(e) => handleDraftChange(e, 'TimePeriod')}
-                    onKeyPress={(e) => handleKeyPress(e, index)}
+                    onKeyDown={(e) => handleKeyPress(e, index)}
                   />
                 ) : (
                   location.TimePeriod

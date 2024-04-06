@@ -94,7 +94,7 @@ function BelongsToView() {
                                         type="text"
                                         value={draftData.ArtifactName}
                                         onChange={(e) => handleDraftChange(e, 'ArtifactName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     belongsTo.ArtifactName
@@ -106,7 +106,7 @@ function BelongsToView() {
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     belongsTo.CharacterName

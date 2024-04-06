@@ -85,7 +85,7 @@ function PartOfView() {
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     partof.CharacterName
@@ -97,7 +97,7 @@ function PartOfView() {
                                         type="text"
                                         value={draftData.TaleName}
                                         onChange={(e) => handleDraftChange(e, 'TaleName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     partof.TaleName

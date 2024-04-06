@@ -91,7 +91,7 @@ function ArtifactView() { // change mockdata to real data later
                                         type="text"
                                         value={draftData.ArtifactName}
                                         onChange={(e) => handleDraftChange(e, 'ArtifactName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     artifact.ArtifactName
@@ -103,7 +103,7 @@ function ArtifactView() { // change mockdata to real data later
                                         type="text"
                                         value={draftData.Origin}
                                         onChange={(e) => handleDraftChange(e, 'Origin')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     artifact.Origin

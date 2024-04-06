@@ -111,7 +111,7 @@ function DeityView() {
                                         type="text"
                                         value={draftData.CharacterName}
                                         onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     deity.CharacterName
@@ -123,7 +123,7 @@ function DeityView() {
                                         type="text"
                                         value={draftData.CharacterDescription}
                                         onChange={(e) => handleDraftChange(e, 'CharacterDescription')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     deity.CharacterDescription
@@ -135,7 +135,7 @@ function DeityView() {
                                         type="text"
                                         value={draftData.Domain}
                                         onChange={(e) => handleDraftChange(e, 'Domain')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     deity.Domain
@@ -147,7 +147,7 @@ function DeityView() {
                                         type="text"
                                         value={draftData.SupernaturalAbility}
                                         onChange={(e) => handleDraftChange(e, 'SupernaturalAbility')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     deity.SupernaturalAbility
@@ -159,7 +159,7 @@ function DeityView() {
                                         type="text"
                                         value={draftData.Culture}
                                         onChange={(e) => handleDraftChange(e, 'Culture')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     deity.Culture

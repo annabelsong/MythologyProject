@@ -131,7 +131,7 @@ function CreatureView() {
                     type="text"
                     value={draftData.CharacterName}
                     onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                    onKeyPress={(e) => handleKeyPress(e, index)}
+                    onKeyDown={(e) => handleKeyPress(e, index)}
                   />
                 ) : (
                   creature.CharacterName
@@ -143,7 +143,7 @@ function CreatureView() {
                     type="text"
                     value={draftData.CharacterDescription}
                     onChange={(e) => handleDraftChange(e, 'CharacterDescription')}
-                    onKeyPress={(e) => handleKeyPress(e, index)}
+                    onKeyDown={(e) => handleKeyPress(e, index)}
                   />
                 ) : (
                   creature.CharacterDescription
