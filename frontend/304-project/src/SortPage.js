@@ -79,7 +79,6 @@ function SortPage() {
       {selectedTable === 'belongsto' && <BelongsToSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'appearsin' && <AppearsInSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'represents' && <RepresentsSort keyword={keyword} table={selectedTable} />}
-      {selectedTable === '' && <div>Select A Table First!</div>}
       </div>
     </div>
   );
