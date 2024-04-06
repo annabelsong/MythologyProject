@@ -431,7 +431,7 @@ app.get('/api/fetch/Tale', (req, res) => {
 app.put('/api/update/Pantheon', (req,res) => {
   console.log('Update Pantheon called');
   const { oldPrimaryKey, newCulture, newPantheonName } = req.body;
-  const query = 'UPDATE Pantheon SET culture = ?, pantheonName = ? WHERE culture = ?';
+  const query = 'UPDATE Pantheon SET culture = ?, pantheonName = ? WHERE culture = ?;';
   db.query(query, [newCulture, newPantheonName, oldPrimaryKey], (err, result) => {
     if (err) {
       console.error("Error updating Pantheon data: ", err);
@@ -448,7 +448,7 @@ app.put('/api/update/Pantheon', (req,res) => {
 app.put('/api/update/AppearsIn', (req,res) => {
   console.log('Update AppearsIn called');
   const { oldPrimaryKey, newName, newTaleName } = req.body;
-  const query = 'UPDATE AppearsIn SET artifactName = ?, taleName = ? WHERE artifactName = ?';
+  const query = 'UPDATE AppearsIn SET artifactName = ?, taleName = ? WHERE artifactName = ?;';
   db.query(query, [newName, newTaleName, oldPrimaryKey], (err, result) => {
     if (err) {
       console.error("Error updating AppearsIn data: ", err);
@@ -464,7 +464,7 @@ app.put('/api/update/AppearsIn', (req,res) => {
 app.put('/api/update/Artifact', (req,res) => {
   console.log('Update Artifact called');
   const { oldPrimaryKey, newName, newOrigin } = req.body;
-  const query = 'UPDATE AppearsIn SET artifactName = ?, origin = ? WHERE artifactName = ?';
+  const query = 'UPDATE AppearsIn SET artifactName = ?, origin = ? WHERE artifactName = ?;';
   db.query(query, [newName, newOrigin, oldPrimaryKey], (err, result) => {
     if (err) {
       console.error("Error updating Artifact data: ", err);
@@ -480,7 +480,7 @@ app.put('/api/update/Artifact', (req,res) => {
 app.put('/api/update/BelongsTo', (req,res) => {
   console.log('Update BelongsTo called');
   const { oldPrimaryKey, oldPrimaryKey2, newName, newCharacterName } = req.body;
-  const query = 'UPDATE BelongsTo SET artifactName = ?, characterName = ? WHERE artifactName = ? AND characterName = ?';
+  const query = 'UPDATE BelongsTo SET artifactName = ?, characterName = ? WHERE artifactName = ? AND characterName = ?;';
   db.query(query, [newName, newCharacterName, oldPrimaryKey, oldPrimaryKey2], (err, result) => {
     if (err) {
       console.error("Error updating BelongsTo data: ", err);
@@ -496,7 +496,7 @@ app.put('/api/update/BelongsTo', (req,res) => {
 app.put('/api/update/Creature', (req,res) => {
   console.log('Update Creature called');
   const { oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture } = req.body;
-  const query = 'UPDATE Creature SET characterName = ?, characterDescription = ?, supernaturalAbility = ?, species = ?, culture = ? WHERE characterName = ?';
+  const query = 'UPDATE Creature SET characterName = ?, characterDescription = ?, supernaturalAbility = ?, species = ?, culture = ? WHERE characterName = ?;';
   db.query(query, [oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture], (err, result) => {
     if (err) {
       console.error("Error updating Creature data: ", err);
@@ -512,7 +512,7 @@ app.put('/api/update/Creature', (req,res) => {
 app.put('/api/update/Deity', (req,res) => {
   console.log('Update Deity called');
   const { oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture } = req.body;
-  const query = 'UPDATE Deity SET characterName = ?, characterDescription = ?, domain = ?, supernaturalAbility = ?, culture = ? WHERE characterName = ?';
+  const query = 'UPDATE Deity SET characterName = ?, characterDescription = ?, domain = ?, supernaturalAbility = ?, culture = ? WHERE characterName = ?;';
   db.query(query, [oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture], (err, result) => {
     if (err) {
       console.error("Error updating Deity data: ", err);
