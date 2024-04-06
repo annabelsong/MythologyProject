@@ -73,7 +73,11 @@ function DeitySort({ keyword, table }) {
         <tbody>
           {filteredData.map((item, index) => (
             <tr key={index}>
-              <td>{item.CharacterName}</td>
+               <td>
+                <input className="full-width-input"
+                value={item.CharacterName}
+                />
+              </td>
               <td>{item.CharacterDescription}</td>
               <td>{item.Domain}</td>
               <td>{item.SupernaturalAbility}</td>
