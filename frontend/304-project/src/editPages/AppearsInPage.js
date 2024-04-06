@@ -1,35 +1,50 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function AppearsInPage() {
-  const [artifactName, setArtifactName] = useState('');
+function EditAppearsInForm() {
+  const [artifactName, setArtifactName] = useState(''); 
   const [newTaleName, setNewTaleName] = useState('');
+
+  // Handler for the primary key
+  const handleArtifactNameChange = (event) => {
+    setArtifactName(event.target.value);
+  };
+
+  // Handler for new tale name
+  const handleNewTaleNameChange = (event) => {
+    setNewTaleName(event.target.value);
+  };
+
+  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Perform input validation if necessary
+
+    if (!isValidInput(artifactName) || !isValidInput(newTaleName)) {
+      alert("Invalid input.");
+      return;
+    }
+
+    const query = {
+      artifactName,
+      newTaleName
+    };
 
     try {
-      // Send update request to backend
-      const response = await axios.put('http://localhost:3307/api/update/AppearsIn', {
-        artifactName, // Primary key to identify the record
-        taleName: newTaleName, // The new value for the tale name
-      });
+      const response = await axios.put('http://localhost:3307/api/update/AppearsIn', query);
       console.log(response.data);
-      // Reset the form or provide user feedback
+      // Reset the form fields
       setArtifactName('');
       setNewTaleName('');
     } catch (error) {
       console.error('Error updating data:', error);
-      // Handle error
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="edit-form">
       <label>
-        Artifact Name (to update):
+        Artifact Name (cannot be changed):
         <input
           type="text"
           value={artifactName}
@@ -52,4 +67,4 @@ function AppearsInPage() {
   );
 }
 
-export default AppearsInPage;
+export default EditAppearsInForm;
