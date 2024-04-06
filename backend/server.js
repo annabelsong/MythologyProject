@@ -352,6 +352,20 @@ app.get('/api/fetch/Deity', (req, res) => {
   });
 });
 
+app.get('/api/fetch/DeityNoDesc', (req, res) => {
+  console.log('Fetch Deity called');
+  const query = "SELECT CharacterName, Domain, SupernaturalAbility, Culture FROM Deity;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Deity data:', err);
+      res.status(500).send('Error fetching Deity data');
+    } else {
+      console.log('Deity data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
 app.get('/api/fetch/Location', (req, res) => {
   console.log('Fetch Location called');
   const query = "SELECT * FROM Location;"
