@@ -483,18 +483,18 @@ app.put('/api/update/Pantheon', (req,res) => {
 
 // Update data in MySQL
 // done
-app.put('/api/update/AppearsIn', (req,res) => {
+app.put('/api/update/AppearsIn', (req, res) => {
   console.log('Update AppearsIn called');
-  const { primaryKey, newTaleName } = req.body;
-  const query = 'UPDATE AppearsIn SET taleName = ? WHERE artifactName = ?;';
-  db.query(query, [newTaleName, primaryKey], (err, result) => {
+  const { artifactName, newTaleName } = req.body;
+  const query = `UPDATE AppearsIn SET taleName = ? WHERE artifactName = ?`;
+  db.query(query, [newTaleName, artifactName], (err, result) => {
     if (err) {
-      console.error("Error updating AppearsIn data: ", err);
+      console.error('Error updating AppearsIn data:', err);
       res.status(500).send('Error updating AppearsIn data');
-      return;
+    } else {
+      console.log('AppearsIn data updated successfully');
+      res.send('AppearsIn data updated successfully');
     }
-    console.log("AppearsIn data updated successfully");
-    res.send('AppearsIn data updated successfully');
   });
 });
 
