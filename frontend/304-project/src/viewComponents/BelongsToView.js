@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './TableStyles.css';
+import axios from 'axios';
+
 
 const mockData = [
     { ArtifactName: 'Mjollnir', CharacterName: 'Thor' },
@@ -41,13 +43,31 @@ function BelongsToView() {
         setDraftData({ ...draftData, [fieldName]: e.target.value });
     };
 
-    const handleSave = (index) => {
-        const newData = [...data];
-        newData[index] = draftData;
-        setData(newData);
-        setEditRowIndex(null);
-        // Integrate with backend here to persist changes
+    // backend saving for editing functionality
+    const handleSave = async (index) => {
+        const originalData = data[index];
+        const updatedData = { ...draftData };
+
+        const query = {
+            oldPrimaryKey: originalData.ArtifactName,
+            oldPrimaryKey2: originalData.CharacterName,
+            newName: updatedData.ArtifactName,
+            newCharacterName: updatedData.CharacterName
+        };
+
+        const url = 'http://localhost:3307/api/update/BelongsTo'
+        try { //this is the update request
+            const response = await axios.put(url, query);
+            console.log(response.data);
+            const newData = [...data];
+            newData[index] = query;
+            setData(newData);
+            setEditRowIndex(null);
+        } catch (error) {
+            console.error("Error updating data:", error);
+        }
     };
+
 
     const handleKeyPress = (e, index) => {
         if (e.key === 'Enter') {

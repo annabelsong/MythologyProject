@@ -8,6 +8,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 var cors = require('cors');
+const { spec } = require('node:test/reporters');
 app.use(cors());
 
 // Parse JSON bodies
@@ -228,11 +229,6 @@ app.post('/api/insert/tale', (req, res) => {
   });
 });
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
 // Fetch data in MySQL
 app.get('/api/fetch/Pantheon', (req, res) => {
   console.log('Fetch Pantheon called');
@@ -248,12 +244,195 @@ app.get('/api/fetch/Pantheon', (req, res) => {
   });
 });
 
+app.get('/api/fetch/AppearsIn', (req, res) => {
+  console.log('Fetch AppearsIn called');
+  const query = "SELECT * FROM AppearsIn;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching AppearsIn data:', err);
+      res.status(500).send('Error fetching AppearsIn data');
+    } else {
+      console.log('AppearsIn data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Artifact', (req, res) => {
+  console.log('Fetch Artifact called');
+  const query = "SELECT * FROM Artifact;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Artifact data:', err);
+      res.status(500).send('Error fetching Artifact data');
+    } else {
+      console.log('Artifact data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/BelongsTo', (req, res) => {
+  console.log('Fetch BelongsTo called');
+  const query = "SELECT * FROM BelongsTo;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching BelongsTo data:', err);
+      res.status(500).send('Error fetching BelongsTo data');
+    } else {
+      console.log('BelongsTo data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Creature', (req, res) => {
+  console.log('Fetch Creature called');
+  const query = "SELECT * FROM Creature;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Creature data:', err);
+      res.status(500).send('Error fetching Creature data');
+    } else {
+      console.log('Creature data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Deity', (req, res) => {
+  console.log('Fetch Deity called');
+  const query = "SELECT * FROM Deity;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Deity data:', err);
+      res.status(500).send('Error fetching Deity data');
+    } else {
+      console.log('Deity data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Location', (req, res) => {
+  console.log('Fetch Location called');
+  const query = "SELECT * FROM Location;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Location data:', err);
+      res.status(500).send('Error fetching Location data');
+    } else {
+      console.log('Location data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Mortal', (req, res) => {
+  console.log('Fetch Mortal called');
+  const query = "SELECT * FROM Mortal;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Mortal data:', err);
+      res.status(500).send('Error fetching Mortal data');
+    } else {
+      console.log('Mortal data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/PartOf', (req, res) => {
+  console.log('Fetch PartOf called');
+  const query = "SELECT * FROM PartOf;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching PartOf data:', err);
+      res.status(500).send('Error fetching PartOf data');
+    } else {
+      console.log('PartOf data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Represents', (req, res) => {
+  console.log('Fetch Represents called');
+  const query = "SELECT * FROM Represents;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Represents data:', err);
+      res.status(500).send('Error fetching Represents data');
+    } else {
+      console.log('Represents data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Ritual', (req, res) => {
+  console.log('Fetch Ritual called');
+  const query = "SELECT * FROM Ritual;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Ritual data:', err);
+      res.status(500).send('Error fetching Ritual data');
+    } else {
+      console.log('Ritual data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/StoryEvent', (req, res) => {
+  console.log('Fetch StoryEvent called');
+  const query = "SELECT * FROM StoryEvent;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching StoryEvent data:', err);
+      res.status(500).send('Error fetching StoryEvent data');
+    } else {
+      console.log('StoryEvent data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Symbol', (req, res) => {
+  console.log('Fetch Symbol called');
+  const query = "SELECT * FROM Symbol;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Symbol data:', err);
+      res.status(500).send('Error fetching Symbol data');
+    } else {
+      console.log('Symbol data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/Tale', (req, res) => {
+  console.log('Fetch Tale called');
+  const query = "SELECT * FROM Tale;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Tale data:', err);
+      res.status(500).send('Error fetching Tale data');
+    } else {
+      console.log('Tale data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
 // Update data in MySQL
+// done need double check tho
 app.put('/api/update/Pantheon', (req,res) => {
   console.log('Update Pantheon called');
-  const { originalCulture, newCulture, pantheonName } = req.body;
+  const { oldPrimaryKey, newCulture, newPantheonName } = req.body;
   const query = 'UPDATE Pantheon SET culture = ?, pantheonName = ? WHERE culture = ?';
-  db.query(query, [newCulture, pantheonName, originalCulture], (err, result) => {
+  db.query(query, [newCulture, newPantheonName, oldPrimaryKey], (err, result) => {
     if (err) {
       console.error("Error updating Pantheon data: ", err);
       res.status(500).send('Error updating Pantheon data');
@@ -262,4 +441,73 @@ app.put('/api/update/Pantheon', (req,res) => {
     console.log("Pantheon data updated successfully");
     res.send('Pantheon data updated successfully');
   });
+});
+
+// Update data in MySQL
+// done
+app.put('/api/update/AppearsIn', (req,res) => {
+  console.log('Update AppearsIn called');
+  const { oldPrimaryKey, newName, newTaleName } = req.body;
+  const query = 'UPDATE AppearsIn SET artifactName = ?, taleName = ? WHERE artifactName = ?';
+  db.query(query, [newName, newTaleName, oldPrimaryKey], (err, result) => {
+    if (err) {
+      console.error("Error updating AppearsIn data: ", err);
+      res.status(500).send('Error updating AppearsIn data');
+      return;
+    }
+    console.log("AppearsIn data updated successfully");
+    res.send('AppearsIn data updated successfully');
+  });
+});
+
+//done
+app.put('/api/update/Artifact', (req,res) => {
+  console.log('Update Artifact called');
+  const { oldPrimaryKey, newName, newOrigin } = req.body;
+  const query = 'UPDATE AppearsIn SET artifactName = ?, origin = ? WHERE artifactName = ?';
+  db.query(query, [newName, newOrigin, oldPrimaryKey], (err, result) => {
+    if (err) {
+      console.error("Error updating Artifact data: ", err);
+      res.status(500).send('Error updating Artifact data');
+      return;
+    }
+    console.log("Artifact data updated successfully");
+    res.send('Artifact data updated successfully');
+  });
+});
+
+//done
+app.put('/api/update/BelongsTo', (req,res) => {
+  console.log('Update BelongsTo called');
+  const { oldPrimaryKey, oldPrimaryKey2, newName, newCharacterName } = req.body;
+  const query = 'UPDATE BelongsTo SET artifactName = ?, characterName = ? WHERE artifactName = ? AND characterName = ?';
+  db.query(query, [newName, newCharacterName, oldPrimaryKey, oldPrimaryKey2], (err, result) => {
+    if (err) {
+      console.error("Error updating BelongsTo data: ", err);
+      res.status(500).send('Error updating BelongsTo data');
+      return;
+    }
+    console.log("BelongsTo data updated successfully");
+    res.send('BelongsTo data updated successfully');
+  });
+});
+
+app.put('/api/update/Creature', (req,res) => {
+  console.log('Update Creature called');
+  const { oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture } = req.body;
+  const query = 'UPDATE Creature SET characterName = ?, characterDescription = ?, supernaturalAbility = ?, species = ?, culture = ? WHERE artifactName = ? AND characterName = ?';
+  db.query(query, [oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture], (err, result) => {
+    if (err) {
+      console.error("Error updating Creature data: ", err);
+      res.status(500).send('Error updating Creature data');
+      return;
+    }
+    console.log("Creature data updated successfully");
+    res.send('Creature data updated successfully');
+  });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });

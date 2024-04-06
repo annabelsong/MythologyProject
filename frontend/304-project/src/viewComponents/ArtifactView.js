@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import './TableStyles.css';
+import axios from 'axios'; 
+
 
 const mockData = [ //tooo lazy to do the full table just for mock
     {
@@ -39,13 +41,30 @@ function ArtifactView() { // change mockdata to real data later
         setDraftData({ ...draftData, [fieldName]: e.target.value });
     };
 
-    const handleSave = (index) => {
+    // backend saving for editing functionality
+    const handleSave = async (index) => {
+        const originalData = data[index];
+        const updatedData = {...draftData};
+
+        const query = {
+        oldPrimaryKey: originalData.artifactName,
+        newArtifactName: updatedData.artifactName,
+        newOrigin: updatedData.origin
+        };
+        
+        const url = 'http://localhost:3307/api/update/Artifact'
+        try{ //this is the update request
+        const response = await axios.put(url, query);
+        console.log(response.data);
         const newData = [...data];
-        newData[index] = draftData;
+        newData[index] = query;
         setData(newData);
         setEditRowIndex(null);
-        // backend thing
+        } catch (error) {
+        console.error("Error updating data:", error);
+        }
     };
+
 
     const handleKeyPress = (e, index) => {
         if (e.key === 'Enter') {
