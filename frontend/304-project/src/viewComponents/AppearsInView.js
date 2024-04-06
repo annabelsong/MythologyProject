@@ -113,7 +113,7 @@ function AppearsInView() {
                                         type="text"
                                         value={draftData.ArtifactName}
                                         onChange={(e) => handleDraftChange(e, 'ArtifactName')}
-                                        onKeyPress={(e) => handleKeyPress(e, index)}
+                                        onKeyDown={(e) => handleKeyPress(e, index)}
                                     />
                                 ) : (
                                     appearsIn.ArtifactName
