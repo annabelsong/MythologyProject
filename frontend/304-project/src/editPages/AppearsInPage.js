@@ -49,7 +49,8 @@ function EditAppearsInForm() {
           type="text"
           value={artifactName}
           onChange={handleArtifactNameChange}
-          readOnly // This field is read-only if you don't want it to be edited
+          className = 'border-gray-400 border-2 mr-2'
+          //readOnly // This field is read-only if you don't want it to be edited
         />
       </label>
       <label>
@@ -58,9 +59,10 @@ function EditAppearsInForm() {
           type="text"
           value={newTaleName}
           onChange={handleNewTaleNameChange}
+          className = 'border-gray-400 border-2 mr-2'
         />
       </label>
-      <button type="submit">Update</button>
+      <button type="submit" className='border-gray-400 border-2 rounded-full p-1'>Update</button>
     </form>
   );
 }
