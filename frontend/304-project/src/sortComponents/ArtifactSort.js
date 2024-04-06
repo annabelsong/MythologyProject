@@ -25,7 +25,7 @@ const mockData = [
     },
 ];
 
-function ArtifactSort(keyword, table) { 
+function ArtifactSort({keyword, table}) { 
     const [data, setData] = useState(mockData);
 
     // Filter the data based on the keyword
