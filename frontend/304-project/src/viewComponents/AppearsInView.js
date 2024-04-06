@@ -68,19 +68,17 @@ function AppearsInView() {
         const updatedData = { ...draftData };
 
         const query = {
-            oldPrimaryKey: originalData.artifactName,
-            newArtifactName: updatedData.artifactName,
-            newTaleName: updatedData.taleName
+            primaryKey: originalData.artifactName,
+            newTaleName: updatedData.TaleName,
         };
 
         const url = 'http://localhost:3307/api/update/AppearsIn'
         try { //this is the update request
             const response = await axios.put(url, query);
             console.log(response.data);
-            // const newData = [...data];
-            // newData[index] = updatedData;
-            // setData(newData);
-            fetchData();
+            const newData = [...data];
+            newData[index] = updatedData;
+            setData(newData);
             setEditRowIndex(null);
         } catch (error) {
             console.error("Error updating data:", error);
