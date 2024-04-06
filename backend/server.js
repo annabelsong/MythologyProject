@@ -515,12 +515,12 @@ app.put('/api/update/Deity', (req,res) => {
   const query = 'UPDATE Deity SET characterName = ?, characterDescription = ?, domain = ?, supernaturalAbility = ?, culture = ? WHERE characterName = ?';
   db.query(query, [oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture], (err, result) => {
     if (err) {
-      console.error("Error updating Creature data: ", err);
-      res.status(500).send('Error updating Creature data');
+      console.error("Error updating Deity data: ", err);
+      res.status(500).send('Error updating Deity data');
       return;
     }
-    console.log("Creature data updated successfully");
-    res.send('Creature data updated successfully');
+    console.log("Deity data updated successfully");
+    res.send('Deity data updated successfully');
   });
 });
 
