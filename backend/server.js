@@ -107,11 +107,11 @@ app.post('/api/insert/Location', (req, res) => {
     const query = `INSERT INTO Location (locationName, areaDescription, timePeriod) VALUES (?, ?, ?)`;
     db.query(query, [locationName, areaDescription, timePeriod], (err, result) => {
         if (err) {
-            console.error('Error inserting AppearsIn data:', err);
-            res.status(500).send('Error inserting AppearsIn data');
+            console.error('Error inserting Location data:', err);
+            res.status(500).send('Error inserting Location data');
             return;
         }
-      console.log('AppearsIn data inserted successfully');
+      console.log('Location data inserted successfully');
       res.send('Location data inserted successfully');
     });
 });
