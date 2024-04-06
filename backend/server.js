@@ -77,28 +77,52 @@ app.post('/api/insert/BelongsTo', (req, res) => {
 app.post('/api/insert/Creature', (req, res) => {
     console.log('Insert Creature called');
     const { characterName, characterDescription, supernaturalAbility, species } = req.body;
-    const query = `INSERT INTO Creature (characterName, characterDescription, supernaturalAbility, species) VALUES (?, ?, ?, ?)`;
-    db.query(query, [characterName, characterDescription, supernaturalAbility, species], (err, result) => {
+    const query1 = 'INSERT INTO Characters (characterName, characterDescription) VALUES (?, ?)';
+    const query2 = `INSERT INTO Creature (characterName, characterDescription, supernaturalAbility, species) VALUES (?, ?, ?, ?)`;
+    db.query(query1, [characterName, characterDescription], (err, results1) => {
       if (err) {
-        console.error('Error inserting data:', err);
-        res.status(500).json({ error: 'Error inserting data into Creature table' });
+        console.error('Error inserting data into Characters table:', err);
+        res.status(500).json({ error: 'Error inserting data into Characters table' });
         return;
       }
-      res.status(200).json({ message: 'Data inserted successfully into Creature table' });
+  
+      // Execute the second query to insert data into Mortal table
+      db.query(query2, [characterName, characterDescription, title, profession], (err, results2) => {
+        if (err) {
+          console.error('Error inserting data into Creature table:', err);
+          res.status(500).json({ error: 'Error inserting data into Creature table' });
+          return;
+        }
+  
+        // If both insertions were successful, send a success response
+        res.status(200).json({ message: 'Data inserted successfully into database' });
+      });
     });
   });
 
 app.post('/api/insert/Deity', (req, res) => {
   console.log('Insert Deity called');
   const { deityName, characterDescription, domain, supernaturalAbility, culture } = req.body;
-  const query = `INSERT INTO Deity (deityName, characterDescription, domain, supernaturalAbility) VALUES (?, ?, ?, ?)`;
-  db.query(query, [deityName, characterDescription, domain, supernaturalAbility], (err, result) => {
+  const query1 = 'INSERT INTO Characters (characterName, characterDescription) VALUES (?, ?)';
+  const query2 = `INSERT INTO Deity (deityName, characterDescription, domain, supernaturalAbility) VALUES (?, ?, ?, ?)`;
+  db.query(query1, [characterName, characterDescription], (err, results1) => {
     if (err) {
-      console.error('Error inserting data:', err);
-      res.status(500).json({ error: 'Error inserting data into Deity table' });
+      console.error('Error inserting data into Characters table:', err);
+      res.status(500).json({ error: 'Error inserting data into Characters table' });
       return;
     }
-    res.status(200).json({ message: 'Data inserted successfully into Deity table' });
+
+    // Execute the second query to insert data into Mortal table
+    db.query(query2, [characterName, characterDescription, title, profession], (err, results2) => {
+      if (err) {
+        console.error('Error inserting data into Deity table:', err);
+        res.status(500).json({ error: 'Error inserting data into Deity table' });
+        return;
+      }
+
+      // If both insertions were successful, send a success response
+      res.status(200).json({ message: 'Data inserted successfully into database' });
+    });
   });
 });
 
@@ -120,14 +144,28 @@ app.post('/api/insert/Location', (req, res) => {
 app.post('/api/insert/Mortal', (req, res) => {
   console.log('Insert Mortal called');
   const { characterName, characterDescription, title, profession } = req.body;
-  const query = `INSERT INTO Mortal (characterName, characterDescription, title, profession) VALUES (?, ?, ?, ?)`;
-  db.query(query, [characterName, characterDescription, title, profession], (err, result) => {
+  const query1 = 'INSERT INTO Characters (characterName, characterDescription) VALUES (?, ?)';
+  const query2 = 'INSERT INTO Mortal (characterName, characterDescription, title, profession) VALUES (?, ?, ?, ?)';
+  
+  // Execute the first query to insert data into Characters table
+  db.query(query1, [characterName, characterDescription], (err, results1) => {
     if (err) {
-      console.error('Error inserting data:', err);
-      res.status(500).json({ error: 'Error inserting data into Mortal table' });
+      console.error('Error inserting data into Characters table:', err);
+      res.status(500).json({ error: 'Error inserting data into Characters table' });
       return;
     }
-    res.status(200).json({ message: 'Data inserted successfully into Mortal table' });
+
+    // Execute the second query to insert data into Mortal table
+    db.query(query2, [characterName, characterDescription, title, profession], (err, results2) => {
+      if (err) {
+        console.error('Error inserting data into Mortal table:', err);
+        res.status(500).json({ error: 'Error inserting data into Mortal table' });
+        return;
+      }
+
+      // If both insertions were successful, send a success response
+      res.status(200).json({ message: 'Data inserted successfully into database' });
+    });
   });
 });
 
