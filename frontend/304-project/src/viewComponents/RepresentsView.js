@@ -1,53 +1,21 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react';
 import './TableStyles.css';
-
-const mockData = [
-    { SymbolName: 'Hammer of Thor', CharacterName: 'Thor' },
-    { SymbolName: 'Weaving Loom', CharacterName: 'Arachne' },
-    { SymbolName: 'Shield', CharacterName: 'Achilles' },
-    { SymbolName: 'Man with Wings', CharacterName: 'Icarus' },
-    { SymbolName: 'Atef Crown', CharacterName: 'Osiris' },
-    { SymbolName: 'Golden Headband', CharacterName: 'Sun Wukong' },
-    { SymbolName: 'Golden Dragon', CharacterName: 'Arthur' },
-    { SymbolName: 'Ouroboros', CharacterName: 'Jormungandr' },
-    { SymbolName: 'Gorgoneion', CharacterName: 'Medusa' },
-    { SymbolName: 'Thyrsus', CharacterName: 'Dionysus' },
-    { SymbolName: 'Grapevine', CharacterName: 'Dionysus' },
-    { SymbolName: 'Leopard', CharacterName: 'Dionysus' },
-    { SymbolName: 'Ivy', CharacterName: 'Dionysus' },
-    { SymbolName: 'Theater Masks', CharacterName: 'Dionysus' },
-    { SymbolName: 'Crook and Flail', CharacterName: 'Osiris' },
-    { SymbolName: 'Djed Pillar', CharacterName: 'Osiris' },
-    { SymbolName: 'Green Skin', CharacterName: 'Osiris' }
-];
+import axios from 'axios';
 
 function RepresentsView() {
-    const [data, setData] = useState(mockData);
-    const [editRowIndex, setEditRowIndex] = useState(null);
-    const [draftData, setDraftData] = useState({});
+    const [data, setData] = useState([]);
 
-    const handleRowDoubleClick = (index) => {
-        setEditRowIndex(index);
-        setDraftData({ ...data[index] });
-    };
-
-    const handleDraftChange = (e, fieldName) => {
-        setDraftData({ ...draftData, [fieldName]: e.target.value });
-    };
-
-    const handleSave = (index) => {
-        const newData = [...data];
-        newData[index] = draftData;
-        setData(newData);
-        setEditRowIndex(null);
-        // backend part
-    };
-
-    const handleKeyPress = (e, index) => {
-        if (e.key === 'Enter') {
-            handleSave(index);
-        }
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3307/api/fetch/Represents');
+                setData(response.data);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <div>
@@ -61,31 +29,9 @@ function RepresentsView() {
                 </thead>
                 <tbody>
                     {data.map((represents, index) => (
-                        <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
-                            <td>
-                                {editRowIndex === index ? (
-                                    <input className="full-width-input"
-                                        type="text"
-                                        value={draftData.SymbolName}
-                                        onChange={(e) => handleDraftChange(e, 'SymbolName')}
-                                        onKeyDown={(e) => handleKeyPress(e, index)}
-                                    />
-                                ) : (
-                                    represents.SymbolName
-                                )}
-                            </td>
-                            <td>
-                                {editRowIndex === index ? (
-                                    <input className="full-width-input"
-                                        type="text"
-                                        value={draftData.CharacterName}
-                                        onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyDown={(e) => handleKeyPress(e, index)}
-                                    />
-                                ) : (
-                                    represents.CharacterName
-                                )}
-                            </td>
+                        <tr key={index}>
+                            <td>{represents.SymbolName}</td>
+                            <td>{represents.CharacterName}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -93,6 +39,5 @@ function RepresentsView() {
         </div>
     );
 }
-
 
 export default RepresentsView;
