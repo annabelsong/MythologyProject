@@ -394,6 +394,34 @@ app.get('/api/fetch/PartOf', (req, res) => {
   });
 });
 
+app.get('/api/fetch/PartOfAlpha', (req, res) => {
+  console.log('Fetch PartOf called');
+  const query = "SELECT * FROM PartOf ORDER BY CharacterName ASC;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching PartOf data:', err);
+      res.status(500).send('Error fetching PartOf data');
+    } else {
+      console.log('PartOf data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/PartOfCulture', (req, res) => {
+  console.log('Fetch PartOf called');
+  const query = "SELECT PartOf.CharacterName, PartOf.TaleName, Tale.Culture FROM PartOf, Tale WHERE PartOf.TaleName = Tale.TaleName GROUP BY Tale.Culture, PartOf.CharacterName, PartOf.TaleName ORDER BY Tale.Culture ASC;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching PartOf data:', err);
+      res.status(500).send('Error fetching PartOf data');
+    } else {
+      console.log('PartOf data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
 app.get('/api/fetch/Represents', (req, res) => {
   console.log('Fetch Represents called');
   const query = "SELECT * FROM Represents;"
