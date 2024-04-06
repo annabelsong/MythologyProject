@@ -499,17 +499,17 @@ app.put('/api/update/AppearsIn', (req, res) => {
 });
 
 //done
-app.put('/api/update/Artifact', (req,res) => {
-  console.log('Update Artifact called');
-  const { oldPrimaryKey, newName, newOrigin } = req.body;
-  const query = 'UPDATE AppearsIn SET artifactName = ?, origin = ? WHERE artifactName = ?;';
-  db.query(query, [newName, newOrigin, oldPrimaryKey], (err, result) => {
+app.put('/api/update/Artifact', (req, res) => {
+  const { artifactName, origin } = req.body;
+  // Use a safe update method that prevents SQL injection
+  const query = `UPDATE Artifact SET taleName = ? WHERE artifactName = ?`;
+  db.query(query, [origin, artifactName], (err, result) => {
     if (err) {
-      console.error("Error updating Artifact data: ", err);
+      console.error('Error updating AppearsIn data:', err);
       res.status(500).send('Error updating Artifact data');
       return;
     }
-    console.log("Artifact data updated successfully");
+    console.log('Artifact data updated successfully');
     res.send('Artifact data updated successfully');
   });
 });

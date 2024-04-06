@@ -1,55 +1,39 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function EditAppearsInForm() {
-  const [artifactName, setArtifactName] = useState(''); 
+function AppearsInPage() {
+  const [artifactName, setArtifactName] = useState('');
   const [newTaleName, setNewTaleName] = useState('');
-
-  // Handler for the primary key
-  const handleArtifactNameChange = (event) => {
-    setArtifactName(event.target.value);
-  };
-
-  // Handler for new tale name
-  const handleNewTaleNameChange = (event) => {
-    setNewTaleName(event.target.value);
-  };
-
-  const isValidInput = (input) => /^[a-zA-Z0-9 ]+$/.test(input);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    if (!isValidInput(artifactName) || !isValidInput(newTaleName)) {
-      alert("Invalid input.");
-      return;
-    }
-
-    const query = {
-      artifactName,
-      newTaleName
-    };
+    
+    // Perform input validation if necessary
 
     try {
-      const response = await axios.put('http://localhost:3307/api/update/AppearsIn', query);
+      // Send update request to backend
+      const response = await axios.put('http://localhost:3307/api/update/AppearsIn', {
+        artifactName, // Primary key to identify the record
+        taleName: newTaleName, // The new value for the tale name
+      });
       console.log(response.data);
-      // Reset the form fields
+      // Reset the form or provide user feedback
       setArtifactName('');
       setNewTaleName('');
     } catch (error) {
       console.error('Error updating data:', error);
+      // Handle error
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="edit-form">
+    <form onSubmit={handleSubmit}>
       <label>
-        Artifact Name (cannot be changed):
+        Artifact Name (to update):
         <input
           type="text"
           value={artifactName}
-          onChange={handleArtifactNameChange}
-          readOnly // This field is read-only if you don't want it to be edited
+          onChange={(e) => setArtifactName(e.target.value)}
         />
       </label>
       <label>
@@ -57,12 +41,12 @@ function EditAppearsInForm() {
         <input
           type="text"
           value={newTaleName}
-          onChange={handleNewTaleNameChange}
+          onChange={(e) => setNewTaleName(e.target.value)}
         />
       </label>
-      <button type="submit">Update</button>
+      <button type="submit">Update Artifact</button>
     </form>
   );
 }
 
-export default EditAppearsInForm;
+export default AppearsInPage;

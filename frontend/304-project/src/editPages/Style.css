@@ -1,0 +1,27 @@
+/* styles.css */
+
+/* This ensures that the form elements take full width of their container */
+input, button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+  }
+  
+  /* Style for your submit button */
+  button[type="submit"] {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    cursor: pointer; /* Pointer/hand icon on hover over the button */
+    opacity: 0.9; /* Slightly see-through */
+  }
+  
+  /* Style for button on hover */
+  button[type="submit"]:hover {
+    opacity: 1; /* Fully opaque on hover */
+  }
+  
+  /* Add some padding inside the container */
+  .form-container {
+    padding: 20px;
+  }
