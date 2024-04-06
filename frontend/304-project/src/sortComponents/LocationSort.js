@@ -37,97 +37,44 @@ const mockData = [ // This was just for me to see the table styling you can eras
   { LocationName: 'Brauron', AreaDescription: 'An ancient Greek sanctuary on the eastern coast of Attica dedicated to Artemis Brauronia, a place of worship and rites for young girls.', TimePeriod: 'classical antiquity' },
   { LocationName: 'Ortygia', AreaDescription: 'A small island near Delos, legendary birthplace of Artemis and Apollo, sacred to both.', TimePeriod: 'classical antiquity' }
 ];
-
-function LocationSort() {
+function LocationSort({ keyword, table }) {
   const [data, setData] = useState(mockData);
-  const [editRowIndex, setEditRowIndex] = useState(null);
-  // temp storage for edits
-  const [draftData, setDraftData] = useState({});
 
-  // enable editing mode (by double click)
-  const handleRowDoubleClick = (index) => {
-    setEditRowIndex(index);
-    // copy to draft for editing
-    setDraftData({ ...data[index] });
-  };
-
-  // update draft data on change
-  const handleDraftChange = (e, fieldName) => {
-    setDraftData({ ...draftData, [fieldName]: e.target.value });
-  };
-
-  // save changes
-  const handleSave = (index) => {
-    const newData = [...data];
-    newData[index] = draftData;
-    setData(newData);
-    setEditRowIndex(null);
-    // call your backend to update the data (UPDATE backend data) i think this is where it is
-  };
-
-  // "enter" keypress to save
-  const handleKeyPress = (e, index) => {
-    if (e.key === 'Enter') {
-      handleSave(index);
-    }
-  };
-
-  return (
-    <div>
-      <h1 className="table-title">Locations</h1>
-      <table className="table-Sort">
-        <thead>
-          <tr>
-            <th>Location</th>
-            <th>Description</th>
-            <th>Time Period</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((location, index) => (
-            <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
-              <td>
-                {editRowIndex === index ? (
-                  <input className="full-width-input"
-                    type="text"
-                    value={draftData.LocationName}
-                    onChange={(e) => handleDraftChange(e, 'LocationName')}
-                    onKeyDown={(e) => handleKeyPress(e, index)}
-                  />
-                ) : (
-                  location.LocationName
-                )}
-              </td>
-              <td>
-                {editRowIndex === index ? (
-                  <input className="full-width-input"
-                    type="text"
-                    value={draftData.AreaDescription}
-                    onChange={(e) => handleDraftChange(e, 'AreaDescription')}
-                    onKeyDown={(e) => handleKeyPress(e, index)}
-                  />
-                ) : (
-                  location.AreaDescription
-                )}
-              </td>
-              <td>
-                {editRowIndex === index ? (
-                  <input className="full-width-input"
-                    type="text"
-                    value={draftData.TimePeriod}
-                    onChange={(e) => handleDraftChange(e, 'TimePeriod')}
-                    onKeyDown={(e) => handleKeyPress(e, index)}
-                  />
-                ) : (
-                  location.TimePeriod
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+  // Filter the data based on the keyword
+  const filteredData = data.filter((item) =>
+      Object.values(item).some((value) =>
+          value.toString().toLowerCase().includes(keyword.toLowerCase())
+      )
   );
+
+  if (filteredData.length === 0) {
+      return <div>sorry, the given keyword was not found in the Table of Locations you selected</div>;
+  }
+
+  // Render the filtered data
+  return (
+      <table>
+      <thead>
+        <tr>
+          
+          <th>Location</th>
+          <th>Description</th>
+          <th>Time Period</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {filteredData.map((item, index) => (
+          <tr key={index}>
+            <td>{item.LocationName}</td>
+            <td>{item.AreaDescription}</td>
+            <td>{item.TimePeriod}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+
 }
 
 

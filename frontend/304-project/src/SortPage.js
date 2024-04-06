@@ -65,7 +65,7 @@ function SortPage() {
       {/* Sort component */}
 
       <div>
-      {{selectedTable === 'location' && <LocationSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'location' && <LocationSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'creature' && <CreatureSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'mortal' && <MortalSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'deity' && <DeitySort keyword={keyword} table={selectedTable} />}
@@ -79,7 +79,6 @@ function SortPage() {
       {selectedTable === 'belongsto' && <BelongsToSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'appearsin' && <AppearsInSort keyword={keyword} table={selectedTable} />}
       {selectedTable === 'represents' && <RepresentsSort keyword={keyword} table={selectedTable} />}
-      {selectedTable === '' && <div>Select A Table First!</div>}
       </div>
     </div>
   );

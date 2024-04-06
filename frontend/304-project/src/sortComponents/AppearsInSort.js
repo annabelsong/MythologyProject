@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './TableStyleForSort.css';
 import axios from 'axios';
 
@@ -32,8 +32,48 @@ const mockData = [
     { ArtifactName: 'The Anchor of the Kraken', TaleName: 'The Wrath of the Kraken' }
 ];
 
+function AppearsInSort({ keyword, table}) {
+    const [data, setData] = useState(mockData);
 
-function AppearsInSort() {
+    // Filter the data based on the keyword
+    const filteredData = data.filter((item) =>
+        Object.values(item).some((value) =>
+            value.toString().toLowerCase().includes(keyword.toLowerCase())
+        )
+    );
+
+    if (filteredData.length === 0) {
+        return <div>sorry, the given keyword was not found in the Table of Appears-Ins you selected</div>;
+    }
+
+    // Render the filtered data
+    return (
+        <table>
+        <thead>
+          <tr>
+            
+            <th>Artifact</th>
+            <th>Tale</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {filteredData.map((item, index) => (
+            <tr key={index}>
+              <td>{item.ArtifactName}</td>
+              <td>{item.TaleName}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+    
+
+
+
+
+/*
+
     // const [data, setData] = useState(mockData);
     const [data, setData] = useState([]);
     const [editRowIndex, setEditRowIndex] = useState(null);
@@ -135,6 +175,7 @@ function AppearsInSort() {
             </table>
         </div>
     );
+    */
 }
 
 export default AppearsInSort;

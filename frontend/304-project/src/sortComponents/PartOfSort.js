@@ -38,77 +38,42 @@ const mockData = [
     { CharacterName: 'Sun Wukong', TaleName: 'Sun Wukong’s Rebellion against Heaven' }
 ];
 
-function PartOfSort() {
+function PartOfSort({ keyword, table }) {
     const [data, setData] = useState(mockData);
-    const [editRowIndex, setEditRowIndex] = useState(null);
-    const [draftData, setDraftData] = useState({});
 
-    const handleRowDoubleClick = (index) => {
-        setEditRowIndex(index);
-        setDraftData({ ...data[index] });
-    };
-
-    const handleDraftChange = (e, fieldName) => {
-        setDraftData({ ...draftData, [fieldName]: e.target.value });
-    };
-
-    const handleSave = (index) => {
-        const newData = [...data];
-        newData[index] = draftData;
-        setData(newData);
-        setEditRowIndex(null);
-        // backend update thing
-    };
-
-    const handleKeyPress = (e, index) => {
-        if (e.key === 'Enter') {
-            handleSave(index);
-        }
-    };
-
-    return (
-        <div>
-            <h1 className="table-title">Part Of</h1>
-            <table className="table-Sort">
-                <thead>
-                    <tr>
-                        <th>Character</th>
-                        <th>Tale</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data.map((partof, index) => (
-                        <tr key={index} onDoubleClick={() => handleRowDoubleClick(index)}>
-                            <td>
-                                {editRowIndex === index ? (
-                                    <input className="full-width-input"
-                                        type="text"
-                                        value={draftData.CharacterName}
-                                        onChange={(e) => handleDraftChange(e, 'CharacterName')}
-                                        onKeyDown={(e) => handleKeyPress(e, index)}
-                                    />
-                                ) : (
-                                    partof.CharacterName
-                                )}
-                            </td>
-                            <td>
-                                {editRowIndex === index ? (
-                                    <input className="full-width-input"
-                                        type="text"
-                                        value={draftData.TaleName}
-                                        onChange={(e) => handleDraftChange(e, 'TaleName')}
-                                        onKeyDown={(e) => handleKeyPress(e, index)}
-                                    />
-                                ) : (
-                                    partof.TaleName
-                                )}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+    // Filter the data based on the keyword
+    const filteredData = data.filter((item) =>
+        Object.values(item).some((value) =>
+            value.toString().toLowerCase().includes(keyword.toLowerCase())
+        )
     );
+
+    if (filteredData.length === 0) {
+        return <div>sorry, the given keyword was not found in the Table of Part-Ofs you selected</div>;
+    }
+
+    // Render the filtered data
+    return (
+        <table>
+        <thead>
+          <tr>
+            
+            <th>Character</th>
+            <th>Tale</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          {filteredData.map((item, index) => (
+            <tr key={index}>
+              <td>{item.CharacterName}</td>
+              <td>{item.TaleName}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+
 }
 
 

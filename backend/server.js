@@ -352,6 +352,20 @@ app.get('/api/fetch/Deity', (req, res) => {
   });
 });
 
+app.get('/api/fetch/DeityNoDesc', (req, res) => {
+  console.log('Fetch Deity called');
+  const query = "SELECT CharacterName, Domain, SupernaturalAbility, Culture FROM Deity;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Deity data:', err);
+      res.status(500).send('Error fetching Deity data');
+    } else {
+      console.log('Deity data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
 app.get('/api/fetch/Location', (req, res) => {
   console.log('Fetch Location called');
   const query = "SELECT * FROM Location;"
@@ -383,6 +397,34 @@ app.get('/api/fetch/Mortal', (req, res) => {
 app.get('/api/fetch/PartOf', (req, res) => {
   console.log('Fetch PartOf called');
   const query = "SELECT * FROM PartOf;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching PartOf data:', err);
+      res.status(500).send('Error fetching PartOf data');
+    } else {
+      console.log('PartOf data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/PartOfAlpha', (req, res) => {
+  console.log('Fetch PartOf called');
+  const query = "SELECT * FROM PartOf ORDER BY CharacterName ASC;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching PartOf data:', err);
+      res.status(500).send('Error fetching PartOf data');
+    } else {
+      console.log('PartOf data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+app.get('/api/fetch/PartOfCulture', (req, res) => {
+  console.log('Fetch PartOf called');
+  const query = "SELECT PartOf.CharacterName, PartOf.TaleName, Tale.Culture FROM PartOf, Tale WHERE PartOf.TaleName = Tale.TaleName GROUP BY Tale.Culture, PartOf.CharacterName, PartOf.TaleName ORDER BY Tale.Culture ASC;"
   db.query(query, (err,results) => {
     if (err) {
       console.error('Error fetching PartOf data:', err);

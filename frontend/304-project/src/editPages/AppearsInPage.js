@@ -33,7 +33,9 @@ function AppearsInPage() {
         <input
           type="text"
           value={artifactName}
-          onChange={(e) => setArtifactName(e.target.value)}
+          onChange={handleArtifactNameChange}
+          className = 'border-gray-400 border-2 mr-2'
+          //readOnly // This field is read-only if you don't want it to be edited
         />
       </label>
       <label>
@@ -41,10 +43,11 @@ function AppearsInPage() {
         <input
           type="text"
           value={newTaleName}
-          onChange={(e) => setNewTaleName(e.target.value)}
+          onChange={handleNewTaleNameChange}
+          className = 'border-gray-400 border-2 mr-2'
         />
       </label>
-      <button type="submit">Update Artifact</button>
+      <button type="submit" className='border-gray-400 border-2 rounded-full p-1'>Update</button>
     </form>
   );
 }
