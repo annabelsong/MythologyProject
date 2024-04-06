@@ -51,9 +51,9 @@ function SortPage() {
         ))}
       </select>
 
-      <input type="text" value={keyword} onChange={handleKeywordChange} placeholder="Enter keyword" />
+      <input type="text" value={keyword} onChange={handleKeywordChange} placeholder="Enter keyword" className='p-1 mr-2 rounded-full border-gray-400 border-2'/>
 
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit} className='p-1 mr-2 rounded-full border-gray-400 border-2'>Submit</button>
 
       {hasSearched && data.length === 0 ? (
         <p>Sorry, but the given keyword was not found in this table.</p>
