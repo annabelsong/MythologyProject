@@ -1,4 +1,18 @@
 import React, {useEffect, useState} from 'react';
+import LocationSort from './sortComponents/LocationSort';
+import CreatureSort from './sortComponents/CreatureSort';
+import MortalSort from './sortComponents/MortalSort';
+import DeitySort from './sortComponents/DeitySort';
+import PantheonSort from './sortComponents/PantheonSort';
+import TaleSort from './sortComponents/TaleSort';
+import StoryEventSort from './sortComponents/StoryEventSort';
+import SymbolSort from './sortComponents/SymbolSort';
+import ArtifactSort from './sortComponents/ArtifactSort';
+import RitualSort from './sortComponents/RitualSort';
+import PartOfSort from './sortComponents/PartOfSort';
+import BelongsToSort from './sortComponents/BelongsToSort';
+import AppearsInSort from './sortComponents/AppearsInSort';
+import RepresentsSort from './sortComponents/RepresentsSort';
 
 const tables = [
   ["Location","location"],
@@ -19,31 +33,19 @@ const tables = [
 
 function SortPage() {
   const [selectedTable, setSelectedTable] = useState('');
-  const [keyword, setKeyword] = useState('');
-  const [data, setData] = useState([]);
-  const [hasSearched, setHasSearched] = useState(false);
-
 
   const handleTableChange = (event) => {
     setSelectedTable(event.target.value);
   };
 
-  const handleKeywordChange = (event) => {
-    setKeyword(event.target.value);
-  };
-
-  const handleSubmit = async () => {
-    setHasSearched(true);
-    const response = await fetch(`/api/tables/${selectedTable}?keyword=${keyword}`);
-    const data = await response.json();
-    setData(data);
-  };
-  
   return (
-    <div>
-      <p><strong>First choose a table then specify what keyword you want to filter for in this table!</strong></p>
-      <br />
+    <div className="flex flex-col items-start ml-4 mt-4">
+      <h2>Welcome to the Sort Page, select a table from the drop-down then enter a keyword to filter instances in that table</h2>
     
+      <div className='h-8'/>{/*spacer*/}
+
+
+
       <select value={selectedTable} onChange={handleTableChange} className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">
         <option value="">Select a table</option>
         {tables.map(([label, value]) => (
@@ -51,23 +53,27 @@ function SortPage() {
         ))}
       </select>
 
-      <input type="text" value={keyword} onChange={handleKeywordChange} placeholder="Enter keyword" className='p-1 mr-2 rounded-full border-gray-400 border-2'/>
+      <div className='h-4'/>{/*spacer*/}
 
-      <button onClick={handleSubmit} className='p-1 mr-2 rounded-full border-gray-400 border-2'>Submit</button>
-
-      {hasSearched && data.length === 0 ? (
-        <p>Sorry, but the given keyword was not found in this table.</p>
-      ) : (
-        <table>
-          {data.map((item, index) => (
-            <tr key={index}>
-              {Object.values(item).map((value, i) => <td key={i}>{value}</td>)}
-            </tr>
-          ))}
-        </table>
-      )}
+      {/* Sort component */}
+      {selectedTable === 'location' && <LocationSort />}
+      {selectedTable === 'creature' && <CreatureSort />}
+      {selectedTable === 'mortal' && <MortalSort />}
+      {selectedTable === 'deity' && <DeitySort />}
+      {selectedTable === 'ritual' && <RitualSort />}
+      {selectedTable === 'tale' && <TaleSort />}
+      {selectedTable === 'storyevent' && <StoryEventSort />}
+      {selectedTable === 'pantheon' && <PantheonSort />}
+      {selectedTable === 'symbol' && <SymbolSort />}
+      {selectedTable === 'artifact' && <ArtifactSort />}
+      {selectedTable === 'partof' && <PartOfSort />}
+      {selectedTable === 'belongsto' && <BelongsToSort />}
+      {selectedTable === 'appearsin' && <AppearsInSort />}
+      {selectedTable === 'represents' && <RepresentsSort />}
+      {selectedTable === '' && <div>Select A Table First!</div>}
     </div>
   );
 }
+
 
 export default SortPage;
