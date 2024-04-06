@@ -33,6 +33,7 @@ const tables = [
 
 function SortPage() {
   const [selectedTable, setSelectedTable] = useState('');
+  const [keyword, setKeyword] = useState('');
 
   const handleTableChange = (event) => {
     setSelectedTable(event.target.value);
@@ -44,6 +45,12 @@ function SortPage() {
     
       <div className='h-8'/>{/*spacer*/}
 
+      <input
+        type="text"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+        placeholder="Enter keyword"
+      />
 
 
       <select value={selectedTable} onChange={handleTableChange} className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">
@@ -56,21 +63,24 @@ function SortPage() {
       <div className='h-4'/>{/*spacer*/}
 
       {/* Sort component */}
-      {selectedTable === 'location' && <LocationSort />}
-      {selectedTable === 'creature' && <CreatureSort />}
-      {selectedTable === 'mortal' && <MortalSort />}
-      {selectedTable === 'deity' && <DeitySort />}
-      {selectedTable === 'ritual' && <RitualSort />}
-      {selectedTable === 'tale' && <TaleSort />}
-      {selectedTable === 'storyevent' && <StoryEventSort />}
-      {selectedTable === 'pantheon' && <PantheonSort />}
-      {selectedTable === 'symbol' && <SymbolSort />}
-      {selectedTable === 'artifact' && <ArtifactSort />}
-      {selectedTable === 'partof' && <PartOfSort />}
-      {selectedTable === 'belongsto' && <BelongsToSort />}
-      {selectedTable === 'appearsin' && <AppearsInSort />}
-      {selectedTable === 'represents' && <RepresentsSort />}
+
+      <div>
+      {{selectedTable === 'location' && <LocationSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'creature' && <CreatureSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'mortal' && <MortalSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'deity' && <DeitySort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'ritual' && <RitualSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'tale' && <TaleSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'storyevent' && <StoryEventSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'pantheon' && <PantheonSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'symbol' && <SymbolSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'artifact' && <ArtifactSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'partof' && <PartOfSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'belongsto' && <BelongsToSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'appearsin' && <AppearsInSort keyword={keyword} table={selectedTable} />}
+      {selectedTable === 'represents' && <RepresentsSort keyword={keyword} table={selectedTable} />}
       {selectedTable === '' && <div>Select A Table First!</div>}
+      </div>
     </div>
   );
 }
