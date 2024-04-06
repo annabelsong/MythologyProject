@@ -47,9 +47,9 @@ app.post('/api/insert/Artifact', (req, res) => {
 
 app.post('/api/insert/AppearsIn', (req, res) => {
     console.log('Insert AppearsIn called');
-    const { artifactName, taleName } = req.body;
-    const query = `INSERT INTO AppearsIn (artifactName, taleName) VALUES (?, ?)`;
-    db.query(query, [artifactName, taleName], (err, result) => {
+    const { characterName, taleName } = req.body;
+    const query = `INSERT INTO AppearsIn (characterName, taleName) VALUES (?, ?)`;
+    db.query(query, [characterName, taleName], (err, result) => {
       if (err) {
         console.error('Error inserting AppearsIn data:', err);
         res.status(500).send('Error inserting AppearsIn data');
