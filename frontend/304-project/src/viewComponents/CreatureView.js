@@ -27,7 +27,6 @@ function CreatureView() {
                         <th>Description</th>
                         <th>Supernatural Ability</th>
                         <th>Species</th>
-                        <th>Culture</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +36,6 @@ function CreatureView() {
                             <td>{creature.CharacterDescription}</td>
                             <td>{creature.SupernaturalAbility}</td>
                             <td>{creature.Species}</td>
-                            <td>{creature.Culture}</td>
                         </tr>
                     ))}
                 </tbody>

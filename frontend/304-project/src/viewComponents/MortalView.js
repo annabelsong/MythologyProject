@@ -27,8 +27,6 @@ function MortalView() {
                         <th>Description</th>
                         <th>Title</th>
                         <th>Profession</th>
-                        <th>Child's Name</th>
-                        <th>Culture</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,8 +36,6 @@ function MortalView() {
                             <td>{mortal.CharacterDescription}</td>
                             <td>{mortal.Title}</td>
                             <td>{mortal.Profession}</td>
-                            <td>{mortal.ChildName}</td>
-                            <td>{mortal.Culture}</td>
                         </tr>
                     ))}
                 </tbody>

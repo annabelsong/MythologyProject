@@ -8,7 +8,7 @@ function TaleView() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3307/api/fetch/Tales');
+                const response = await axios.get('http://localhost:3307/api/fetch/Tale');
                 setData(response.data);
             } catch (error) {
                 console.error("Error fetching data:", error);
