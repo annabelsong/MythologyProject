@@ -47,9 +47,9 @@ app.post('/api/insert/Artifact', (req, res) => {
 
 app.post('/api/insert/AppearsIn', (req, res) => {
     console.log('Insert AppearsIn called');
-    const { characterName, taleName } = req.body;
-    const query = `INSERT INTO AppearsIn (characterName, taleName) VALUES (?, ?)`;
-    db.query(query, [characterName, taleName], (err, result) => {
+    const { artifactName, taleName } = req.body;
+    const query = `INSERT INTO AppearsIn (artifactName, taleName) VALUES (?, ?)`;
+    db.query(query, [artifactName, taleName], (err, result) => {
       if (err) {
         console.error('Error inserting AppearsIn data:', err);
         res.status(500).send('Error inserting AppearsIn data');
@@ -215,7 +215,7 @@ app.post('/api/insert/Symbol', (req, res) => {
   });
 });
 
-app.post('/api/insert/tale', (req, res) => {
+app.post('/api/insert/Tale', (req, res) => {
   console.log('Insert Tale called');
   const { taleName, moralLesson, culture } = req.body;
   const query = `INSERT INTO Tale (taleName, moralLesson, culture) VALUES (?, ?, ?)`;
