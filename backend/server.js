@@ -47,9 +47,9 @@ app.post('/api/insert/Artifact', (req, res) => {
 
 app.post('/api/insert/AppearsIn', (req, res) => {
     console.log('Insert AppearsIn called');
-    const { artifactName, taleName } = req.body;
-    const query = `INSERT INTO AppearsIn (artifactName, taleName) VALUES (?, ?)`;
-    db.query(query, [artifactName, taleName], (err, result) => {
+    const { characterName, taleName } = req.body;
+    const query = `INSERT INTO AppearsIn (characterName, taleName) VALUES (?, ?)`;
+    db.query(query, [characterName, taleName], (err, result) => {
       if (err) {
         console.error('Error inserting AppearsIn data:', err);
         res.status(500).send('Error inserting AppearsIn data');
@@ -108,11 +108,11 @@ app.post('/api/insert/Location', (req, res) => {
     const query = `INSERT INTO Location (locationName, areaDescription, timePeriod) VALUES (?, ?, ?)`;
     db.query(query, [locationName, areaDescription, timePeriod], (err, result) => {
         if (err) {
-            console.error('Error inserting AppearsIn data:', err);
-            res.status(500).send('Error inserting AppearsIn data');
+            console.error('Error inserting Location data:', err);
+            res.status(500).send('Error inserting Location data');
             return;
         }
-      console.log('AppearsIn data inserted successfully');
+      console.log('Location data inserted successfully');
       res.send('Location data inserted successfully');
     });
 });
