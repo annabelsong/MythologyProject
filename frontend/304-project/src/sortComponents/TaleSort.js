@@ -22,7 +22,6 @@ const mockData = [
 function TaleSort({ keyword, table }) {
     const [data, setData] = useState(mockData);
 
-    // Fetch the character count from the API
     fetch('http://localhost:3307/api/having/CharacterCount')
       .then(response => response.json())
       .then(characterCount => {
@@ -32,11 +31,9 @@ function TaleSort({ keyword, table }) {
             value.toString().toLowerCase().includes(keyword.toLowerCase())
           ) && characterCount[item.TaleName] > 70
         );
-
         if (filteredData.length === 0) {
           return <div>sorry, the given keyword was not found in the Table of Symbols you selected</div>;
         }
-
         // Render the filtered data
         return (
           <table>
