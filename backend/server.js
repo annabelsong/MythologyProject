@@ -797,6 +797,23 @@ app.delete('/api/delete/Artifact', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Ritual', (req, res) => {
+  console.log('Delete Ritual called');
+  const { ritualName } = req.body;
+
+  const query = 'DELETE FROM Ritual WHERE ritualName = ?;';
+  db.query(query, [ritualName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Ritual entry: ", err);
+      res.status(500).send('Error deleting Ritual entry');
+      return;
+    }
+    console.log("Ritual entry deleted successfully");
+    res.send('Ritual entry deleted successfully');
+  });
+});
+
+
 app.delete('/api/delete/Creature', (req, res) => {
   console.log('Delete Creature called');
   const { characterName } = req.body;
