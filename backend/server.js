@@ -622,6 +622,30 @@ app.put('/api/update/Location', (req, res) => {
   });
 });
 
+app.put('/api/update/Mortal', (req, res) => {
+  console.log('Update Mortal called');
+  const { characterName, newCharacterDescription, newTitle, newProfession } = req.body;
+
+  const query = `
+    UPDATE Mortal
+    SET 
+      characterDescription = ?,
+      title = ?,
+      profession = ?
+    WHERE characterName = ?;
+  `;
+
+  db.query(query, [newCharacterDescription, newTitle, newProfession, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating Mortal data: ", err);
+      res.status(500).send('Error updating Mortal data');
+      return;
+    }
+    console.log("Mortal data updated successfully");
+    res.send('Mortal data updated successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
