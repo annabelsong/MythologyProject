@@ -676,6 +676,31 @@ app.put('/api/update/Mortal', (req, res) => {
   });
 });
 
+app.put('/api/update/Ritual', (req, res) => {
+  console.log('Update Ritual called');
+  const { ritualName, recurring, characterName, location, timePeriod } = req.body;
+
+  const query = `
+    UPDATE Ritual
+    SET 
+      Recurring = ?,
+      CharacterName = ?,
+      Location = ?,
+      TimePeriod = ?
+    WHERE RitualName = ?;
+  `;
+
+  db.query(query, [recurring === 'true', characterName, location, timePeriod, ritualName], (err, result) => {
+    if (err) {
+      console.error("Error updating Ritual data: ", err);
+      res.status(500).send('Error updating Ritual data');
+      return;
+    }
+    console.log("Ritual data updated successfully");
+    res.send('Ritual data updated successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
@@ -690,6 +715,8 @@ app.get('/api/having/CharacterCount', (req, res) => {
     }
   });
 });
+
+
 
 
 
