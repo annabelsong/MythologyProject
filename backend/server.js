@@ -862,6 +862,22 @@ app.delete('/api/delete/PartOf', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Represents', (req, res) => {
+  console.log('Delete Represents called');
+  const { symbolName } = req.body;
+
+  const query = 'DELETE FROM Represents WHERE symbolName = ?;';
+  db.query(query, [symbolName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Represents entry: ", err);
+      res.status(500).send('Error deleting Represents entry');
+      return;
+    }
+    console.log("Represents entry deleted successfully");
+    res.send('Represents entry deleted successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
