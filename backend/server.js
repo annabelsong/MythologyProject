@@ -846,6 +846,22 @@ app.delete('/api/delete/Mortal', (req, res) => {
 });
 
 
+app.delete('/api/delete/PartOf', (req, res) => {
+  console.log('Delete PartOf called');
+  const { characterName } = req.body;
+
+  const query = 'DELETE FROM PartOf WHERE characterName = ?;';
+  db.query(query, [characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting PartOf entry: ", err);
+      res.status(500).send('Error deleting PartOf entry');
+      return;
+    }
+    console.log("PartOf entry deleted successfully");
+    res.send('PartOf entry deleted successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
