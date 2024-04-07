@@ -813,6 +813,23 @@ app.delete('/api/delete/Ritual', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Symbol', (req, res) => {
+  console.log('Delete Symbol called');
+  const { symbolName } = req.body;
+
+  const query = 'DELETE FROM Symbol WHERE symbolName = ?;';
+  db.query(query, [symbolName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Symbol entry: ", err);
+      res.status(500).send('Error deleting Symbol entry');
+      return;
+    }
+    console.log("Symbol entry deleted successfully");
+    res.send('Symbol entry deleted successfully');
+  });
+});
+
+
 
 app.delete('/api/delete/Creature', (req, res) => {
   console.log('Delete Creature called');
