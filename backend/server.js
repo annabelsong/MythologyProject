@@ -9,7 +9,6 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
-const { default: TalePage } = require('../frontend/304-project/src/deletePages/TalePage');
 app.use(cors());
 
 // Parse JSON bodies
@@ -988,6 +987,21 @@ app.get('/api/having/CharacterCount', (req, res) => {
 });
 
 
+
+// PROJECT location data in MySQL
+app.get('/api/project/Location', (req, res) => {
+  console.log('Project Location called');
+  const query = "SELECT LocationName, AreaDescription, TimePeriod FROM Location";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving data from database');
+    } else {
+      const taleNames = results.map(result => result.taleName);
+      res.json(taleNames);
+    }
+  });
+});
 
 
 // Start the server
