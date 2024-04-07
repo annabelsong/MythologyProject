@@ -649,7 +649,7 @@ app.put('/api/update/Creature', (req, res) => {
     WHERE characterName = ?;
   `;
   const query2 = `
-    UPDATE Deity
+    UPDATE Creature
     SET 
       characterDescription = ?,
       superNaturalAbility = ?,
@@ -711,7 +711,7 @@ app.put('/api/update/Mortal', (req, res) => {
     WHERE characterName = ?;
   `;
   const query2 = `
-    UPDATE Deity
+    UPDATE Mortal
     SET 
       characterDescription = ?,
       title = ?,
