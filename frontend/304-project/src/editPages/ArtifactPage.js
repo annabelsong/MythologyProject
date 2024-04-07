@@ -15,6 +15,7 @@ function ArtifactPage() {
       alert("Please fill in all fields.");
       return;
     }
+    
 
     try {
       const response = await axios.put('http://localhost:3307/api/update/Pantheon', { oldPrimaryKey: artifactName, newOrigin });

@@ -552,6 +552,53 @@ app.put('/api/update/Artifact', (req, res) => {
   });
 });
 
+app.put('/api/update/Deity', (req, res) => {
+  console.log('Update Deity called');
+  const { characterName, newCharacterDescription, newDomain, newSupernaturalAbility } = req.body;
+
+  const query = `
+    UPDATE Deity
+    SET 
+      characterDescription = ?,
+      domain = ?,
+      supernaturalAbility = ?
+    WHERE characterName = ?;
+  `;
+
+  db.query(query, [newCharacterDescription, newDomain, newSupernaturalAbility, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating Deity data: ", err);
+      res.status(500).send('Error updating Deity data');
+      return;
+    }
+    console.log("Deity data updated successfully");
+    res.send('Deity data updated successfully');
+  });
+});
+
+app.put('/api/update/Creature', (req, res) => {
+  console.log('Update Creature called');
+  const { characterName, newCharacterDescription, newSupernaturalAbility, newSpecies } = req.body;
+
+  const query = `
+    UPDATE Creature
+    SET 
+      characterDescription = ?,
+      supernaturalAbility = ?,
+      species = ?
+    WHERE characterName = ?;
+  `;
+
+  db.query(query, [newCharacterDescription, newSpecies, newSupernaturalAbility, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating Creature data: ", err);
+      res.status(500).send('Error updating Creature data');
+      return;
+    }
+    console.log("Creature data updated successfully");
+    res.send('Creature data updated successfully');
+  });
+});
 
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
@@ -570,86 +617,6 @@ app.get('/api/having/CharacterCount', (req, res) => {
 
 
 
-// Update data in MySQL
-// done
-app.put('/api/update/AppearsIn', (req, res) => {
-  console.log('Update AppearsIn called');
-  const { artifactName, newTaleName } = req.body;
-  const query = `UPDATE AppearsIn SET taleName = ? WHERE artifactName = ?`;
-  db.query(query, [newTaleName, artifactName], (err, result) => {
-    if (err) {
-      console.error('Error updating AppearsIn data:', err);
-      res.status(500).send('Error updating AppearsIn data');
-    } else {
-      console.log('AppearsIn data updated successfully');
-      res.send('AppearsIn data updated successfully');
-    }
-  });
-});
-
-//done
-app.put('/api/update/Artifact', (req, res) => {
-  const { artifactName, origin } = req.body;
-  // Use a safe update method that prevents SQL injection
-  const query = `UPDATE Artifact SET taleName = ? WHERE artifactName = ?`;
-  db.query(query, [origin, artifactName], (err, result) => {
-    if (err) {
-      console.error('Error updating AppearsIn data:', err);
-      res.status(500).send('Error updating Artifact data');
-      return;
-    }
-    console.log('Artifact data updated successfully');
-    res.send('Artifact data updated successfully');
-  });
-});
-
-//done
-app.put('/api/update/BelongsTo', (req,res) => {
-  console.log('Update BelongsTo called');
-  const { oldPrimaryKey, oldPrimaryKey2, newName, newCharacterName } = req.body;
-  const query = 'UPDATE BelongsTo SET artifactName = ?, characterName = ? WHERE artifactName = ? AND characterName = ?;';
-  db.query(query, [newName, newCharacterName, oldPrimaryKey, oldPrimaryKey2], (err, result) => {
-    if (err) {
-      console.error("Error updating BelongsTo data: ", err);
-      res.status(500).send('Error updating BelongsTo data');
-      return;
-    }
-    console.log("BelongsTo data updated successfully");
-    res.send('BelongsTo data updated successfully');
-  });
-});
-
-//done
-app.put('/api/update/Creature', (req,res) => {
-  console.log('Update Creature called');
-  const { oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture } = req.body;
-  const query = 'UPDATE Creature SET characterName = ?, characterDescription = ?, supernaturalAbility = ?, species = ?, culture = ? WHERE characterName = ?;';
-  db.query(query, [oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture], (err, result) => {
-    if (err) {
-      console.error("Error updating Creature data: ", err);
-      res.status(500).send('Error updating Creature data');
-      return;
-    }
-    console.log("Creature data updated successfully");
-    res.send('Creature data updated successfully');
-  });
-});
-
-
-app.put('/api/update/Deity', (req,res) => {
-  console.log('Update Deity called');
-  const { oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture } = req.body;
-  const query = 'UPDATE Deity SET characterName = ?, characterDescription = ?, domain = ?, supernaturalAbility = ?, culture = ? WHERE characterName = ?;';
-  db.query(query, [oldPrimaryKey, characterName, characterDescription, supernaturalAbility, species, culture], (err, result) => {
-    if (err) {
-      console.error("Error updating Deity data: ", err);
-      res.status(500).send('Error updating Deity data');
-      return;
-    }
-    console.log("Deity data updated successfully");
-    res.send('Deity data updated successfully');
-  });
-});
 
 
 // Start the server
