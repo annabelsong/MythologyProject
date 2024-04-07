@@ -6,6 +6,8 @@ import AddPage from './AddPage';
 import ViewPage from './ViewPage';
 import SortPage from './SortPage';
 import EditPage from './EditPage';
+import DeletePage from './DeletePage';
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState('SplashPage');
@@ -22,6 +24,8 @@ function App() {
         return <SortPage />;
       case 'EditPage':
         return <EditPage />;
+      case 'DeletePage':
+        return <DeletePage />;
       default:
         return null;
     }
@@ -36,6 +40,7 @@ function App() {
           <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('ViewPage')}>View Info</button>
           <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('EditPage')}>Edit Entries</button>
           <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('SortPage')}>Sort Entries</button>
+          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('DeletePage')}>Delete Entries</button>
         </div>
       </nav>
       <div className="absolute top-20 left-0 bg-black h-1 w-full"></div>

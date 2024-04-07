@@ -1,18 +1,18 @@
 import React, {useState} from 'react'
-import LocationPage from './editPages/LocationPage';
-import CreaturePage from './editPages/CreaturePage';
-import MortalPage from './editPages/MortalPage';
-import DeityPage from './editPages/DeityPage';
-import PantheonPage from './editPages/PantheonPage';
-import TalePage from './editPages/TalePage';
-import StoryEventPage from './editPages/StoryEventPage';
-import SymbolPage from './editPages/SymbolPage';
-import ArtifactPage from './editPages/ArtifactPage';
-import RitualPage from './editPages/RitualPage';
-import PartOfPage from './editPages/PartOfPage';
-import BelongsToPage from './editPages/BelongsToPage';
-import AppearsInPage from './editPages/AppearsInPage';
-import RepresentsPage from './editPages/RepresentsPage';
+import LocationPage from './deletePages/LocationPage';
+import CreaturePage from './deletePages/CreaturePage';
+import MortalPage from './deletePages/MortalPage';
+import DeityPage from './deletePages/DeityPage';
+import PantheonPage from './deletePages/PantheonPage';
+import TalePage from './deletePages/TalePage';
+import StoryEventPage from './deletePages/StoryEventPage';
+import SymbolPage from './deletePages/SymbolPage';
+import ArtifactPage from './deletePages/ArtifactPage';
+import RitualPage from './deletePages/RitualPage';
+import PartOfPage from './deletePages/PartOfPage';
+import BelongsToPage from './deletePages/BelongsToPage';
+import AppearsInPage from './deletePages/AppearsInPage';
+import RepresentsPage from './deletePages/RepresentsPage';
 
 const tables = [
   ["Location","location"],
@@ -32,7 +32,7 @@ const tables = [
 ];
 
 
-function EditPage() {
+function DeletePage() {
   const [selectedTable, setSelectedTable] = useState('');
 
   const handleTableChange = (event) => {
@@ -41,8 +41,12 @@ function EditPage() {
 
   return (
     <div className="flex flex-col items-start ml-4 mt-4">
-      <h2>Welcome to the Editing Page, select a table from the drop-down to start editing an entry</h2>
+      <h2>Welcome to the Deletion Page, select a table from the drop-down to start deleting entries</h2>
     
+      <div className='h-5'/>{/*spacer*/}
+
+      <h2>To delete entries, type in the primary key name of the entry you'd like to erase</h2>
+
       <div className='h-8'/>{/*spacer*/}
 
       <select value={selectedTable} onChange={handleTableChange} className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">
@@ -75,4 +79,4 @@ function EditPage() {
 
 }
 
-export default EditPage;
+export default DeletePage;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './TableStyleForSort.css';
+import axios from 'axios';
 
 const mockData = [
     { TaleName: 'Tale of Arachne', MoralLesson: 'Do not get carried away in your own hubris', Culture: 'Greek' },
@@ -21,38 +22,42 @@ const mockData = [
 function TaleSort({ keyword, table }) {
     const [data, setData] = useState(mockData);
 
-    // Filter the data based on the keyword
-    const filteredData = data.filter((item) =>
-        Object.values(item).some((value) =>
+    fetch('http://localhost:3307/api/having/CharacterCount')
+      .then(response => response.json())
+      .then(characterCount => {
+        // Filter the data based on the keyword and character count
+        const filteredData = data.filter((item) =>
+          Object.values(item).some((value) =>
             value.toString().toLowerCase().includes(keyword.toLowerCase())
-        )
-    );
-
-    if (filteredData.length === 0) {
-        return <div>sorry, the given keyword was not found in the Table of Symbols you selected</div>;
-    }
-
-    // Render the filtered data
-    return (
-        <table>
-        <thead>
-          <tr>
-
-            <th>Symbol</th>
-            <th>Origin</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.TaleName}</td>
-              <td>{item.MoralLesson}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
+          ) && characterCount[item.TaleName] > 70
+        );
+        if (filteredData.length === 0) {
+          return <div>sorry, the given keyword was not found in the Table of Symbols you selected</div>;
+        }
+        // Render the filtered data
+        return (
+          <table>
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Origin</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredData.map((item, index) => (
+                <tr key={index}>
+                  <td>{item.TaleName}</td>
+                  <td>{item.MoralLesson}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        );
+      })
+      .catch(error => {
+        console.error('Error fetching character count:', error);
+        // Handle the error
+      });
 
 }
 
