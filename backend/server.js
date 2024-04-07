@@ -781,6 +781,22 @@ app.delete('/api/delete/Pantheon', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Artifact', (req, res) => {
+  console.log('Delete Artifact called');
+  const { artifactName } = req.body;
+
+  const query = 'DELETE FROM Artifact WHERE artifactName = ?;';
+  db.query(query, [artifactName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Artifact entry: ", err);
+      res.status(500).send('Error deleting Artifact entry');
+      return;
+    }
+    console.log("Artifact entry deleted successfully");
+    res.send('Artifact entry deleted successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
