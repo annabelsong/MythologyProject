@@ -851,7 +851,7 @@ app.delete('/api/delete/Creature', (req, res) => {
   console.log('Delete Creature called');
   const { characterName } = req.body;
 
-  const query = 'DELETE FROM Creature WHERE characterName = ?;';
+  const query = 'DELETE FROM Character WHERE characterName = ?;';
   db.query(query, [characterName], (err, result) => {
     if (err) {
       console.error("Error deleting Creature entry: ", err);
@@ -867,7 +867,7 @@ app.delete('/api/delete/Deity', (req, res) => {
   console.log('Delete Deity called');
   const { characterName } = req.body;
 
-  const query = 'DELETE FROM Deity WHERE characterName = ?;';
+  const query = 'DELETE FROM Character WHERE characterName = ?;';
   db.query(query, [characterName], (err, result) => {
     if (err) {
       console.error("Error deleting Deity entry: ", err);
@@ -883,7 +883,7 @@ app.delete('/api/delete/Mortal', (req, res) => {
   console.log('Delete Mortal called');
   const { characterName } = req.body;
 
-  const query = 'DELETE FROM Mortal WHERE characterName = ?;';
+  const query = 'DELETE FROM Character WHERE characterName = ?;';
   db.query(query, [characterName], (err, result) => {
     if (err) {
       console.error("Error deleting Mortal entry: ", err);
