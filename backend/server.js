@@ -928,6 +928,28 @@ app.delete('/api/delete/Represents', (req, res) => {
   });
 });
 
+app.delete('/api/delete/BelongsTo', (req, res) => {
+  console.log('Delete BelongsTo entry called');
+  const { artifactName, characterName } = req.body;
+
+  const query = `
+    DELETE FROM BelongsTo 
+    WHERE artifactName = ? AND characterName = ?;
+  `;
+
+  db.query(query, [artifactName, characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting BelongsTo entry: ", err);
+      res.status(500).send('Error deleting BelongsTo entry');
+      return;
+    }
+    console.log("BelongsTo entry deleted successfully");
+    res.send('BelongsTo entry deleted successfully');
+  });
+});
+
+
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
