@@ -1,4 +1,3 @@
-
 input,
 button {
     width: 100%;
@@ -7,9 +6,9 @@ button {
 }
 
 .form-title {
-    font-size: 24px; 
-    font-weight: bold; 
-    margin-bottom: 20px; 
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 button[type="submit"] {
@@ -81,6 +80,28 @@ button[type="submit"]:hover {
     text-align: center;
     margin-bottom: 20px;
 }
+
+.non-editable-message-container {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.non-editable-message-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.non-editable-message-content {
+    font-size: 1em;
+    color: #666;
+}
+
+
 
 @media (max-width: 600px) {
     .edit-form {
