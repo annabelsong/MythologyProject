@@ -9,7 +9,6 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
-const { default: TalePage } = require('../frontend/304-project/src/deletePages/TalePage');
 app.use(cors());
 
 // Parse JSON bodies

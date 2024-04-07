@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './TableStyleForSort.css';
 
 const mockData = [ // This was just for me to see the table styling you can erase bryan and replace any mention of mockData with the actual data!
@@ -92,9 +92,6 @@ function LocationSort({ keyword, table }) {
 
 }
 
-
-
-export default LocationSort;
 
 
 export default LocationSort;
