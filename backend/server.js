@@ -1048,6 +1048,19 @@ app.get('/api/project/Location', (req, res) => {
   });
 });
 
+app.get('/api/fetch/TaleHaving', (req, res) => {
+  console.log('Fetch Tale called');
+  const query = "SELECT p.Culture, p.PantheonName FROM Pantheon p, Tale t WHERE p.Culture = t.Culture GROUP BY p.Culture HAVING COUNT(t.taleName) >= 2;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Tale data:', err);
+      res.status(500).send('Error fetching Tale data');
+    } else {
+      console.log('Tale data fetched successfully');
+      res.json(results);
+    }
+  });
+});
 
 // Start the server
 app.listen(port, () => {

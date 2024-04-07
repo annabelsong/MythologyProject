@@ -5,21 +5,25 @@ import axios from 'axios';
 function TaleView() {
     const [data, setData] = useState([]);
 
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(('http://localhost:3307/api/fetch/Tale'));
+            
+            setData(response.data);
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }};
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://localhost:3307/api/fetch/Tale');
-                setData(response.data);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
-        };
         fetchData();
     }, []);
+
 
     return (
         <div>
             <h1 className="table-title">Tales</h1>
+
             <table className="table-view">
                 <thead>
                     <tr>
