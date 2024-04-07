@@ -41,13 +41,9 @@ function EditPage() {
 
   return (
     <div className="flex flex-col items-start ml-4 mt-4">
-      <h2>Welcome to the Editing Page, select a table from the drop-down edit its data</h2>
+      <h2>Welcome to the Editing Page, select a table from the drop-down to start editing an entry</h2>
     
       <div className='h-8'/>{/*spacer*/}
-
-      <h2>To edit entries type in the </h2>
-
-      <div className='h-4'/>{/*spacer*/}
 
       <select value={selectedTable} onChange={handleTableChange} className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold">
         <option value="">Select a table</option>
