@@ -44,7 +44,7 @@ CREATE TABLE Deity (
 	Domain VARCHAR(32),
 	SupernaturalAbility VARCHAR(32),
 	PRIMARY KEY (CharacterName),
-    FOREIGN KEY (CharacterName) REFERENCES Characters(CharacterName)
+    FOREIGN KEY (CharacterName) REFERENCES Characters(CharacterName) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Mortal`;
@@ -54,7 +54,7 @@ CREATE TABLE Mortal (
 	Title VARCHAR(32),
 	Profession VARCHAR(32),
 	PRIMARY KEY (CharacterName),
-    FOREIGN KEY (CharacterName) REFERENCES  Characters(CharacterName)
+    FOREIGN KEY (CharacterName) REFERENCES  Characters(CharacterName) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Creature`;
@@ -64,7 +64,7 @@ CREATE TABLE Creature (
 	SupernaturalAbility VARCHAR(32),
 	Species VARCHAR(32),
 	PRIMARY KEY (CharacterName),
-	FOREIGN KEY (CharacterName) REFERENCES  Characters(CharacterName)
+	FOREIGN KEY (CharacterName) REFERENCES  Characters(CharacterName) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS `Represents`;
