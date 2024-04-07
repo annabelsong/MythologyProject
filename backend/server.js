@@ -1038,7 +1038,6 @@ app.delete('/api/delete/Location', (req, res) => {
 });
 
 // HAVING data in MySQL
-// HAVING data in MySQL
 // moral context character count > 70
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
