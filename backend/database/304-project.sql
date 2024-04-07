@@ -1,6 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `304-test`;
-USE `304-test`;
-
 DROP TABLE IF EXISTS `Location`;
 CREATE TABLE Location(
 	LocationName VARCHAR(32),
@@ -93,14 +90,13 @@ CREATE TABLE Tale (
 	TaleName VARCHAR(32),
 	MoralLesson VARCHAR(128) NOT NULL DEFAULT 'inconclusive',
 	Culture VARCHAR(32) NOT NULL,
-	PRIMARY KEY (TaleName),
-	FOREIGN KEY (Culture) REFERENCES Pantheon(Culture)
+	PRIMARY KEY (TaleName)
 );
 
 DROP TABLE IF EXISTS `StoryEvent`;
 CREATE TABLE StoryEvent (
 	TaleName VARCHAR(32),
-	EventName VARCHAR(32),
+	EventName VARCHAR(64),
     EventDescription VARCHAR(512),
     LocationName VARCHAR(32) DEFAULT 'anywhere',
 	TimePeriod VARCHAR(32) DEFAULT 'anytime',
@@ -150,7 +146,7 @@ INSERT INTO Location VALUES
 ('River Styx', 'A river running through the Greek underworld, separating the dead from the living', 'anytime'),
 ('Crete', 'A city of ancient Greece, home to King Minos and the Labyrinth', 'classic antiquity'),
 ('Celtic Lands', 'The collection of Celtic territories, encompassing Ireland, Scotland, Wales and England', 'pre-medieval'),
-('Mesopotamia', 'An ancient region located in the eastern Mediterranian, known as the land between the rivers', '6000 years ago'),
+('Mesopotamia', 'An ancient region located in the eastern Mediterranian, known as the land between the rivers', 'classical antiquity'),
 ('North America', 'A continent comprising of various indigenous cultures and tribes. These lands have since been stolen', 'modern'),
 ('Island of Sarpedon', 'An isolated island where Medusa was said to live.', 'classical antiquity'),
 ('Midgard', 'The realm of humanity in Norse mythology, encircled by the giant serpent Jormungandr.', 'viking age'),
@@ -169,15 +165,14 @@ INSERT INTO Location VALUES
 
 INSERT INTO Symbol VALUES 
 ('Atef crown','Osiris had worn it as the ruler of the underworld'),
-('Golden Dragon','A family coat borne by King Arthur\"s father, Uther Pendragon'),
 ('Golden Headband','A painfully tightening fillet given to the hero in case of any unsavoury behaviour'),
 ('Hammer of Thor','derived from Thor\"s hammer which has the power of lightning'),
-('Man with wings','Shows man\"s overreaching ambition'),
-('Ouroboros','snake figure'),
-('Shield','Shield used in his battle against Hector represents Greece\"s fight against Troy'),
-('Weaving Loom','Her background as a mortal in the past');
+('Sun','The light of the world, celestial body, radiates warmth'),
+('Moon','The light of the night, celestial body, heals'),
+('Creation','Concept of creation itself, rebirth and becoming');
 
 INSERT INTO Characters VALUES 
+('Arachne', 'A proud woman turned into a spider creature as divine punishment'),
 ('Achilles','Achilles was the strongest warrior and hero in the Greek army during the Trojan War. He was the son of Peleus, king of the Myrmidons, and Thetis, a sea nymph'),
 ('Apollo','He communicated the will of his father Zeus, made humans aware of their guilt and purified them of it, presided over religious and civil law, and foretold the future. His bow symbolized distance, death, terror, and awe; his lyre symbolized music, poetry, and dance.'),
 ('Artemis','Artemis was the twin sister to Apollo and was the daughter of Zeus and Leto. Both Apollo and Artemis took revenge against anyone who attempted to harm their mother. Apollo and Artemis slew the giant Tityus and killed the children of the mortal woman Niobe'),
@@ -241,19 +236,19 @@ INSERT INTO Artifact VALUES
 ('Wings of Icarus','Daedalus, Icarus\"s father,  studied the movements of birds and built a device mimicking them. He then laid down multiple feathers in a row from shortest to longest and tied them together using beeswax and thread. However, Daedalus warned Icarus not to fly too high, because the heat of the sun would melt the beeswax (holding his feathers together) and the wings would break, nor too low, because the sea foam would soak the feathers and make them heavy and he would fall');
 
 INSERT INTO Deity VALUES 
-('Apollo','He communicated the will of his father Zeus, made humans aware of their guilt and purified them of it, presided over religious and civil law, and foretold the future. His bow symbolized distance, death, terror, and awe; his lyre symbolized music, poetry, and dance.','Arts, Prophecy, and Sun','Bowmanship, healing, singing','Greek'),
-('Artemis','Artemis was the twin sister to Apollo and was the daughter of Zeus and Leto. Both Apollo and Artemis took revenge against anyone who attempted to harm their mother. Apollo and Artemis slew the giant Tityus and killed the children of the mortal woman Niobe','Hunting, Moon, and Maidenhood','Bowmanship, and healing','Greek'),
-('Cernunnos','Celtic god associated with fertility, animals, wealth, and the underworld.','Fertility and Nature','Fertility, transformation','Celtic'),
-('Dagda','Important god in Irish mythology, associated with agriculture, fertility, and protection, known for his strength and magical club.','Fertility and Protection','Strength, plant control','Celtic'),
-('Dionysus','Dionysus is called twice-born because he was born from Semele and then, while she was dying, Zeus saved him by sewing him up in his thigh and keeping him there until he reached maturity. He then \"gave birth\" to Dionysus, thus making him twice-born.','Wine, Festivity, and Fertility','Vine manipulation, insanity','Greek'),
-('Enki','Mesopotamian god of water, knowledge, mischief, crafts, and creation.','Water and Wisdom','Water manipulation, wisdom','Mesopotamian'),
-('Enlil','Mesopotamian god of wind, air, earth, and storms, considered one of the chief gods in the Mesopotamian pantheon.','Wind and Storms','Weather control','Mesopotamian'),
-('Osiris','God of the deceased, was the son and oldest child of Geb, the Earth deity and Nut, the sky goddess. His wife and sister was Isis, goddess of motherhood, magic, fertility, death, healing, and rebirth.','Underground and Afterlife',' Telepathy','Egyptian'),
-('Shiva','Shiva holds one of the most prominent roles in Hinduism as the god of destruction. He is one of the three most important gods, alongside Brahma (the creator) and Vishnu (the preserver). The sect of Shaivism holds that Shiva is the Supreme Being which all other gods are aspects of','Destruction','Destruction, creation','Hindu'),
-('Sun Wukong','A monkey who was born out of stone and possesses magical powers and strength. The legend of the Monkey King explains how he helped protect Xuan Zang, a monk, on their journey to India in order to bring back Buddhist holy books to China.','Trickery','Transformation','Chinese'),
-('Thor','A prominent god in Germanic paganism. In Norse mythology, he is a hammer-wielding god associated with lightning, thunder, storms, sacred groves and trees, strength, the protection of humankind, hallowing, and fertility.','Thunder','Thunder control, strength','Norse'),
-('Trickster Coyote','Trickster figure in Native American mythology, known for his cunning and playful nature.','Trickery and Chaos','Shape-shifting, trickery','Native American'),
-('Zeus','Zeus was the king of the Greek gods. He became the king of the gods after he rescued his siblings from their father, the Titan Cronus. Cronus swallowed all but one of his children. Zeus\"s mother Rhea rescued her son from the wrath of his father Cronus','The sky and thunder','Weather control','Greek');
+('Apollo','He communicated the will of his father Zeus, made humans aware of their guilt and purified them of it, presided over religious and civil law, and foretold the future. His bow symbolized distance, death, terror, and awe; his lyre symbolized music, poetry, and dance.','Arts, Prophecy, and Sun','Bowmanship, healing, singing'),
+('Artemis','Artemis was the twin sister to Apollo and was the daughter of Zeus and Leto. Both Apollo and Artemis took revenge against anyone who attempted to harm their mother. Apollo and Artemis slew the giant Tityus and killed the children of the mortal woman Niobe','Hunting, Moon, and Maidenhood','Bowmanship, and healing'),
+('Cernunnos','Celtic god associated with fertility, animals, wealth, and the underworld.','Fertility and Nature','Fertility, transformation'),
+('Dagda','Important god in Irish mythology, associated with agriculture, fertility, and protection, known for his strength and magical club.','Fertility and Protection','Strength, plant control'),
+('Dionysus','Dionysus is called twice-born because he was born from Semele and then, while she was dying, Zeus saved him by sewing him up in his thigh and keeping him there until he reached maturity. He then \"gave birth\" to Dionysus, thus making him twice-born.','Wine, Festivity, and Fertility','Vine manipulation, insanity'),
+('Enki','Mesopotamian god of water, knowledge, mischief, crafts, and creation.','Water and Wisdom','Water manipulation, wisdom'),
+('Enlil','Mesopotamian god of wind, air, earth, and storms, considered one of the chief gods in the Mesopotamian pantheon.','Wind and Storms','Weather control'),
+('Osiris','God of the deceased, was the son and oldest child of Geb, the Earth deity and Nut, the sky goddess. His wife and sister was Isis, goddess of motherhood, magic, fertility, death, healing, and rebirth.','Underground and Afterlife',' Telepathy'),
+('Shiva','Shiva holds one of the most prominent roles in Hinduism as the god of destruction. He is one of the three most important gods, alongside Brahma (the creator) and Vishnu (the preserver). The sect of Shaivism holds that Shiva is the Supreme Being which all other gods are aspects of','Destruction','Destruction, creation'),
+('Sun Wukong','A monkey who was born out of stone and possesses magical powers and strength. The legend of the Monkey King explains how he helped protect Xuan Zang, a monk, on their journey to India in order to bring back Buddhist holy books to China.','Trickery','Transformation'),
+('Thor','A prominent god in Germanic paganism. In Norse mythology, he is a hammer-wielding god associated with lightning, thunder, storms, sacred groves and trees, strength, the protection of humankind, hallowing, and fertility.','Thunder','Thunder control, strength'),
+('Trickster Coyote','Trickster figure in Native American mythology, known for his cunning and playful nature.','Trickery and Chaos','Shape-shifting, trickery'),
+('Zeus','Zeus was the king of the Greek gods. He became the king of the gods after he rescued his siblings from their father, the Titan Cronus. Cronus swallowed all but one of his children. Zeus\"s mother Rhea rescued her son from the wrath of his father Cronus','The sky and thunder','Weather control');
 
 INSERT INTO Mortal VALUES 
 ('Achilles','Achilles was the strongest warrior and hero in the Greek army during the Trojan War. He was the son of Peleus, king of the Myrmidons, and Thetis, a sea nymph',NULL,' Greek Warrior'),
@@ -266,6 +261,7 @@ INSERT INTO Mortal VALUES
 ('Patroclus','Patroclus was a hero of the Trojan War and is widely known for being the childhood friend and close wartime companion of the hero Achilles. Legends either say that he has a blood relation to Achilles, or was Achilles\" lover.',NULL,'Greek Warrior');
 
 INSERT INTO Creature VALUES 
+('Arachne', 'A proud woman turned into a spider creature as divine punishment', 'web weaving', 'Giant Spider'),
 ('Demon Bull King','He is the scourge of the Netherworld and the archenemy of the Monkey King','Brute Strength','Giant white bull'),
 ('Jormungandr','Midgard Serpent (also World Serpent) in Norse mythology who encircles the realm of Midgard. He is the son of the god Loki and the giantess Angrboða and brother of the great wolf Fenrir and Hel, Queen of the Dead. At Ragnarök, the Twilight of the Gods, he slays and is slain by the god Thor.','Virtual invulnerability','World Serpent'),
 ('Kelpie','Water spirit in Celtic folklore, often appearing as a horse and known for drowning travellers.','Water manipulation','Water spirit'),
@@ -277,13 +273,11 @@ INSERT INTO Creature VALUES
 
 INSERT INTO Represents VALUES 
 ('Atef crown','Osiris'),
-('Golden Dragon','Arthur'),
 ('Golden Headband','Sun Wukong'),
 ('Hammer of Thor','Thor'),
-('Man with Wings','Icarus'),
-('Ouroboros','Jormungandr'),
-('Shield','Achilles'),
-('Weaving Loom','Arachne');
+('Creation','Shiva'),
+('Moon','Artemis'),
+('Sun','Apollo');
 
 INSERT INTO Ritual VALUES 
 ('Coyote\"s Dance of Chaos',1,'Trickster Coyote','anywhere','anytime'),
@@ -326,22 +320,22 @@ INSERT INTO Tale VALUES
 INSERT INTO StoryEvent VALUES 
 ('Enlil and the Tablets of Destiny','Tablets of Destiny are stolen','Anzu, a monstrous bird, steals the tablet from Enlil, who is entrusted with it because he is the chief of the gods. Enlil embarks on a journey to retrieve the powerful tablets','Mesopotamia','classical antiquity'),
 ('Rebellion of the Demon Bull King','Confrontation at the Flaming Mountains','The Demon Bull King battles Sun Wukong at the Flaming Mountains, only to be subdued and taught the values of humility and service.','Flaming Mountains','Tang Dynasty'),
-('Story of Achilles','Achilles becomes invulnerable','As a baby Achilles is dipped into the river Styx by his mother who holds him by his heel, rendering him invulnerable','River Styx','classical antiquity'),
+('Story of Achilles','Achilles becomes invulnerable','As a baby Achilles is dipped into the river Styx by his mother who holds him by his heel, rendering him invulnerable','River Styx','anytime'),
 ('Story of Achilles','Achilles gets shot','Guided by Apollo, Paris shoots Achilles in his single vulnerable spot, his heel','Troy','classical antiquity'),
 ('Story of Achilles','Achilles goes to war','Achilles joins the Trojan war on the side of the Greeks','Troy','classical antiquity'),
 ('Story of Achilles','Death of Hector','After a one-on-one fight, Achilles avenges his friend Patroclus by killing Hector','Troy','classical antiquity'),
 ('Story of Achilles','Death of Patroclus','After his wits were removed by Apollo, Hector kills Patroclus in battle with a spear stab to the stomach','Troy','classical antiquity'),
-('Tale of Dagda and the Cauldron','Dagda retrieves her Cauldron','After the Cauldron of Dagna is stolen by Fomorians, Dagda sets out on a quest to retrieve her cauldron.','Mt. Olympus','classical antiquity'),
-('Tale of Trickster Coyote','Creation of the Dreamcatcher','Coyote creates the Dreamcatcher to protect people from bad dreams by filtering them through his web, allowing only good dreams to pass through','North America','classical antiquity'),
-('The Cattle Raid of Cooley (Táin Bó Cúailnge)','Cú Chulainn\"s Stand at the Ford','Cú Chulainn fights off the invading forces at a strategic river crossing, showcasing his prowess and the supernatural abilities granted by his ríastrad (battle frenzy).','Ulster','Iron Age'),
+('Tale of Dagda and the Cauldron','Dagda retrieves her Cauldron','After the Cauldron of Dagna is stolen by Fomorians, Dagda sets out on a quest to retrieve her cauldron.','Mt. Olympus','anytime'),
+('Tale of Trickster Coyote','Creation of the Dreamcatcher','Coyote creates the Dreamcatcher to protect people from bad dreams by filtering them through his web, allowing only good dreams to pass through','North America','modern'),
+('The Cattle Raid of Cooley','Cú Chulainn\"s Stand at the Ford','Cú Chulainn fights off the invading forces at a strategic river crossing, showcasing his prowess and the supernatural abilities granted by his ríastrad (battle frenzy).','Ulster','Iron Age'),
 ('The Deceptive Kelpie','Escape from the Kelpie','A clever child escapes the Kelpies grasp by outwitting it, reminding us that wit can triumph over brawn.','Scottish Lochs','pre-medieval'),
 ('The Deceptive Kelpie','The Kelpies Lure','A Kelpie transforms into a handsome steed, tempting travelers to ride on its back before dragging them into the loch.','Scottish Lochs','pre-medieval'),
 ('The Epic of Gilgamesh','Gilgamesh and Enkidu Slay Humbaba','Gilgamesh and Enkidu journey to the Cedar Forest to confront and slay Humbaba, defying the gods to secure their fame.','Cedar Forest','early dynastic period'),
 ('The Epic of Gilgamesh','The Death of Enkidu','Enkidu dies as punishment from the gods for slaying Humbaba and the Bull of Heaven, prompting Gilgameshs quest for immortality.','Uruk','early dynastic period'),
 ('The Epic of Gilgamesh','The Quest for Immortality','Gilgamesh embarks on a journey to find Utnapishtim and learn the secret of eternal life.','Mashu','early dynastic period'),
 ('The Epic of Gilgamesh','The Return to Uruk','Having learned the lesson of human mortality, Gilgamesh returns to Uruk, where he rules wisely until his death.','Uruk','early dynastic period'),
-('The Fate of Patroclus','The Death of Patroclus','Patroclus is slain by Hector, with the gods interference sealing his fate, sparking Achilles return to combat.','Troy','bronze age'),
-('The Fate of Patroclus','The Decision of Patroclus','Wearing Achilles armor, Patroclus enters the battlefield in his stead, driven by a desire to turn the tide for the Greeks.','Troy','bronze age'),
+('The Fate of Patroclus','The Death of Patroclus','Patroclus is slain by Hector, with the gods interference sealing his fate, sparking Achilles return to combat.','Troy','classical antiquity'),
+('The Fate of Patroclus','The Decision of Patroclus','Wearing Achilles armor, Patroclus enters the battlefield in his stead, driven by a desire to turn the tide for the Greeks.','Troy','classical antiquity'),
 ('The Gorgon Medusa','Birth of Pegasus','From the blood of Medusa springs forth Pegasus, the winged horse.','Island of Sarpedon','classical antiquity'),
 ('The Gorgon Medusa','Perseus encounters Medusa','Perseus, aided by the gods, beheads Medusa while she sleeps.','Island of Sarpedon','classical antiquity'),
 ('The Guardian Lamassu','Creation of the Lamassu','The Lamassu are created by the gods to guard the cities of Mesopotamia, standing as symbols of protection and power.','Gates of Assyria','ancient'),
@@ -350,7 +344,7 @@ INSERT INTO StoryEvent VALUES
 ('The Legend of King Arthur','The Establishment of the Round Table','Arthur establishes the Round Table, gathering the most honorable knights in the land to seek justice and peace.','Camelot','medieval'),
 ('The Legend of King Arthur','The Quest for the Holy Grail','Arthur and his knights embark on the quest for the Holy Grail, the symbol of divine grace and the ultimate quest of Arthurian legend.','Camelot','medieval'),
 ('The Legend of King Arthur','The Sword in the Stone','Arthur pulls the magical sword, Excalibur, from the stone, proving his right to the throne.','Camelot','medieval'),
-('The Myth of Daedalus and Icarus','Icarus loses his wings','After flying too close to the sun, the wax on Icaruss wings melts, leaving him featherless and unable to fly','Crete','classical antiquity'),
+('The Myth of Daedalus and Icarus','Icarus loses his wings','After flying too close to the sun, the wax on Icaruss wings melts, leaving him featherless and unable to fly','Crete','classic antiquity'),
 ('The Myth of the Minotaur','The Birth of the Minotaur','The Minotaur is born as a result of a curse on Minoss wife, Pasiphae, and is subsequently imprisoned in the Labyrinth.','Labyrinth of Crete','bronze age'),
 ('The Myth of the Minotaur','The death of the Minotaur','Theseus kills the Minotaur with the help of Ariadnes thread, finding his way out of the maze.','Labyrinth of Crete','bronze age'),
 ('The Myth of the Minotaur','Theseus enters the Labyrinth','Theseus, the prince of Athens, ventures into the Labyrinth to slay the Minotaur.','Labyrinth of Crete','bronze age'),
@@ -361,30 +355,28 @@ INSERT INTO StoryEvent VALUES
 
 INSERT INTO BelongsTo VALUES 
 ('Shield of Achilles','Achilles'),
-('Spear of Achilles','Achilles'),
-('Arachnes Tapestry','Arachne'),
+('Arachne"s Tapestry','Arachne'),
 ('Excalibur','Arthur'),
 ('Gáe Bolga','Cú Chulainn'),
 ('Cauldron of Dagda','Dagda'),
 ('Demon Bull Kings Cudgel','Demon Bull King'),
 ('Tablets of Destiny','Enlil'),
 ('Wings of Icarus','Icarus'),
-('Osiris Coffin','Osiris'),
+('Osiris"s Coffin','Osiris'),
 ('Armor of Achilles','Patroclus'),
 ('Ruyi Jingu Bagn','Sun Wukong'),
-('Sun Wukongs Golden Headband','Sun Wukong'),
+('Sun Wukong"s Golden Headband','Sun Wukong'),
 ('Mjollnir','Thor'),
 ('Dreamcatcher','Trickster Coyote');
 
 INSERT INTO AppearsIn VALUES 
 ('Mjollnir', 'The Legendary Adventures of Thor'),
-('Arachnes Tapestry', 'Tale of Arachne'),
+('Arachne"s Tapestry', 'Tale of Arachne'),
 ('Shield of Achilles', 'Story of Achilles'),
 ('Wings of Icarus', 'The Myth of Daedalus and Icarus'),
-('Osiriss Coffin', 'The Death and Rebirth of Osiris'),
-('Sun Wukongs Golden Headband', 'Quest for Immortality'),
+('Osiris"s Coffin', 'The Death and Rebirth of Osiris'),
+('Sun Wukong"s Golden Headband', 'Quest for Immortality'),
 ('Ruyi Jingu Bagn', 'Quest for Immortality'),
-('Excalibur', 'The Sword in the Stone'),
 ('Cauldron of Dagda', 'Tale of Dagda and the Cauldron' ),
 ('Tablets of Destiny', 'Enlil and the Tablets of Destiny'),
 ('Dreamcatcher', 'Tale of Trickster Coyote'),
@@ -399,5 +391,4 @@ INSERT INTO PartOf VALUES
 ('Osiris','The Death and Rebirth of Osiris'),
 ('Medusa','The Gorgon Medusa'),
 ('Icarus','The Myth of Daedalus and Icarus'),
-('Minotaur','The Myth of the Minotaur'),
-('Jormungandr','The Twilight of the Gods');
+('Minotaur','The Myth of the Minotaur');
