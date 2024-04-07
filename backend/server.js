@@ -1033,7 +1033,20 @@ app.get('/api/having/CharacterCount', (req, res) => {
   });
 });
 
-
+// PROJECT location data in MySQL
+app.get('/api/project/Location', (req, res) => {
+  console.log('Project Location called');
+  const query = "SELECT LocationName, AreaDescription, TimePeriod FROM Location";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving data from database');
+    } else {
+      const taleNames = results.map(result => result.taleName);
+      res.json(taleNames);
+    }
+  });
+});
 
 
 // Start the server
