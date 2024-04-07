@@ -9,7 +9,6 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
-const { default: TalePage } = require('../frontend/304-project/src/deletePages/TalePage');
 app.use(cors());
 
 // Parse JSON bodies
@@ -1017,6 +1016,25 @@ app.delete('/api/delete/AppearsIn', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Location', (req, res) => {
+  console.log('Delete Location entry called');
+  const { locationName, areaDescription } = req.body;
+
+  const query = `
+    DELETE FROM Location 
+    WHERE locationName = ? AND areaDescription = ?;
+  `;
+
+  db.query(query, [locationName, areaDescription], (err, result) => {
+    if (err) {
+      console.error("Error deleting Location entry: ", err);
+      res.status(500).send('Error deleting Location entry');
+      return;
+    }
+    console.log("Location entry deleted successfully");
+    res.send('Location entry deleted successfully');
+  });
+});
 
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
