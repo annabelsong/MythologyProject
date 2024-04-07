@@ -35,11 +35,11 @@ function App() {
     <div className="App">
       <nav className="bg-gray-200 py-5">
         <div className="container mx-auto nav-container">
-          <button className="nav-button" onClick={() => setCurrentPage('SplashPage')}>Main Menu</button>
+          <button className="nav-button" onClick={() => setCurrentPage('SplashPage')}>Home</button>
           <button className="nav-button" onClick={() => setCurrentPage('AddPage')}>Add Entries</button>
           <button className="nav-button" onClick={() => setCurrentPage('ViewPage')}>View Info</button>
           <button className="nav-button" onClick={() => setCurrentPage('EditPage')}>Edit Entries</button>
-          <button className="nav-button" onClick={() => setCurrentPage('SortPage')}>Sort Entries</button>
+          <button className="nav-button" onClick={() => setCurrentPage('SortPage')}>Search Entries</button>
           <button className="nav-button" onClick={() => setCurrentPage('DeletePage')}>Delete Entries</button>
         </div>
       </nav>
