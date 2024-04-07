@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
+const { default: TalePage } = require('../frontend/304-project/src/deletePages/TalePage');
 app.use(cors());
 
 // Parse JSON bodies
@@ -601,23 +602,39 @@ app.put('/api/update/Deity', (req, res) => {
   console.log('Update Deity called');
   const { characterName, newCharacterDescription, newDomain, newSupernaturalAbility } = req.body;
 
-  const query = `
+  const query1 = `
+    UPDATE Characters
+    SET 
+      characterDescription = ?
+    WHERE characterName = ?;
+  `;
+  const query2 = `
     UPDATE Deity
     SET 
       characterDescription = ?,
       domain = ?,
       supernaturalAbility = ?
-    WHERE characterName = ?;
+    WHERE deityName = ?;
   `;
 
-  db.query(query, [newCharacterDescription, newDomain, newSupernaturalAbility, characterName], (err, result) => {
+  db.query1(query1, [newCharacterDescription, characterName], (err, result) => {
     if (err) {
       console.error("Error updating Deity data: ", err);
       res.status(500).send('Error updating Deity data');
       return;
     }
+  });
+
+  db.query2(query2, [newCharacterDescription, newDomain, newSupernaturalAbility, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating Deity data: ", err);
+      res.status(500).send('Error updating Deity data');
+      return;
+    }
+
     console.log("Deity data updated successfully");
     res.send('Deity data updated successfully');
+    res.status(200).json({ message: 'Data updated successfully into database' });
   });
 });
 
@@ -625,23 +642,39 @@ app.put('/api/update/Creature', (req, res) => {
   console.log('Update Creature called');
   const { characterName, newCharacterDescription, newSupernaturalAbility, newSpecies } = req.body;
 
-  const query = `
-    UPDATE Creature
+  const query1 = `
+    UPDATE Characters
     SET 
-      characterDescription = ?,
-      supernaturalAbility = ?,
-      species = ?
+      characterDescription = ?
     WHERE characterName = ?;
   `;
+  const query2 = `
+    UPDATE Deity
+    SET 
+      characterDescription = ?,
+      superNaturalAbility = ?,
+      species = ?
+    WHERE creatureName = ?;
+  `;
 
-  db.query(query, [newCharacterDescription, newSpecies, newSupernaturalAbility, characterName], (err, result) => {
+  db.query1(query1, [newCharacterDescription, characterName], (err, result) => {
     if (err) {
       console.error("Error updating Creature data: ", err);
       res.status(500).send('Error updating Creature data');
       return;
     }
+  });
+
+  db.query2(query2, [newCharacterDescription, newSupernaturalAbility, newSpecies, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating Creature data: ", err);
+      res.status(500).send('Error updating Creature data');
+      return;
+    }
+
     console.log("Creature data updated successfully");
     res.send('Creature data updated successfully');
+    res.status(200).json({ message: 'Data updated successfully into database' });
   });
 });
 
@@ -671,23 +704,39 @@ app.put('/api/update/Mortal', (req, res) => {
   console.log('Update Mortal called');
   const { characterName, newCharacterDescription, newTitle, newProfession } = req.body;
 
-  const query = `
-    UPDATE Mortal
+  const query1 = `
+    UPDATE Characters
+    SET 
+      characterDescription = ?
+    WHERE characterName = ?;
+  `;
+  const query2 = `
+    UPDATE Deity
     SET 
       characterDescription = ?,
       title = ?,
       profession = ?
-    WHERE characterName = ?;
+    WHERE mortalName = ?;
   `;
 
-  db.query(query, [newCharacterDescription, newTitle, newProfession, characterName], (err, result) => {
+  db.query1(query1, [newCharacterDescription, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating Deity data: ", err);
+      res.status(500).send('Error updating Deity data');
+      return;
+    }
+  });
+
+  db.query2(query2, [newCharacterDescription, newTitle, newProfession, characterName], (err, result) => {
     if (err) {
       console.error("Error updating Mortal data: ", err);
       res.status(500).send('Error updating Mortal data');
       return;
     }
+
     console.log("Mortal data updated successfully");
     res.send('Mortal data updated successfully');
+    res.status(200).json({ message: 'Data updated successfully into database' });
   });
 });
 
@@ -969,8 +1018,6 @@ app.delete('/api/delete/AppearsIn', (req, res) => {
 });
 
 
-
-
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
@@ -987,21 +1034,6 @@ app.get('/api/having/CharacterCount', (req, res) => {
 });
 
 
-
-// PROJECT location data in MySQL
-app.get('/api/project/Location', (req, res) => {
-  console.log('Project Location called');
-  const query = "SELECT LocationName, AreaDescription, TimePeriod FROM Location";
-  db.query(query, (err, results) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Error retrieving data from database');
-    } else {
-      const taleNames = results.map(result => result.taleName);
-      res.json(taleNames);
-    }
-  });
-});
 
 
 // Start the server
