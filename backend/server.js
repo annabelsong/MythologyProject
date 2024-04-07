@@ -537,6 +537,23 @@ app.put('/api/update/Pantheon', (req,res) => {
   });
 });
 
+// HAVING data in MySQL
+app.get('/api/having/CharacterCount', (req, res) => {
+  console.log('Having CharacterCount called');
+  const query = "SELECT COUNT(CharacterName) as CharacterCount, Culture FROM PartOf GROUP BY Culture HAVING CharacterCount > 5;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching CharacterCount data:', err);
+      res.status(500).send('Error fetching CharacterCount data');
+    } else {
+      console.log('CharacterCount data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
+
+
 // Update data in MySQL
 // done
 app.put('/api/update/AppearsIn', (req, res) => {
