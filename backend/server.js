@@ -797,6 +797,23 @@ app.delete('/api/delete/Artifact', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Creature', (req, res) => {
+  console.log('Delete Creature called');
+  const { characterName } = req.body;
+
+  const query = 'DELETE FROM Creature WHERE characterName = ?;';
+  db.query(query, [characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Creature entry: ", err);
+      res.status(500).send('Error deleting Creature entry');
+      return;
+    }
+    console.log("Creature entry deleted successfully");
+    res.send('Creature entry deleted successfully');
+  });
+});
+
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
