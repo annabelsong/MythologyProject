@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './TableStyleForSort.css';
+import axios from 'axios';
 
 const mockData = [
     { TaleName: 'Tale of Arachne', MoralLesson: 'Do not get carried away in your own hubris', Culture: 'Greek' },
@@ -22,7 +23,7 @@ function TaleSort({ keyword, table }) {
     const [data, setData] = useState(mockData);
 
     // Fetch the character count from the API
-    fetch('api/having/CharacterCount')
+    fetch('http://localhost:3307/api/having/CharacterCount')
       .then(response => response.json())
       .then(characterCount => {
         // Filter the data based on the keyword and character count
