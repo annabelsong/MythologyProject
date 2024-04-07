@@ -716,6 +716,29 @@ app.put('/api/update/Ritual', (req, res) => {
   });
 });
 
+app.put('/api/update/Tale', (req, res) => {
+  console.log('Update Tale called');
+  const { taleName, newMoralLesson, newCulture } = req.body;
+
+  const query = `
+    UPDATE Tale
+    SET 
+      moralLesson = ?,
+      culture = ?
+    WHERE taleName = ?;
+  `;
+
+  db.query(query, [newMoralLesson, newCulture, taleName], (err, result) => {
+    if (err) {
+      console.error("Error updating Tale data: ", err);
+      res.status(500).send('Error updating Tale data');
+      return;
+    }
+    console.log("Tale data updated successfully");
+    res.send('Tale data updated successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
