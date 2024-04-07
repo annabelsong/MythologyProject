@@ -721,8 +721,8 @@ app.put('/api/update/Mortal', (req, res) => {
 
   db.query1(query1, [newCharacterDescription, characterName], (err, result) => {
     if (err) {
-      console.error("Error updating Deity data: ", err);
-      res.status(500).send('Error updating Deity data');
+      console.error("Error updating Mortal data: ", err);
+      res.status(500).send('Error updating Mortal data');
       return;
     }
   });
