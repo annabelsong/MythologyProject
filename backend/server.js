@@ -1017,8 +1017,26 @@ app.delete('/api/delete/AppearsIn', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Location', (req, res) => {
+  console.log('Delete Location entry called');
+  const { locationName, areaDescription } = req.body;
 
-// HAVING data in MySQL
+  const query = `
+    DELETE FROM Location 
+    WHERE locationName = ? AND areaDescription = ?;
+  `;
+
+  db.query(query, [locationName, areaDescription], (err, result) => {
+    if (err) {
+      console.error("Error deleting Location entry: ", err);
+      res.status(500).send('Error deleting Location entry');
+      return;
+    }
+    console.log("Location entry deleted successfully");
+    res.send('Location entry deleted successfully');
+  });
+});
+
 // HAVING data in MySQL
 // moral context character count > 70
 app.get('/api/having/CharacterCount', (req, res) => {
