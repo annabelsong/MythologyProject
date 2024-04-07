@@ -552,6 +552,21 @@ app.put('/api/update/Artifact', (req, res) => {
   });
 });
 
+app.put('/api/update/Symbol', (req, res) => {
+  console.log('Update Symbol called');
+  const { symbolName, newOrigin } = req.body;
+  const query = 'UPDATE Symbol SET origin = ? WHERE symbolName = ?;';
+  db.query(query, [newOrigin, symbolName], (err, result) => {
+    if (err) {
+      console.error("Error updating Symbol data: ", err);
+      res.status(500).send('Error updating Aritfact data');
+      return;
+    }
+    console.log("Symbol data updated successfully");
+    res.send('Symbol data updated successfully');
+  });
+});
+
 app.put('/api/update/PartOf', (req, res) => {
   console.log('Update PartOf called');
   const { characterName, newTaleName } = req.body;
