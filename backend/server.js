@@ -739,6 +739,30 @@ app.put('/api/update/Tale', (req, res) => {
   });
 });
 
+app.put('/api/update/StoryEvent', (req, res) => {
+  console.log('Update StoryEvent called');
+  const { taleName, eventName, newEventDescription, newLocationName, newTimePeriod } = req.body;
+
+  const query = `
+    UPDATE StoryEvent
+    SET 
+      eventDescription = ?,
+      locationName = ?,
+      timePeriod = ?
+    WHERE taleName = ? AND eventName = ?;
+  `;
+
+  db.query(query, [newEventDescription, newLocationName, newTimePeriod, taleName, eventName], (err, result) => {
+    if (err) {
+      console.error("Error updating StoryEvent data: ", err);
+      res.status(500).send('Error updating StoryEvent data');
+      return;
+    }
+    console.log("StoryEvent data updated successfully");
+    res.send('StoryEvent data updated successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
@@ -753,9 +777,6 @@ app.get('/api/having/CharacterCount', (req, res) => {
     }
   });
 });
-
-
-
 
 
 
