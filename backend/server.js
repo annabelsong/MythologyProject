@@ -310,6 +310,20 @@ app.get('/api/fetch/Artifact', (req, res) => {
   });
 });
 
+app.get('/api/fetch/ArtifactCulture', (req, res) => {
+  console.log('Fetch Artifact called');
+  const query = "SELECT A1.ArtifactName, T.Culture, A1.Origin FROM Artifact A1, AppearsIn a2, Tale T WHERE A1.ArtifactName = A2.ArtifactName AND A2.TaleName = T.TaleName;"
+  db.query(query, (err,results) => {
+    if (err) {
+      console.error('Error fetching Artifact data:', err);
+      res.status(500).send('Error fetching Artifact data');
+    } else {
+      console.log('Artifact data fetched successfully');
+      res.json(results);
+    }
+  });
+});
+
 app.get('/api/fetch/BelongsTo', (req, res) => {
   console.log('Fetch BelongsTo called');
   const query = "SELECT * FROM BelongsTo;"
