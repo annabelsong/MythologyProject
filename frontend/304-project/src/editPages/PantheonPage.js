@@ -32,7 +32,7 @@ function PantheonPage() {
     <div className="edit-form">
       <h2 className="form-title">Edit Pantheon Entry</h2>
       <label>
-        <span>Type in the name of Culture you want to make changes in:</span>
+        <span>Type in the Culture of the entry you want to make changes in:</span>
         <input
           type="text"
           value={culture}
@@ -54,6 +54,6 @@ function PantheonPage() {
 }
 
 
-  
+
 
 export default PantheonPage;

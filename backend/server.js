@@ -600,6 +600,28 @@ app.put('/api/update/Creature', (req, res) => {
   });
 });
 
+app.put('/api/update/Location', (req, res) => {
+  console.log('Update Location called');
+  const { locationName, timePeriod, newAreaDescription } = req.body;
+
+  const query = `
+    UPDATE Location
+    SET 
+      areaDescription = ?
+    WHERE locationName = ? AND timePeriod = ?;
+  `;
+
+  db.query(query, [newAreaDescription, locationName, timePeriod], (err, result) => {
+    if (err) {
+      console.error("Error updating Location data: ", err);
+      res.status(500).send('Error updating Location data');
+      return;
+    }
+    console.log("Location data updated successfully");
+    res.send('Location data updated successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
