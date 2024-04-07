@@ -567,6 +567,21 @@ app.put('/api/update/PartOf', (req, res) => {
   });
 });
 
+app.put('/api/update/Represents', (req, res) => {
+  console.log('Update Represents called');
+  const { symbolName, newDeityName } = req.body;
+  const query = 'UPDATE Represents SET characterName = ? WHERE symbolName = ?;';
+  db.query(query, [newDeityName, symbolName], (err, result) => {
+    if (err) {
+      console.error("Error updating Represents data: ", err);
+      res.status(500).send('Error updating Represents data');
+      return;
+    }
+    console.log("Represents data updated successfully");
+    res.send('Represents data updated successfully');
+  });
+});
+
 app.put('/api/update/Deity', (req, res) => {
   console.log('Update Deity called');
   const { characterName, newCharacterDescription, newDomain, newSupernaturalAbility } = req.body;
