@@ -522,11 +522,11 @@ app.get('/api/fetch/Tale', (req, res) => {
 
 // Update data in MySQL
 // done need double check tho
-app.put('/api/update/Pantheon', (req,res) => {
+app.put('/api/update/Pantheon', (req, res) => {
   console.log('Update Pantheon called');
-  const { oldPrimaryKey, newCulture, newPantheonName } = req.body;
-  const query = 'UPDATE Pantheon SET culture = ?, pantheonName = ? WHERE culture = ?;';
-  db.query(query, [newCulture, newPantheonName, oldPrimaryKey], (err, result) => {
+  const { culture, newPantheonName } = req.body;
+  const query = 'UPDATE Pantheon SET pantheonName = ? WHERE culture = ?;';
+  db.query(query, [newPantheonName, culture], (err, result) => {
     if (err) {
       console.error("Error updating Pantheon data: ", err);
       res.status(500).send('Error updating Pantheon data');
@@ -536,6 +536,22 @@ app.put('/api/update/Pantheon', (req,res) => {
     res.send('Pantheon data updated successfully');
   });
 });
+
+app.put('/api/update/Artifact', (req, res) => {
+  console.log('Update Artifact called');
+  const { artifactName, newOrigin } = req.body;
+  const query = 'UPDATE Artifact SET origin = ? WHERE artifactName = ?;';
+  db.query(query, [newOrigin, artifactName], (err, result) => {
+    if (err) {
+      console.error("Error updating Artifact data: ", err);
+      res.status(500).send('Error updating Aritfact data');
+      return;
+    }
+    console.log("Artifact data updated successfully");
+    res.send('Artifact data updated successfully');
+  });
+});
+
 
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {

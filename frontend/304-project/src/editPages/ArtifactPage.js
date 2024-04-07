@@ -1,49 +1,59 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './Style.css';
 
-function ArtifactsPage() {
+function ArtifactPage() {
   const [artifactName, setArtifactName] = useState('');
-  const [newOrigin, setnewOrigin] = useState('');
+  const [newOrigin, setNewOrigin] = useState('');
+  const [updateMessage, setUpdateMessage] = useState('');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    
+  const handleArtifactNameChange = (e) => setArtifactName(e.target.value);
+  const handleNewOriginChange = (e) => setNewOrigin(e.target.value);
+
+  const updateArtifactEntry = async () => {
+    if (!artifactName || !newOrigin) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
     try {
-      const response = await axios.put('http://localhost:3307/api/update/AppearsIn', {
-        artifactName, 
-        taleName: newOrigin,
-      });
+      const response = await axios.put('http://localhost:3307/api/update/Pantheon', { oldPrimaryKey: artifactName, newOrigin });
       console.log(response.data);
-      // Reset the form or provide user feedback
+      setUpdateMessage("Thanks for your update! It should be reflected in the View Page now.");
       setArtifactName('');
-      setnewOrigin('');
+      setNewOrigin('');
     } catch (error) {
       console.error('Error updating data:', error);
-      // Handle error
+      setUpdateMessage("Error updating data. Please try again.");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="edit-form">
+      <h2 className="form-title">Edit Artifact Entry</h2>
       <label>
-        Artifact Name (to update):
+        <span>Type in the name of Artifact you want to make changes in:</span>
         <input
           type="text"
           value={artifactName}
-          onChange={(e) => setArtifactName(e.target.value)}
+          onChange={handleArtifactNameChange}
         />
       </label>
       <label>
-        New Tale Name:
+        <span>New Pantheon Name:</span>
         <input
           type="text"
           value={newOrigin}
-          onChange={(e) => setnewOrigin(e.target.value)}
+          onChange={handleNewOriginChange}
         />
       </label>
-      <button type="submit">Update Artifact</button>
-    </form>
+      <button type="submit" onClick={updateArtifactEntry}>Update</button>
+      {updateMessage && <p>{updateMessage}</p>}
+    </div>
   );
 }
 
-export default ArtifactsPage;
+
+
+
+export default ArtifactPage;
