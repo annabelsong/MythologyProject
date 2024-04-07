@@ -37,30 +37,45 @@ const mockData = [ // This was just for me to see the table styling you can eras
   { LocationName: 'Brauron', AreaDescription: 'An ancient Greek sanctuary on the eastern coast of Attica dedicated to Artemis Brauronia, a place of worship and rites for young girls.', TimePeriod: 'classical antiquity' },
   { LocationName: 'Ortygia', AreaDescription: 'A small island near Delos, legendary birthplace of Artemis and Apollo, sacred to both.', TimePeriod: 'classical antiquity' }
 ];
-function LocationSort({ keyword, table }) {
-  const [data, setData] = useState(mockData);
 
-  // Filter the data based on the keyword
-  const filteredData = data.filter((item) =>
+function LocationSort({ keyword, table }) {
+  const [data, setData] = useState([]);
+
+  const [filteredData, setFilteredData] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/project/Location')
+      .then(response => response.json())
+      .then(data => {
+        setData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    const filteredData = data.filter((item) =>
       Object.values(item).some((value) =>
-          value.toString().toLowerCase().includes(keyword.toLowerCase())
+        value.toString().toLowerCase().includes(keyword.toLowerCase())
       )
-  );
+    );
+    setFilteredData(filteredData);
+  }, [data, keyword]);
+
 
   if (filteredData.length === 0) {
-      return <div>sorry, the given keyword was not found in the Table of Locations you selected</div>;
+    return <div>sorry, the given keyword was not found in the Table of Locations you selected</div>;
   }
 
-  // Render the filtered data
   return (
-      <table>
+    <table>
       <thead>
         <tr>
-          
           <th>Location</th>
           <th>Description</th>
           <th>Time Period</th>
-          
         </tr>
       </thead>
       <tbody>
@@ -76,6 +91,10 @@ function LocationSort({ keyword, table }) {
   );
 
 }
+
+
+
+export default LocationSort;
 
 
 export default LocationSort;

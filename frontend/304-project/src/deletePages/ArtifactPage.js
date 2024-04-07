@@ -3,24 +3,24 @@ import axios from 'axios';
 import './Styles.css';
 
 function ArtifactPage() {
-    const [artifact, setArtifactName] = useState('');
+    const [artifactName, setArtifactName] = useState('');
     const [deleteMessage, setDeleteMessage] = useState('');
 
     const handleArtifactNameChange = (e) => setArtifactName(e.target.value);
 
     const deleteArtifactEntry = async () => {
-        if (!artifact) {
-            alert("Please enter the artifact name of the entry you want to delete.");
+        if (!artifactName) {
+            alert("Please enter the artifactName name of the entry you want to delete.");
             return;
         }
 
         try {
-            const response = await axios.delete('http://localhost:3307/api/delete/Artifact', { data: { artifact } });
+            const response = await axios.delete('http://localhost:3307/api/delete/Artifact', { data: { artifactName } });
             console.log(response.data);
             setDeleteMessage("The entry has been successfully deleted.");
             setArtifactName('');
         } catch (error) {
-            console.error('Error deleting artifact entry:', error);
+            console.error('Error deleting Artifact entry:', error);
             setDeleteMessage("Error deleting the entry. Please try again.");
         }
     };
@@ -32,7 +32,7 @@ function ArtifactPage() {
                 <span>Name of Artifact entry you'd like to delete:</span>
                 <input
                     type="text"
-                    value={artifact}
+                    value={artifactName}
                     onChange={handleArtifactNameChange}
                     className="input-field"
                 />

@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
+const { default: TalePage } = require('../frontend/304-project/src/deletePages/TalePage');
 app.use(cors());
 
 // Parse JSON bodies
@@ -797,11 +798,60 @@ app.delete('/api/delete/Artifact', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Ritual', (req, res) => {
+  console.log('Delete Ritual called');
+  const { ritualName } = req.body;
+
+  const query = 'DELETE FROM Ritual WHERE ritualName = ?;';
+  db.query(query, [ritualName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Ritual entry: ", err);
+      res.status(500).send('Error deleting Ritual entry');
+      return;
+    }
+    console.log("Ritual entry deleted successfully");
+    res.send('Ritual entry deleted successfully');
+  });
+});
+
+app.delete('/api/delete/Symbol', (req, res) => {
+  console.log('Delete Symbol called');
+  const { symbolName } = req.body;
+
+  const query = 'DELETE FROM Symbol WHERE symbolName = ?;';
+  db.query(query, [symbolName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Symbol entry: ", err);
+      res.status(500).send('Error deleting Symbol entry');
+      return;
+    }
+    console.log("Symbol entry deleted successfully");
+    res.send('Symbol entry deleted successfully');
+  });
+});
+
+app.delete('/api/delete/Tale', (req, res) => {
+  console.log('Delete Tale called');
+  const { taleName } = req.body;
+
+  const query = 'DELETE FROM Tale WHERE taleName = ?;';
+  db.query(query, [taleName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Tale entry: ", err);
+      res.status(500).send('Error deleting Tale entry');
+      return;
+    }
+    console.log("Tale entry deleted successfully");
+    res.send('Tale entry deleted successfully');
+  });
+});
+
+
 app.delete('/api/delete/Creature', (req, res) => {
   console.log('Delete Creature called');
   const { characterName } = req.body;
 
-  const query = 'DELETE FROM Creature WHERE characterName = ?;';
+  const query = 'DELETE FROM Character WHERE characterName = ?;';
   db.query(query, [characterName], (err, result) => {
     if (err) {
       console.error("Error deleting Creature entry: ", err);
@@ -817,7 +867,7 @@ app.delete('/api/delete/Deity', (req, res) => {
   console.log('Delete Deity called');
   const { characterName } = req.body;
 
-  const query = 'DELETE FROM Deity WHERE characterName = ?;';
+  const query = 'DELETE FROM Character WHERE characterName = ?;';
   db.query(query, [characterName], (err, result) => {
     if (err) {
       console.error("Error deleting Deity entry: ", err);
@@ -833,7 +883,7 @@ app.delete('/api/delete/Mortal', (req, res) => {
   console.log('Delete Mortal called');
   const { characterName } = req.body;
 
-  const query = 'DELETE FROM Mortal WHERE characterName = ?;';
+  const query = 'DELETE FROM Character WHERE characterName = ?;';
   db.query(query, [characterName], (err, result) => {
     if (err) {
       console.error("Error deleting Mortal entry: ", err);
@@ -844,6 +894,82 @@ app.delete('/api/delete/Mortal', (req, res) => {
     res.send('Mortal entry deleted successfully');
   });
 });
+
+
+app.delete('/api/delete/PartOf', (req, res) => {
+  console.log('Delete PartOf called');
+  const { characterName } = req.body;
+
+  const query = 'DELETE FROM PartOf WHERE characterName = ?;';
+  db.query(query, [characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting PartOf entry: ", err);
+      res.status(500).send('Error deleting PartOf entry');
+      return;
+    }
+    console.log("PartOf entry deleted successfully");
+    res.send('PartOf entry deleted successfully');
+  });
+});
+
+app.delete('/api/delete/Represents', (req, res) => {
+  console.log('Delete Represents called');
+  const { symbolName } = req.body;
+
+  const query = 'DELETE FROM Represents WHERE symbolName = ?;';
+  db.query(query, [symbolName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Represents entry: ", err);
+      res.status(500).send('Error deleting Represents entry');
+      return;
+    }
+    console.log("Represents entry deleted successfully");
+    res.send('Represents entry deleted successfully');
+  });
+});
+
+app.delete('/api/delete/BelongsTo', (req, res) => {
+  console.log('Delete BelongsTo entry called');
+  const { artifactName, characterName } = req.body;
+
+  const query = `
+    DELETE FROM BelongsTo 
+    WHERE artifactName = ? AND characterName = ?;
+  `;
+
+  db.query(query, [artifactName, characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting BelongsTo entry: ", err);
+      res.status(500).send('Error deleting BelongsTo entry');
+      return;
+    }
+    console.log("BelongsTo entry deleted successfully");
+    res.send('BelongsTo entry deleted successfully');
+  });
+});
+
+
+app.delete('/api/delete/AppearsIn', (req, res) => {
+  console.log('Delete AppearsIn entry called');
+  const { artifactName, taleName } = req.body;
+
+  const query = `
+    DELETE FROM AppearsIn 
+    WHERE artifactName = ? AND taleName = ?;
+  `;
+
+  db.query(query, [artifactName, taleName], (err, result) => {
+    if (err) {
+      console.error("Error deleting AppearsIn entry: ", err);
+      res.status(500).send('Error deleting AppearsIn entry');
+      return;
+    }
+    console.log("AppearsIn entry deleted successfully");
+    res.send('AppearsIn entry deleted successfully');
+  });
+});
+
+
 
 
 // HAVING data in MySQL
@@ -862,6 +988,21 @@ app.get('/api/having/CharacterCount', (req, res) => {
 });
 
 
+
+// PROJECT location data in MySQL
+app.get('/api/project/Location', (req, res) => {
+  console.log('Project Location called');
+  const query = "SELECT LocationName, AreaDescription, TimePeriod FROM Location";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving data from database');
+    } else {
+      const taleNames = results.map(result => result.taleName);
+      res.json(taleNames);
+    }
+  });
+});
 
 
 // Start the server

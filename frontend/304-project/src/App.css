@@ -32,6 +32,40 @@
   color: #61dafb;
 }
 
+.nav-container {
+  display: flex;
+  align-items: center; 
+  justify-content: space-around; 
+  flex-wrap: nowrap; 
+}
+
+.nav-button {
+  background-color: white;
+  color: #007bff;
+  border-radius: 9999px; 
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s; 
+}
+
+.nav-button:hover {
+  background-color: #e7e7e7; 
+}
+
+.top-bar {
+  position: absolute;
+  top: 4.5rem + 0.5 rem; 
+  left: 0;
+  background-color: darkgrey;
+  height: 0.5rem;
+  width: 100%;
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
