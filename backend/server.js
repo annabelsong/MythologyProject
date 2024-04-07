@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
+
 app.use(cors());
 
 // Parse JSON bodies
@@ -1037,20 +1038,20 @@ app.delete('/api/delete/Location', (req, res) => {
 });
 
 // HAVING data in MySQL
+// HAVING data in MySQL
+// moral context character count > 70
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
-  const query = "SELECT COUNT(CharacterName) as CharacterCount, Culture FROM PartOf GROUP BY Culture HAVING CharacterCount > 5;"
-  db.query(query, (err,results) => {
+  const query = "SELECT LENGTH(MoralLesson) as CharacterCount, TaleName FROM Tale WHERE LENGTH(MoralLesson) > 70 GROUP BY TaleName";
+  db.query(query, (err, results) => {
     if (err) {
-      console.error('Error fetching CharacterCount data:', err);
-      res.status(500).send('Error fetching CharacterCount data');
+      console.error(err);
+      res.status(500).send("Error retrieving data from the database");
     } else {
-      console.log('CharacterCount data fetched successfully');
       res.json(results);
     }
   });
 });
-
 // PROJECT location data in MySQL
 app.get('/api/project/Location', (req, res) => {
   console.log('Project Location called');
