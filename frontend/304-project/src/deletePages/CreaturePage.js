@@ -3,10 +3,10 @@ import axios from 'axios';
 import './Styles.css';
 
 function CreaturePage() {
-    const [characterName, setCreatureName] = useState('');
+    const [characterName, setCharacterName] = useState('');
     const [deleteMessage, setDeleteMessage] = useState('');
 
-    const handleCreatureNameChange = (e) => setCreatureName(e.target.value);
+    const handleCharacterNameChange = (e) => setCharacterName(e.target.value);
 
     const deleteCreatureEntry = async () => {
         if (!characterName) {
@@ -18,7 +18,7 @@ function CreaturePage() {
             const response = await axios.delete('http://localhost:3307/api/delete/Creature', { data: { characterName } });
             console.log(response.data);
             setDeleteMessage("The entry has been successfully deleted.");
-            setCreatureName('');
+            setCharacterName('');
         } catch (error) {
             console.error('Error deleting Creature entry:', error);
             setDeleteMessage("Error deleting the entry. Please try again.");
@@ -33,7 +33,7 @@ function CreaturePage() {
                 <input
                     type="text"
                     value={characterName}
-                    onChange={handleCreatureNameChange}
+                    onChange={handleCharacterNameChange}
                     className="input-field"
                 />
             </label>

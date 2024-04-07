@@ -813,6 +813,38 @@ app.delete('/api/delete/Creature', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Deity', (req, res) => {
+  console.log('Delete Deity called');
+  const { characterName } = req.body;
+
+  const query = 'DELETE FROM Deity WHERE characterName = ?;';
+  db.query(query, [characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Deity entry: ", err);
+      res.status(500).send('Error deleting Deity entry');
+      return;
+    }
+    console.log("Deity entry deleted successfully");
+    res.send('Deity entry deleted successfully');
+  });
+});
+
+app.delete('/api/delete/Mortal', (req, res) => {
+  console.log('Delete Mortal called');
+  const { characterName } = req.body;
+
+  const query = 'DELETE FROM Mortal WHERE characterName = ?;';
+  db.query(query, [characterName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Mortal entry: ", err);
+      res.status(500).send('Error deleting Mortal entry');
+      return;
+    }
+    console.log("Mortal entry deleted successfully");
+    res.send('Mortal entry deleted successfully');
+  });
+});
+
 
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
