@@ -763,6 +763,24 @@ app.put('/api/update/StoryEvent', (req, res) => {
   });
 });
 
+
+// DELETE data in MySQL
+app.delete('/api/delete/Pantheon', (req, res) => {
+  console.log('Delete Pantheon called');
+  const { culture } = req.body;
+
+  const query = 'DELETE FROM Pantheon WHERE culture = ?;';
+  db.query(query, [culture], (err, result) => {
+    if (err) {
+      console.error("Error deleting Pantheon entry: ", err);
+      res.status(500).send('Error deleting Pantheon entry');
+      return;
+    }
+    console.log("Pantheon entry deleted successfully");
+    res.send('Pantheon entry deleted successfully');
+  });
+});
+
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
   console.log('Having CharacterCount called');
