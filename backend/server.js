@@ -9,6 +9,7 @@ const port = process.env.PORT || 5000;
 
 var cors = require('cors');
 const { spec } = require('node:test/reporters');
+const { default: TalePage } = require('../frontend/304-project/src/deletePages/TalePage');
 app.use(cors());
 
 // Parse JSON bodies
@@ -829,6 +830,21 @@ app.delete('/api/delete/Symbol', (req, res) => {
   });
 });
 
+app.delete('/api/delete/Tale', (req, res) => {
+  console.log('Delete Tale called');
+  const { taleName } = req.body;
+
+  const query = 'DELETE FROM Tale WHERE taleName = ?;';
+  db.query(query, [taleName], (err, result) => {
+    if (err) {
+      console.error("Error deleting Tale entry: ", err);
+      res.status(500).send('Error deleting Tale entry');
+      return;
+    }
+    console.log("Tale entry deleted successfully");
+    res.send('Tale entry deleted successfully');
+  });
+});
 
 
 app.delete('/api/delete/Creature', (req, res) => {
