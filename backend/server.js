@@ -949,6 +949,28 @@ app.delete('/api/delete/BelongsTo', (req, res) => {
 });
 
 
+app.delete('/api/delete/AppearsIn', (req, res) => {
+  console.log('Delete AppearsIn entry called');
+  const { artifactName, taleName } = req.body;
+
+  const query = `
+    DELETE FROM AppearsIn 
+    WHERE artifactName = ? AND taleName = ?;
+  `;
+
+  db.query(query, [artifactName, taleName], (err, result) => {
+    if (err) {
+      console.error("Error deleting AppearsIn entry: ", err);
+      res.status(500).send('Error deleting AppearsIn entry');
+      return;
+    }
+    console.log("AppearsIn entry deleted successfully");
+    res.send('AppearsIn entry deleted successfully');
+  });
+});
+
+
+
 
 // HAVING data in MySQL
 app.get('/api/having/CharacterCount', (req, res) => {
