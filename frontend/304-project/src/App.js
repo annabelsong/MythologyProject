@@ -34,16 +34,16 @@ function App() {
   return (
     <div className="App">
       <nav className="bg-gray-200 py-5">
-        <div className="container mx-auto">
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('SplashPage')}>Main Menu</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('AddPage')}>Add Entries</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('ViewPage')}>View Info</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('EditPage')}>Edit Entries</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('SortPage')}>Sort Entries</button>
-          <button className="mr-4 bg-white text-blue-500 rounded-full border-2 border-black px-4 py-2 font-bold" onClick={() => setCurrentPage('DeletePage')}>Delete Entries</button>
+        <div className="container mx-auto nav-container">
+          <button className="nav-button" onClick={() => setCurrentPage('SplashPage')}>Main Menu</button>
+          <button className="nav-button" onClick={() => setCurrentPage('AddPage')}>Add Entries</button>
+          <button className="nav-button" onClick={() => setCurrentPage('ViewPage')}>View Info</button>
+          <button className="nav-button" onClick={() => setCurrentPage('EditPage')}>Edit Entries</button>
+          <button className="nav-button" onClick={() => setCurrentPage('SortPage')}>Sort Entries</button>
+          <button className="nav-button" onClick={() => setCurrentPage('DeletePage')}>Delete Entries</button>
         </div>
       </nav>
-      <div className="absolute top-20 left-0 bg-black h-1 w-full"></div>
+      <div className="top-bar"></div>
       {renderPage()}
     </div>
   );
