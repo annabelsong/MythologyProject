@@ -552,6 +552,21 @@ app.put('/api/update/Artifact', (req, res) => {
   });
 });
 
+app.put('/api/update/PartOf', (req, res) => {
+  console.log('Update PartOf called');
+  const { characterName, newTaleName } = req.body;
+  const query = 'UPDATE PartOf SET taleName = ? WHERE characterName = ?;';
+  db.query(query, [newTaleName, characterName], (err, result) => {
+    if (err) {
+      console.error("Error updating PartOf data: ", err);
+      res.status(500).send('Error updating PartOf data');
+      return;
+    }
+    console.log("PartOf data updated successfully");
+    res.send('PartOf data updated successfully');
+  });
+});
+
 app.put('/api/update/Deity', (req, res) => {
   console.log('Update Deity called');
   const { characterName, newCharacterDescription, newDomain, newSupernaturalAbility } = req.body;

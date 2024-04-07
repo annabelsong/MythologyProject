@@ -41,7 +41,7 @@ function ArtifactPage() {
         />
       </label>
       <label>
-        <span>New Pantheon Name:</span>
+        <span>New Origin:</span>
         <input
           type="text"
           value={newOrigin}
